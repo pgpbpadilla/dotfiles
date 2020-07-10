@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -45,3 +46,15 @@ fi
 
 # source /usr/local/bin/git-completion.bash
 
+# Git prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+__GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+GIT_PROMPT_ONLY_IN_REPO=1
+source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
+# Go stuff
+export GOPATH=$HOME/code/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
