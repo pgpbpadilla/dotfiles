@@ -58,3 +58,10 @@ export GOPATH=$HOME/code/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+# Python stuff
+
+# pyenv auto-activation
+if which pyenv-virtualenv-init > /dev/null; then
+    eval "$(pyenv virtualenv-init -)";
+fi
