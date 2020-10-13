@@ -60,8 +60,15 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 # Python stuff
-
 # pyenv auto-activation
-if which pyenv-virtualenv-init > /dev/null; then
-    eval "$(pyenv virtualenv-init -)";
-fi
+eval "$(pyenv init -)"
+
+
+# Enable bash-completion
+# brew install bash-completions
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
+# Basher: https://github.com/basherpm/basher
+export PATH="$HOME/.basher/bin:$PATH"
+eval "$(basher init - bash)"
