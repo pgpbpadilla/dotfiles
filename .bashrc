@@ -60,7 +60,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 # Python stuff
-# pyenv auto-activation
 eval "$(pyenv init -)"
 
 
@@ -72,3 +71,10 @@ eval "$(pyenv init -)"
 # Basher: https://github.com/basherpm/basher
 export PATH="$HOME/.basher/bin:$PATH"
 eval "$(basher init - bash)"
+
+# Load extra DevTools
+
+if [ -f ~/bashrc.devtools.sh ]
+then
+    . ~/bashrc.devtools.sh
+fi
