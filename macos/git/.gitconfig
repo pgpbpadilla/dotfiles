@@ -1,0 +1,18 @@
+[user]
+	name = Pablo Padilla
+	email = pgpb.padilla@gmail.com
+[core]
+	excludesfile = /Users/pgpb.padilla/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/pgpb.padilla/.stCommitMsg
+[gui]
+	fontui = -family .AppleSystemUIFont -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Menlo -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+[guitool "meld"]
+  cmd = meld $FILENAME
