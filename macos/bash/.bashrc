@@ -61,6 +61,8 @@ export PATH=$PATH:$GOROOT/bin
 
 # Python stuff
 eval "$(pyenv init -)"
+# Auto-activate virtual environment
+eval "$(pyenv virtualenv-init -)"
 
 
 # Enable bash-completion
