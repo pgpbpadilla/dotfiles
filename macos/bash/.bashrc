@@ -7,14 +7,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH="/usr/local/bin:$PATH"
 export PATH="~/bin:$PATH"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 export PATH="/Library/TeX/Distributions/Programs/texbin:$PATH"
 export PATH="/usr/local/git/bin:$PATH"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 
 # BASH history
 # https://unix.stackexchange.com/a/26253/55912
@@ -27,8 +23,6 @@ shopt -s histappend
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-# source /usr/local/bin/git-completion.bash
 
 # Git prompt
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
@@ -60,9 +54,13 @@ eval "$(basher init - bash)"
 
 # Load extra DevTools
 
-if [ -f ~/bashrc.devtools.sh ]
+TOOLS_DIR=~/.bash-devtools
+if [ -d $TOOLS_DIR ]
 then
-    . ~/bashrc.devtools.sh
+    for f in $(ls $TOOLS_DIR)
+    do
+        source ${TOOLS_DIR}/$f
+    done
 fi
 
 
