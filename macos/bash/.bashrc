@@ -60,6 +60,7 @@ then
     for f in $(ls $TOOLS_DIR)
     do
         source ${TOOLS_DIR}/$f
+        echo "Loaded ${f}"
     done
 fi
 
