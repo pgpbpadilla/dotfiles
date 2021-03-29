@@ -25,4 +25,4 @@
 [alias]
 	status = status
 [core]
-	editor = /usr/bin/emacs
+	editor = /usr/local/bin/emacs
