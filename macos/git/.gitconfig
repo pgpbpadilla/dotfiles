@@ -23,6 +23,23 @@
 [guitool "Git Stash Show"]
 	 cmd = git stash show
 [alias]
-	status = status
+  pr = pull --rebase
+	st = status
+	co = checkout
+  ci = commit
+  br = branch
+  cob = checkout -b
+  review = log --since=\"2 weeks\" \
+               --oneline --reverse \
+               --author=pablo.padillabeltran@kuehne-nagel.com \
+               --committer=pablo.padillabeltran@kuehne-nagel.com
+  pop = reset --hard HEAD^
+  rh  = reset --hard HEAD
+  pl  = pull
+  del = branch -d
+  DEL = branch -D
+  fwl = push --force-with-lease
 [core]
 	editor = /usr/local/bin/emacs
+[pull]
+	ff = only
