@@ -42,7 +42,6 @@
  '(tab-width 2)
  '(word-wrap nil)
  '(helm-mode t)
- '(org-agenda-files '("~/Dropbox/todo"))
  )
 
 ;; Transparency
@@ -121,8 +120,10 @@
 
 ;; Org-Mode Options
 
+(setq org-agenda-files (list "~/org"))
+
 ;; Set to the location of your Org files on your local system
-(setq org-directory "~/Dropbox/todo")
+(setq org-directory "~/org")
 ;; Set to the name of the file where new notes will be stored
 (setq org-mobile-inbox-for-pull "~/Dropbox/todo/flagged.org")
 ;; Set to <your Dropbox root directory>/MobileOrg.
