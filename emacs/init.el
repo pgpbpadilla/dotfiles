@@ -121,6 +121,7 @@
 ;; Org-Mode Options
 
 (setq org-agenda-files (list "~/org"))
+(setq org-agenda-span 'day)
 
 ;; Set to the location of your Org files on your local system
 (setq org-directory "~/org")
