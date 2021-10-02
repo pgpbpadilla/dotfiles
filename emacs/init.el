@@ -42,6 +42,7 @@
  '(tab-width 2)
  '(word-wrap nil)
  '(helm-mode t)
+ '(epg-gpg-program  "/opt/local/bin/gpg2")
  )
 
 ;; Transparency
@@ -119,8 +120,8 @@
   )
 
 ;; Org-Mode Options
-
-(setq org-agenda-files (list "~/org"))
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
+;; (setq org-agenda-files (list "~/org"))
 (setq org-agenda-span 'day)
 
 ;; Set to the location of your Org files on your local system
@@ -154,6 +155,11 @@
         (org-agenda-files :maxlevel . 3)))
 
 (setq org-log-into-drawer t)
+
+;; Encryption for Org-files
+
+(require 'epa-file)
+(epa-file-enable)
 
 
 ;; Save backups and temp files to a central location to avoid
