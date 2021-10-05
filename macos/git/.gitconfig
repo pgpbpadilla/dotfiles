@@ -30,9 +30,7 @@
   br = branch
   cob = checkout -b
   review = log --since=\"2 weeks\" \
-               --oneline --reverse \
-               --author=pablo.padillabeltran@kuehne-nagel.com \
-               --committer=pablo.padillabeltran@kuehne-nagel.com
+               --oneline --reverse
   pop = reset --hard HEAD^
   rh  = reset --hard HEAD
   pl  = pull
