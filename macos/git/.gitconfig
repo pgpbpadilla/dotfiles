@@ -41,3 +41,5 @@
 	editor = /usr/local/bin/emacs
 [pull]
 	ff = only
+[diff "gpg"]
+	textconv = gpg -d -q
