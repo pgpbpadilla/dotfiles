@@ -41,7 +41,8 @@
  '(tab-width 2)
  '(word-wrap nil)
  '(helm-mode t)
- '(epg-gpg-program  "/opt/local/bin/gpg2")
+ ;; Must be installed already
+ '(epg-gpg-program  "/usr/local/bin/gpg")
  )
 
 ;; Transparency
@@ -151,6 +152,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; refile to another file
 (setq org-refile-targets
       '((nil :maxlevel . 3)
         (org-agenda-files :maxlevel . 3)))
@@ -162,6 +164,10 @@
 (require 'epa-file)
 (epa-file-enable)
 
+;; Configure EasyPG to use loopback for pinentry
+(setq epa-pinentry-mode 'loopback)
+(setq epg-pinentry-mode 'loopback)
+(pinentry-start)
 
 ;; Save backups and temp files to a central location to avoid
 ;; certain tools (Grunt-watch) to show annoying ENOENT file because
