@@ -41,7 +41,7 @@
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tsdh-dark)))
+ '(custom-enabled-themes (quote (tsdh-light)))
  '(electric-indent-mode nil)
  '(global-auto-complete-mode t)
  '(global-auto-highlight-symbol-mode t)
