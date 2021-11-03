@@ -134,7 +134,6 @@
 
 ;; Org-Mode Options
 (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
-;; (setq org-agenda-files (list "~/org"))
 (setq org-agenda-span 'day)
 
 ;; MobileOrg options
@@ -178,8 +177,9 @@
 (epa-file-enable)
 
 ;; Configure EasyPG to use loopback for pinentry
+(unless (package-installed-p 'pinentry)
+  (package-install 'pinentry))
 (setq epa-pinentry-mode 'loopback)
-(setq epg-pinentry-mode 'loopback)
 (pinentry-start)
 
 ;; Save backups and temp files to a central location to avoid
