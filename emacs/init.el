@@ -171,6 +171,16 @@
 
 (setq org-log-into-drawer t)
 
+;; Configures Org Mode: how to identify Stuck projects
+
+(setq org-stuck-projects 
+      '(
+        "+PROJECT/-MAYBE-DONE" 
+        ("NEXT" "TODO") 
+        ("@shop") 
+        "\\<IGNORE\\>")
+      )
+
 ;; Encryption for Org-files
 
 (require 'epa-file)
