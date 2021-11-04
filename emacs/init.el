@@ -133,6 +133,7 @@
   )
 
 ;; Org-Mode Options
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
 (setq org-agenda-span 'day)
 
