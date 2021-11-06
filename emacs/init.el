@@ -134,7 +134,12 @@
 
 ;; Org-Mode Options
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
-(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
+(defun org-refresh () 
+  "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
+  (interactive)
+  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
+  (message "All Org agenda files have been reloaded."))
+(org-refresh)
 (setq org-agenda-span 'day)
 
 ;; MobileOrg options
@@ -149,7 +154,7 @@
 ;; TODO State Configuration
 
 (setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE" "WONTDO")))
+      '((sequence "TODO" "|" "DONE" "WONTDO" "IGNORE")))
 
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning) 
