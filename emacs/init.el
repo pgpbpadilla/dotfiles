@@ -187,6 +187,9 @@
         "\\<IGNORE\\>")
       )
 
+;; Inline image size
+(setq org-image-actual-width nil)
+
 ;; Encryption for Org-files
 
 (require 'epa-file)
