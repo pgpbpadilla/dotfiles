@@ -142,6 +142,12 @@
 (org-refresh)
 (setq org-agenda-span 'day)
 
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
+
 ;; MobileOrg options
 ;; https://mobileorg.github.io/documentation/#using-dropbox
 ;; Set to the location of your Org files on your local system
