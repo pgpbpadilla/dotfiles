@@ -175,6 +175,9 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+;; All Notes captured will go to this file
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
 
 ;; refile to another file
 (setq org-refile-targets
