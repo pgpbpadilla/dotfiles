@@ -8,6 +8,10 @@
 ;; (require 'neotree)
  (global-set-key [f8] 'neotree-toggle)
 
+;; Packages: Utils
+
+(unless (package-installed-p 'load-relative)
+  (package-install 'load-relative))
 
 ;; Packages: Projectile + Helm
 (unless (package-installed-p 'projectile)
@@ -19,11 +23,6 @@
 (unless (package-installed-p 'imenu-anywhere)
   (package-install 'imenu-anywhere))
 
-;; Packages: Org Mode extensions
-(unless (package-installed-p 'helm-org)
-  (package-install 'helm-org))
-(unless (package-installed-p 'org-projectile)
-  (package-install 'org-projectile))
 
 (require 'projectile)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
@@ -129,88 +128,6 @@
   )
 (global-set-key (kbd "M-<f9>") 'flyspell-check-next-highlighted-word)
 
-(when (eq system-type 'darwin)
-  (message "Setting variables for Darwin")
-  (custom-set-variables
-   '(ns-command-modifier 'meta))
-  ;; I wanted load my Org-Mode personal files only on this host
-  ;; (when (string= (sytem-name) "pgpb-macbook13-2020.fritz.box")
-  ;;   (message (system-name)))
-  )
-
-;; Org-Mode Options
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
-(defun org-refresh () 
-  "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
-  (interactive)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
-  (message "All Org agenda files have been reloaded."))
-(org-refresh)
-(setq org-agenda-span 'day)
-
-(org-babel-do-load-languages 'org-babel-load-languages
-    '(
-        (shell . t)
-    )
-)
-
-;; MobileOrg options
-;; https://mobileorg.github.io/documentation/#using-dropbox
-;; Set to the location of your Org files on your local system
-;; (setq org-directory "~/org")
-;; Set to the name of the file where new notes will be stored
-;; (setq org-mobile-inbox-for-pull "~/org/flagged.org")
-;; Set to <your Dropbox root directory>/MobileOrg.
-;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-
-;; TODO State Configuration
-
-(setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE" "WONTDO" "IGNORE")))
-
-(setq org-todo-keyword-faces
-      '(("TODO" . org-warning) 
-        ("WONTDO" . (:foreground "blue" :weight bold))))
-
-;; track progress history across emacs sessions
-
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
-
-
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-;; All Notes captured will go to this file
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-
-
-;; refile to another file
-(setq org-refile-targets
-      '((nil :maxlevel . 3)
-        (org-agenda-files :maxlevel . 3)))
-
-(setq org-log-into-drawer t)
-
-;; Configures Org Mode: how to identify Stuck projects
-
-(setq org-stuck-projects 
-      '(
-        "-notes+PROJECT/-MAYBE-DONE" 
-        ("NEXT" "TODO") 
-        ("@shop") 
-        "\\<IGNORE\\>")
-      )
-
-;; Inline image size
-(setq org-image-actual-width nil)
-
-;; enable evaluation of Shell code blocks
-(org-babel-do-load-languages 'org-babel-load-languages
-    '(
-        (shell . t)
-    )
-)
 
 ;; Encryption for Org-files
 
@@ -235,6 +152,5 @@
 ;;       `((".*" ,(expand-file-name
 ;;                 (concat user-emacs-directory "auto-save")) t)))
 
+(load-relative "./org.el")
 ;;; Init.el ends here
-
-
