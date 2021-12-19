@@ -9,7 +9,7 @@
  (global-set-key [f8] 'neotree-toggle)
 
 
-;; Projectile + Helm
+;; Packages: Projectile + Helm
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))
 (unless (package-installed-p 'helm)
@@ -18,6 +18,12 @@
   (package-install 'helm-projectile))
 (unless (package-installed-p 'imenu-anywhere)
   (package-install 'imenu-anywhere))
+
+;; Packages: Org Mode extensions
+(unless (package-installed-p 'helm-org)
+  (package-install 'helm-org))
+(unless (package-installed-p 'org-projectile)
+  (package-install 'org-projectile))
 
 (require 'projectile)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
@@ -190,7 +196,7 @@
 
 (setq org-stuck-projects 
       '(
-        "+PROJECT/-MAYBE-DONE" 
+        "-notes+PROJECT/-MAYBE-DONE" 
         ("NEXT" "TODO") 
         ("@shop") 
         "\\<IGNORE\\>")
@@ -198,6 +204,13 @@
 
 ;; Inline image size
 (setq org-image-actual-width nil)
+
+;; enable evaluation of Shell code blocks
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
 
 ;; Encryption for Org-files
 
