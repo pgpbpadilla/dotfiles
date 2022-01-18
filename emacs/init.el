@@ -60,7 +60,7 @@
  '(word-wrap nil)
  '(helm-mode t)
  ;; Must be installed already
- '(epg-gpg-program  "/usr/local/bin/gpg")
+ '(epg-gpg-program  "gpg")
  )
 
 ;; Transparency
@@ -71,7 +71,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; hide toolbar
-(ns-toggle-toolbar)
+;; (ns-toggle-toolbar)
 
 ;; Show-hide
 (global-set-key (kbd "C-c +") 'hs-show-block)
