@@ -134,11 +134,12 @@
 (require 'epa-file)
 (epa-file-enable)
 
+;; Windows10: Apparently this is not needed for windows
 ;; Configure EasyPG to use loopback for pinentry
-(unless (package-installed-p 'pinentry)
-  (package-install 'pinentry))
-(setq epa-pinentry-mode 'loopback)
-(pinentry-start)
+;; (unless (package-installed-p 'pinentry)
+;;   (package-install 'pinentry))
+;; (setq epa-pinentry-mode 'loopback)
+;; (pinentry-start)
 
 ;; Save backups and temp files to a central location to avoid
 ;; certain tools (Grunt-watch) to show annoying ENOENT file because
