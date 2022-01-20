@@ -64,8 +64,8 @@
  )
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
-(set-face-attribute 'default nil :height 140)
+;; (set-frame-parameter (selected-frame) 'alpha '(95 95))
+(set-face-attribute 'default nil :height 100)
 
 ;; auto-load js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
