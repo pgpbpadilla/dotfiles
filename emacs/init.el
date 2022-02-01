@@ -61,6 +61,7 @@
  '(helm-mode t)
  ;; Must be installed already
  '(epg-gpg-program  "gpg")
+ '(default-buffer-file-coding-system 'utf-8-unix)
  )
 
 ;; Transparency
