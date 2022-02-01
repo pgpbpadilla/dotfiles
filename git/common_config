@@ -1,12 +1,6 @@
-[gui]
-	fontui = -family .AppleSystemUIFont -size 14 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family Menlo -size 14 -weight normal -slant roman -underline 0 -overstrike 0
-	pruneduringfetch = true
+# Common Options: they apply to all Operating Systems
 [merge]
 	tool = meld
-[user]
-	email = your-org-email@org.com
-	name = your name
 [guitool "Diff"]
 	cmd = meld $FILENAME
 	noconsole = yes
@@ -16,10 +10,8 @@
 	 revprompt = yes
 [guitool "Rebase/Continue"]
     	 cmd = git rebase --continue
-
 [guitool "Resolve Conflict"]
 	 cmd = git mergetool
-
 [guitool "Git Stash Show"]
 	 cmd = git stash show
 [alias]
@@ -29,8 +21,7 @@
   ci = commit
   br = branch
   cob = checkout -b
-  review = log --since=\"2 weeks\" \
-               --oneline --reverse
+  r2w = log --since=\"2 weeks\" --oneline --reverse
   pop = reset --hard HEAD^
   rh  = reset --hard HEAD
   pl  = pull
@@ -38,8 +29,14 @@
   DEL = branch -D
   fwl = push --force-with-lease
 [core]
-	editor = /usr/local/bin/emacs
+	editor = emacs
 [pull]
 	ff = only
+# make diff + gpg play nice
+# https://gist.github.com/marceloalmeida/e6593b93b388cdf1dbc282dffd424d1b
 [diff "gpg"]
 	textconv = gpg -d -q
+# make sops + diff play nice
+# https://github.com/mozilla/sops#showing-diffs-in-cleartext-in-git
+[diff "sopsdiffer"]
+  textconv = sops -d
