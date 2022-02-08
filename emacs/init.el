@@ -82,6 +82,7 @@
 (global-set-key (kbd "C-c >") 'hs-hide-all)
 
 (global-visual-line-mode)
+(global-hl-line-mode 1)
 
 ;; show right margin at 80 chars
 (display-fill-column-indicator-mode)
