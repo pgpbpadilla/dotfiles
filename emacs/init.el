@@ -60,7 +60,9 @@
  '(word-wrap nil)
  '(helm-mode t)
  ;; Must be installed already
- '(epg-gpg-program  "/usr/local/bin/gpg")
+ '(epg-gpg-program  "gpg")
+ '(default-buffer-file-coding-system 'utf-8-unix)
+ '(buffer-file-coding-system 'utf-8-unix)
  )
 
 ;; Transparency
