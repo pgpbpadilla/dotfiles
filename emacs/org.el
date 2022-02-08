@@ -54,7 +54,7 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 ;; All Notes captured will go to this file
 (setq org-default-notes-file (concat org-directory "/notes.org"))
-
+(global-set-key (kbd "C-c h") 'helm-org-agenda-files-headings)
 
 ;; refile to another file
 (setq org-refile-targets
@@ -67,7 +67,7 @@
 
 (setq org-stuck-projects 
       '(
-        "-notes+PROJECT/-MAYBE-DONE" 
+        "-notes+PROJECT/-MAYBE-DONE-WONTDO" 
         ("NEXT" "TODO") 
         ("@shop") 
         "\\<IGNORE\\>")
