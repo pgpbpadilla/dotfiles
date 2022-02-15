@@ -90,3 +90,8 @@
   (package-install 'org-bullets))
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+
+;; Hide duplicate lines when SCHEDULED and DEADLINE overlap
+;; https://superuser.com/a/530450/148349
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
