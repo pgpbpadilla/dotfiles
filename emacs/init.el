@@ -65,6 +65,10 @@
  '(buffer-file-coding-system 'utf-8-unix)
  )
 
+(setq custom-safe-themes t
+      custom-enabled-themes '(spacemacs-light))
+(load-theme 'spacemacs-light t)
+
 ;; Transparency
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 (set-face-attribute 'default nil :height 140)
