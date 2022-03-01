@@ -102,3 +102,7 @@
 ;; Hide DONE items in the Agenda
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
+
+
+;; Export backends
+(setq org-export-backends '(ascii html icalendar latex md odt))
