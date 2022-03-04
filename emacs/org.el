@@ -106,3 +106,11 @@
 
 ;; Export backends
 (setq org-export-backends '(ascii html icalendar latex md odt))
+
+
+;; Custom Agenda commands
+;; Examples: https://orgmode.org/manual/Matching-tags-and-properties.html
+;; 
+;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
+;; List all improvements that are not DONE.
+(setq org-agenda-custom-commands '(("i" "Improvements" tags "improve/-DONE")))
