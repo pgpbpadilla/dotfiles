@@ -8,3 +8,7 @@ alias ll='ls -l'
 alias lt='ls -lt'
 alias ..='cd ..'
 alias lat='ls -lat'
+
+
+alias cddot='cd ~/dotfiles'
+alias cdorg='cd ~/org'

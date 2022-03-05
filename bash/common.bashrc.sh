@@ -11,11 +11,12 @@ export PATH="~/bin:${PATH}"
 # don't put duplicate lines in the history
 # don't save commands which start with a space
 HISTCONTROL=ignoredups:erasedups:ignorespace
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 function load_devtools {
-     TOOLS_DIR="$1"
+    TOOLS_DIR="$1"
     if [ -d $TOOLS_DIR ]
     then
         for f in $(ls $TOOLS_DIR/*.sh)
