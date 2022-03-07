@@ -18,7 +18,7 @@
 (defun org-refresh () 
   "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
   (interactive)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
+  ;; (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
   (message "All Org agenda files have been reloaded."))
 (org-refresh)
 (setq org-agenda-span 'day)

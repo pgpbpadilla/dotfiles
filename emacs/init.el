@@ -68,8 +68,8 @@
  )
 
 (setq custom-safe-themes t
-      custom-enabled-themes '(spacemacs-light))
-(load-theme 'spacemacs-light t)
+      custom-enabled-themes '(spacemacs-dark))
+(load-theme 'spacemacs-dark t)
 
 ;; Transparency
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
@@ -91,7 +91,9 @@
 (global-hl-line-mode 1)
 
 ;; show right margin at 80 chars
-(display-fill-column-indicator-mode)
+;; (display-fill-column-indicator-mode)
+;; (global-display-fill-column-indicator-mode)
+
 
 ;; JS stuff 
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
