@@ -1,6 +1,8 @@
 ;;; Enable MELPA packages
 ;;; https://melpa.org/#/getting-started
+
 (require 'package)
+(package-initialize)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 
@@ -77,7 +79,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; hide toolbar
-(ns-toggle-toolbar)
+;; (ns-toggle-toolbar)
 
 ;; Show-hide
 (global-set-key (kbd "C-c +") 'hs-show-block)
