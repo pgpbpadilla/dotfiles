@@ -67,9 +67,13 @@
 
 (setq org-stuck-projects 
       '(
-        "-notes+PROJECT/-MAYBE-DONE-WONTDO" 
+        ;; Exclude items with tags: notes, improve
+        ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO
+        ;; Include items that part of a =PROJECT=
+        "-notes-improve+PROJECT/-MAYBE-DONE-WONTDO" 
         ("NEXT" "TODO") 
         ("@shop") 
+        ;; Exclude every children of an item marked with the IGNORE TODO keyword
         "\\<IGNORE\\>")
       )
 
