@@ -10,11 +10,11 @@
 
 
 ;; Set transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(set-frame-parameter (selected-frame) 'alpha '(100 100))
 
 
 ;; Fix font size
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 140)
 (message "Darwin options applied.")
 
 
