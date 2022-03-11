@@ -26,17 +26,6 @@
 (unless (package-installed-p 'imenu-anywhere)
   (package-install 'imenu-anywhere))
 
-
-;;; Org Mode
-(load-relative "./org.el")
-
-
-;;; Shortcut for neotree sidebar
-;; (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-
-
-;;; Helm, Projectile, & co.
 (require 'projectile)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -46,6 +35,15 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (global-set-key (kbd "C-.") 'helm-imenu-anywhere)
+
+
+;;; Org Mode
+(load-relative "./org.el")
+
+
+;;; Shortcut for neotree sidebar
+;; (require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
 
 
 ;;; Custom variables
