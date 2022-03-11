@@ -37,11 +37,15 @@
 ;; TODO State Configuration
 
 (setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE" "WONTDO" "IGNORE")))
+      '((sequence "TODO" "|" "DONE" "WONTDO" "IGNORE" "INFO")))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning) 
-        ("WONTDO" . (:foreground "blue" :weight bold))))
+      '(
+        ("TODO" . org-warning) 
+        ("WONTDO" . (:foreground "blue" :weight bold))
+        ("INFO" . (:foreground "blue" :waight bold))
+        )
+      )
 
 ;; track progress history across emacs sessions
 
@@ -70,7 +74,7 @@
         ;; Exclude items with tags: notes, improve
         ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO
         ;; Include items that part of a =PROJECT=
-        "-notes-improve+PROJECT/-MAYBE-DONE-WONTDO" 
+        "-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO" 
         ("NEXT" "TODO") 
         ("@shop") 
         ;; Exclude every children of an item marked with the IGNORE TODO keyword
