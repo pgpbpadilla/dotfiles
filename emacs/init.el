@@ -54,24 +54,18 @@
  '(js2-basic-offset 2)
  '(js2-bounce-indent-p nil)
  '(js2-include-node-externs t)
- '(ns-command-modifier (quote meta))
  '(show-paren-mode t)
  '(tab-width 2)
  '(word-wrap nil)
  '(helm-mode t)
  ;; Must be installed already
  '(epg-gpg-program  "gpg")
- '(default-buffer-file-coding-system 'utf-8-unix)
- '(buffer-file-coding-system 'utf-8-unix)
- )
 
 (setq custom-safe-themes t
       custom-enabled-themes '(spacemacs-light))
 (load-theme 'spacemacs-light t)
 
-;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
-(set-face-attribute 'default nil :height 140)
+
 
 ;; auto-load js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
@@ -106,9 +100,11 @@
 (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 
 
-;; AUCTeX
-(setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
-(setq exec-path (append exec-path '("/Library/TeX/texbin")))
+;;; AUCTeX
+(when (eq system-type 'darwin)
+  (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
+  (setq exec-path (append exec-path '("/Library/TeX/texbin")))
+)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -137,24 +133,27 @@
 (global-set-key (kbd "M-<f9>") 'flyspell-check-next-highlighted-word)
 
 
-;; Encryption for Org-files
-
+;;; Encryption for Org-files
 (require 'epa-file)
 (epa-file-enable)
 
-;; Configure EasyPG to use loopback for pinentry
-(unless (package-installed-p 'pinentry)
-  (package-install 'pinentry))
-(setq epa-pinentry-mode 'loopback)
-(pinentry-start)
 
 ;; Save backups and temp files to a central location to avoid
 ;; certain tools (Grunt-watch) to show annoying ENOENT file because
 ;; I can't figure out a Glob pattern to exclude them from JSLint
+(when (eq system-type 'windows-nt)
+  (load-relative "./win10.el")
+  (load-relative "./wsl.el")
+  (message "Ok: windows hacks loaded.")
+)
 
 ;; (setq backup-directory-alist
 ;;       `(("." . ,(expand-file-name
 ;;                  (concat user-emacs-directory "backups")))))
+(when (eq system-type 'darwin)
+  (load-relative "./darwin.el")
+  (message "Ok: macos hacks loaded.")
+)
 
 ;; (setq auto-save-file-name-transforms
 ;;       `((".*" ,(expand-file-name
