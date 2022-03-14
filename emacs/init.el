@@ -27,11 +27,11 @@
   (package-install 'imenu-anywhere))
 
 (require 'projectile)
+(projectile-global-mode)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (require 'helm-config)
-(projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (global-set-key (kbd "C-.") 'helm-imenu-anywhere)
