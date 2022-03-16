@@ -4,15 +4,6 @@
 (unless (package-installed-p 'org-projectile)
   (package-install 'org-projectile))
 
-(when (eq system-type 'darwin)
-  (message "Setting variables for Darwin")
-  (custom-set-variables
-   '(ns-command-modifier 'meta))
-  ;; I wanted load my Org-Mode personal files only on this host
-  ;; (when (string= (sytem-name) "pgpb-macbook13-2020.fritz.box")
-  ;;   (message (system-name)))
-  )
-
 ;; Org-Mode Options
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (defun org-refresh () 
