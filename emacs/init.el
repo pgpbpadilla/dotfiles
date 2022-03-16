@@ -1,3 +1,16 @@
+;;; Use-package
+;;
+(eval-when-compile (require 'use-package))
+
+;;; load-path
+;;
+(dolist (i '(
+	     "~/.emacs.d/themes/"
+             "~/dotfiles/emacs/"
+	     ))
+  ;; Add all at end of `load-path' to avoid conflicts.
+  (add-to-list 'load-path (file-name-as-directory i) t))
+
 ;; Customizations
 ;; Create Customize-managed changes separate from this init-file
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
@@ -16,25 +29,16 @@
   (package-install 'load-relative))
 
 
-;; Packages: Projectile + Helm
+(require 'init-helm)
+
+;; Projectile
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))
-(unless (package-installed-p 'helm)
-  (package-install 'helm))
-(unless (package-installed-p 'helm-projectile)
-  (package-install 'helm-projectile))
-(unless (package-installed-p 'imenu-anywhere)
-  (package-install 'imenu-anywhere))
-
 (require 'projectile)
 (projectile-global-mode)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-(require 'helm-config)
 (setq projectile-completion-system 'helm)
-(helm-projectile-on)
-(global-set-key (kbd "C-.") 'helm-imenu-anywhere)
 
 
 ;;; Org Mode
@@ -49,23 +53,24 @@
 ;;; Custom variables
 ;; TODO: split into program/mode/package-specific sections
 (setq 
- ansi-color-faces-vector [default default default italic underline success warning error]
- ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]
- column-number-mode t
- electric-indent-mode nil
- global-auto-complete-mode t
- global-auto-highlight-symbol-mode t
- indent-tabs-mode nil
- js2-basic-offset 2
- js2-bounce-indent-p nil
- js2-include-node-externs t
- show-paren-mode t
- tab-width 2
- word-wrap nil
- helm-mode t
+ ansi-color-faces-vector '[default default default italic underline success warning error]
+ ansi-color-names-vector '["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]
+
+ electric-indent-mode 'nil
+ global-auto-complete-mode 't
+ global-auto-highlight-symbol-mode 't
+ indent-tabs-mode 'nil
+ js2-basic-offset '2
+ js2-bounce-indent-p 'nil
+ js2-include-node-externs 't
+ tab-width '2
+ word-wrap 'nil
  ;; Must be installed already
- epg-gpg-program  "gpg"
+ epg-gpg-program "gpg"
 )
+(column-number-mode t)
+(show-paren-mode t)
+
 
 (setq custom-safe-themes t
       custom-enabled-themes '(spacemacs-light))

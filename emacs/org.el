@@ -62,6 +62,10 @@
       '((nil :maxlevel . 3)
         (org-agenda-files :maxlevel . 3)))
 
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
 (setq org-log-into-drawer t)
 
 ;; Configures Org Mode: how to identify Stuck projects
