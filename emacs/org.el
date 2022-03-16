@@ -1,19 +1,25 @@
-;; Packages: Org Mode extensions
-(unless (package-installed-p 'helm-org)
-  (package-install 'helm-org))
-(unless (package-installed-p 'org-projectile)
-  (package-install 'org-projectile))
+;;; Configure Agenda
 
-;; Org-Mode Options
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (defun org-refresh () 
   "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
   (interactive)
   (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
   (message "All Org agenda files have been reloaded."))
+
 (org-refresh)
+
 (setq org-agenda-span 'day)
 
+
+;; Packages: Org Mode extensions
+(unless (package-installed-p 'helm-org)
+  (package-install 'helm-org))
+(unless (package-installed-p 'org-projectile)
+  (package-install 'org-projectile))
+(global-set-key (kbd "C-c h") 'helm-org-agenda-files-headings)
+
+;; Auto-insert new lines for long lines
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 
 ;; MobileOrg options
@@ -25,8 +31,7 @@
 ;; Set to <your Dropbox root directory>/MobileOrg.
 ;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
-;; TODO State Configuration
-
+;;; TODO states
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "WONTDO" "IGNORE" "INFO")))
 
@@ -38,18 +43,19 @@
         )
       )
 
-;; track progress history across emacs sessions
-
+;;; track progress history across emacs sessions
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
 
+;;; Shortcuts
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
 ;; All Notes captured will go to this file
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(global-set-key (kbd "C-c h") 'helm-org-agenda-files-headings)
+(setq org-default-notes-file (concat org-directory "/notes.org.gpg"))
+
 
 ;; refile to another file
 (setq org-refile-targets
@@ -59,7 +65,6 @@
 (setq org-log-into-drawer t)
 
 ;; Configures Org Mode: how to identify Stuck projects
-
 (setq org-stuck-projects 
       '(
         ;; Exclude items with tags: notes, improve
