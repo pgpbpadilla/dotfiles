@@ -10,3 +10,8 @@ load_devtools "${BASE_DIR}/macos.devtools"
 export PATH="/usr/local/bin:$PATH"
 
 
+# User-specific configuration files (a.k.a. /dotfiles/)
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# This is used for example by:
+# - mpd: https://mpd.readthedocs.io/en/latest/user.html#configuration
+export XDG_CONFIG_HOME="${HOME}/.config"
