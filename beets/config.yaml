@@ -1,0 +1,22 @@
+plugins: duplicates missing
+library: ~/.config/beets/library.db
+directory: ~/musik-bkp/library
+import:
+#    incremental: yes
+#    quiet: yes
+    log: ~/.beets/beetslog.log
+    copy: yes
+    write: yes
+
+#art_filename: albumart
+# plugins: bpd
+# pluginpath: ~/Dropbox/Musik/apps/beets/plugins
+
+ui:
+    color: yes
+
+#paths:
+#    default: $genre/$albumartist/$album/$track $title
+#    singleton: Singletons/$artist - $title
+#    comp: $genre/$album/$track $title
+#    albumtype:soundtrack: Soundtracks/$album/$track $title
