@@ -1,4 +1,4 @@
-plugins: duplicates missing
+plugins: duplicates missing web
 library: ~/.config/beets/library.db
 directory: ~/musik-bkp/library
 import:
