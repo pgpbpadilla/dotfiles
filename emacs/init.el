@@ -11,9 +11,9 @@
 ;;; load-path
 ;;
 (dolist (i '(
-	     "~/.emacs.d/themes/"
+	           "~/.emacs.d/themes/"
              "~/dotfiles/emacs/"
-	     ))
+	           ))
   ;; Add all at end of `load-path' to avoid conflicts.
   (add-to-list 'load-path (file-name-as-directory i) t))
 
@@ -50,11 +50,17 @@
 ;;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Indent-Convenience.html
 (electric-indent-mode nil)
 
-(require 'auto-complete)
-(global-auto-complete-mode t)
+(use-package auto-complete
+  :ensure t
+  :config
+  (global-auto-complete-mode t)
+  )
 
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
+(use-package auto-highlight-symbol
+  :ensure t
+  :config
+  (global-auto-highlight-symbol-mode t)
+  )
 
 (column-number-mode t)
 (show-paren-mode t)
@@ -179,7 +185,8 @@
 ;;; Global Shortcuts
 
 ;;; Shortcut for neotree sidebar
-(require 'neotree)
+(use-package neotree
+  :ensure t)
 (global-set-key [f8] 'neotree-toggle)
 
 ;;; Show-hide
