@@ -86,11 +86,11 @@
 
 ;; enable evaluation of Shell code blocks
 (org-babel-do-load-languages 'org-babel-load-languages
-    '(
-        (shell . t)
-        (gnuplot . t)
-    )
-)
+                             '(
+                               (shell . t)
+                               (gnuplot . t)
+                               )
+                             )
 
 ;; Show fancy bullets
 ;; https://github.com/sabof/org-bullets
@@ -122,10 +122,11 @@
 ;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
 ;; List all improvements that are not DONE.
 (setq org-agenda-custom-commands 
-      '(("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
-	("p" "Project Only"
-	 ((agenda ""))
-	 ((org-agenda-tag-filter-preset '("-reminder")))
-	 )
-	)
+      '(
+        ("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
+	      ("p" "Project Only"
+	       ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("-reminder")))
+	       )
+	      )
       )
