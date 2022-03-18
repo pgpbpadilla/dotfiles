@@ -51,25 +51,29 @@
 
 ;;; Custom variables
 ;; TODO: split into program/mode/package-specific sections
+
+;;; If the value is nil, then TAB indents the current line only if
+;;; point is at the left margin or in the line’s indentation;
+;;; otherwise, it inserts a tab character.
+;;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Indent-Convenience.html
+(electric-indent-mode nil)
+(global-auto-complete-mode t)
+(global-auto-highlight-symbol-mode t)
+(indent-tabs-mode nil)
+(column-number-mode t)
+(show-paren-mode t)
+(setq-default tab-width 2)
+
 (setq 
  ansi-color-faces-vector '[default default default italic underline success warning error]
  ansi-color-names-vector '["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]
-
- electric-indent-mode 'nil
- global-auto-complete-mode 't
- global-auto-highlight-symbol-mode 't
- indent-tabs-mode 'nil
  js2-basic-offset '2
  js2-bounce-indent-p 'nil
  js2-include-node-externs 't
- tab-width '2
  word-wrap 'nil
  ;; Must be installed already
  epg-gpg-program "gpg"
 )
-(column-number-mode t)
-(show-paren-mode t)
-
 
 (setq custom-safe-themes t
       custom-enabled-themes '(spacemacs-light))
@@ -88,10 +92,9 @@
 
 
 ;; show right margin at 80 chars
-(display-fill-column-indicator-mode)
+(global-display-fill-column-indicator-mode t)
 
 ;;; JavaScript Options
-
 ;; auto-load js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
