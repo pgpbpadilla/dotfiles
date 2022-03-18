@@ -1,5 +1,9 @@
+;;; Enable MELPA packages
+;;; https://melpa.org/#/getting-started
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 ;;; Use-package
-;;
 (eval-when-compile (require 'use-package))
 
 ;;; load-path
@@ -17,11 +21,6 @@
 (setq custom-file "~/.config/emacs-custom.el")
 (load custom-file)
 
-
-;;; Enable MELPA packages
-;;; https://melpa.org/#/getting-started
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 
 ;; Packages: Utils
