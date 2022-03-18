@@ -1,3 +1,5 @@
+;;; init.el begins here
+
 ;;; Enable MELPA packages
 ;;; https://melpa.org/#/getting-started
 (require 'package)
@@ -9,26 +11,26 @@
 ;;; load-path
 ;;
 (dolist (i '(
-	     "~/.emacs.d/themes/"
+	           "~/.emacs.d/themes/"
              "~/dotfiles/emacs/"
-	     ))
+	           ))
   ;; Add all at end of `load-path' to avoid conflicts.
   (add-to-list 'load-path (file-name-as-directory i) t))
 
-;; Customizations
-;; Create Customize-managed changes separate from this init-file
+;; Set location for customizations file
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
 (setq custom-file "~/.config/emacs-custom.el")
 (load custom-file)
 
 
-
-;; Packages: Utils
+;; load-relative
 (unless (package-installed-p 'load-relative)
   (package-install 'load-relative))
 
 
+;;; Helm stuff
 (require 'init-helm)
+
 
 ;; Projectile
 (unless (package-installed-p 'projectile)
@@ -40,59 +42,51 @@
 (setq projectile-completion-system 'helm)
 
 
-;;; Org Mode
-(load-relative "./org.el")
-
-
-;;; Shortcut for neotree sidebar
-;; (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-
-
 ;;; Custom variables
-;; TODO: split into program/mode/package-specific sections
 
 ;;; If the value is nil, then TAB indents the current line only if
 ;;; point is at the left margin or in the line’s indentation;
 ;;; otherwise, it inserts a tab character.
 ;;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Indent-Convenience.html
 (electric-indent-mode nil)
+
+(require 'auto-complete)
 (global-auto-complete-mode t)
+
+(require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
-(indent-tabs-mode nil)
+
 (column-number-mode t)
 (show-paren-mode t)
+(global-visual-line-mode)
+(display-line-numbers-mode)
+(global-hl-line-mode 1)
+
+;; show right margin at 80 chars
+;; TODO: this should not be shown everywhere, only in those modes
+;; where it makes sense. For an example look at how automatic new line
+;; is configured for Org files.
+;; (global-display-fill-column-indicator-mode t)
+
+;;; Indent inserts spaces
+;; https://www.gnu.org/software/emacs/manual/html_node/eintr/Indent-Tabs-Mode.html
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
 (setq 
  ansi-color-faces-vector '[default default default italic underline success warning error]
  ansi-color-names-vector '["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]
- js2-basic-offset '2
- js2-bounce-indent-p 'nil
- js2-include-node-externs 't
  word-wrap 'nil
- ;; Must be installed already
+ ;; GPG must be installed already
  epg-gpg-program "gpg"
-)
+ )
 
+
+;;; Spacemacs Theme
 (setq custom-safe-themes t
       custom-enabled-themes '(spacemacs-light))
 (load-theme 'spacemacs-light t)
 
-
-
-;;; Show-hide
-(global-set-key (kbd "C-c +") 'hs-show-block)
-(global-set-key (kbd "C-c <") 'hs-show-all)
-(global-set-key (kbd "C-c -") 'hs-hide-block)
-(global-set-key (kbd "C-c >") 'hs-hide-all)
-
-(global-visual-line-mode)
-(global-hl-line-mode 1)
-
-
-;; show right margin at 80 chars
-(global-display-fill-column-indicator-mode t)
 
 ;;; JavaScript Options
 ;; auto-load js2-mode
@@ -100,14 +94,9 @@
 
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 (eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
-
-
-;; Scrolling
-(global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)) )
-(global-set-key "\M-p"  (lambda () (interactive) (scroll-down 4)) )
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
 
 
 ;; Ansible mode
@@ -118,7 +107,7 @@
 (when (eq system-type 'darwin)
   (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
   (setq exec-path (append exec-path '("/Library/TeX/texbin")))
-)
+  )
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -167,16 +156,41 @@
       `((".*" ,(expand-file-name
                 (concat user-emacs-directory "auto-save")) t)))
 
+
+;;; Load Windows customizations
 (when (eq system-type 'windows-nt)
   (load-relative "./win10.el")
   (load-relative "./wsl.el")
   (message "Ok: windows hacks loaded.")
-)
+  )
 
+
+;;; Darwin (MacOS) customizations
 (when (eq system-type 'darwin)
   (load-relative "./darwin.el")
   (message "Ok: macos hacks loaded.")
-)
+  )
+
+
+;;; Org Mode
+(load-relative "./org.el")
+
+
+;;; Global Shortcuts
+
+;;; Shortcut for neotree sidebar
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;;; Show-hide
+(global-set-key (kbd "C-c +") 'hs-show-block)
+(global-set-key (kbd "C-c <") 'hs-show-all)
+(global-set-key (kbd "C-c -") 'hs-hide-block)
+(global-set-key (kbd "C-c >") 'hs-hide-all)
+
+;; Scrolling
+(global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)) )
+(global-set-key "\M-p"  (lambda () (interactive) (scroll-down 4)) )
 
 
 ;;; Init.el ends here
