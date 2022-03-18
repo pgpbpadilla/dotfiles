@@ -72,7 +72,7 @@
 (setq org-stuck-projects 
       '(
         ;; Exclude items with tags: notes, improve
-        ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO
+        ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO, INFO
         ;; Include items that part of a =PROJECT=
         "-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO" 
         ("NEXT" "TODO") 
@@ -121,4 +121,11 @@
 ;; 
 ;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
 ;; List all improvements that are not DONE.
-(setq org-agenda-custom-commands '(("i" "Improvements" tags "improve/-DONE")))
+(setq org-agenda-custom-commands 
+      '(("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
+	("p" "Project Only"
+	 ((agenda ""))
+	 ((org-agenda-tag-filter-preset '("-reminder")))
+	 )
+	)
+      )
