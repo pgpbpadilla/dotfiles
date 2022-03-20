@@ -4,7 +4,7 @@
 
   For program-specific instructions look at the README files:
 
-  #+begin_src bash 
+  #+begin_src bash :export both :results output :exports both
     for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
     do
         readme="${d}/README.org"
@@ -26,4 +26,4 @@
   | ./iterm/README.org    | [MISSING] |
   | ./mpd/README.org      | [MISSING] |
   | ./ncmpcpp/README.org  | [MISSING] |
-  | ./tmux/README.org     | [MISSING] |
+  | [[file:./tmux/README.org][./tmux/README.org]]     |           |

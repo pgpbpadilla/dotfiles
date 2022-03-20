@@ -16,7 +16,7 @@
 
    There are customisations for different operating systems:
 
-   #+begin_src shell
+   #+begin_src shell :exports both
      ls ./git/*.conf
    #+end_src
 
@@ -30,12 +30,12 @@
    Common settings can be found in [[file:git/common.conf][common.conf]], which is included on
    every os-specific file, e.g.: 
  
-   #+begin_src shell :results output drawer
-      head -2 ./git/macos.conf
-  
-      echo -e "\nSee full config: [[./git/macos.conf]]"
+   #+begin_src shell :results output drawer :exports both
+     head -2 ./macos.conf
+
+     echo -e "\n# See full config: [[./git/macos.conf]]"
    #+end_src
- 
+
    #+RESULTS:
    :results:
    [include]
@@ -43,4 +43,6 @@
 
    See full config: [[./git/macos.conf]]
    :end:
+ 
+
  
