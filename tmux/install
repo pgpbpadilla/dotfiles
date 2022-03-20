@@ -1,2 +1,0 @@
-# Must used absolute paths, otherwise tmux won't like it
-# ln -sf PATH_TO/dotfiles/tmux/.tmux.conf ~/.tmux.conf

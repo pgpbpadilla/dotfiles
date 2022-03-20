@@ -1,46 +1,29 @@
-* Installation
+* Dotfiles
 
-** Git
+  User configuration files for various programs.
 
-   To install, include the appropriate file in =~/.gitconfig=:
+  For program-specific instructions look at the README files:
 
- 	 #+begin_src conf
-     [include]
-     path = ~/dotfiles/git/windows10.conf
-     path = ~/dotfiles/git/linux.conf
-     path = ~/dotfiles/git/macos.conf
-  	#+end_src
+  #+begin_src bash 
+    for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
+    do
+        readme="${d}/README.org"
+        if [ ! -f ${readme} ]; then
+           echo "${readme} [MISSING]"
+           continue
+        fi
 
-   
-*** Support for multiple operating systems
+       echo "[[${readme}][${readme}]]"
+    done
+  #+end_src
 
-    There are customisations for different operating systems:
-
-    #+begin_src shell
-      ls ./git/*.conf
-    #+end_src
-
-    #+RESULTS:
-    | ./git/common.conf    |
-    | ./git/linux.conf     |
-    | ./git/macos.conf     |
-    | ./git/windows10.conf |
- 
- 
-    Common settings can be found in [[file:git/common.conf][common.conf]], which is included on
-    every os-specific file, e.g.: 
- 
- 	 #+begin_src shell :results output drawer
-      head -2 ./git/macos.conf
- 
-      echo -e "\nSee full config: [[./git/macos.conf]]"
- 	 #+end_src
- 
-    #+RESULTS:
-    :results:
-    [include]
-      path = ./common.conf
-
-    See full config: [[./git/macos.conf]]
-    :end:
- 
+  #+RESULTS:
+  | ./bash/README.org     | [MISSING] |
+  | ./beets/README.org    | [MISSING] |
+  | ./emacs/README.org    | [MISSING] |
+  | [[file:./git/README.org][./git/README.org]]      |           |
+  | ./homebrew/README.org | [MISSING] |
+  | ./iterm/README.org    | [MISSING] |
+  | ./mpd/README.org      | [MISSING] |
+  | ./ncmpcpp/README.org  | [MISSING] |
+  | ./tmux/README.org     | [MISSING] |

@@ -1,0 +1,23 @@
+* =tmux=
+
+** Install dotfiles
+   
+   *WARN*: You must use absolute paths, otherwise =tmux= won't like
+   it:
+
+   #+begin_src bash :result output
+     ln -sfv "${PWD}"/.tmux.conf "${HOME}"/.tmux.conf
+   #+end_src
+
+
+   The current configuration contains only settings to highlight the
+   active pane when multiple panes are open.
+
+   #+begin_src bash :results output drawer
+     cat "${HOME}"/.tmux.conf
+   #+end_src
+
+
+** Bookmarks                                                       :bookmark:
+   
+*** =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
