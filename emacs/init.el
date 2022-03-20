@@ -23,6 +23,14 @@
 (load custom-file)
 
 
+;; Auto-dim other buffers
+;; https://github.com/mina86/auto-dim-other-buffers.el/blob/master/README.md
+(use-package auto-dim-other-buffers
+  :ensure t
+  :config
+  (auto-dim-other-buffers-mode t)
+  )
+
 ;; load-relative
 (unless (package-installed-p 'load-relative)
   (package-install 'load-relative))
