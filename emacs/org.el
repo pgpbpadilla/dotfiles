@@ -124,6 +124,7 @@
 (setq org-agenda-custom-commands 
       '(
         ("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
+        ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
 	      ("p" "Project Only"
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-reminder")))
