@@ -27,22 +27,4 @@
    | ./git/windows10.conf |
  
  
-   Common settings can be found in [[file:git/common.conf][common.conf]], which is included on
-   every os-specific file, e.g.: 
- 
-   #+begin_src shell :results output drawer :exports both
-     head -2 ./macos.conf
-
-     echo -e "\n# See full config: [[./git/macos.conf]]"
-   #+end_src
-
-   #+RESULTS:
-   :results:
-   [include]
-     path = ./common.conf
-
-   See full config: [[./git/macos.conf]]
-   :end:
- 
-
  
