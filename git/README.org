@@ -4,27 +4,22 @@
 
    To install, include the appropriate file in =~/.gitconfig=:
 
- 	 #+begin_src conf
+ 	 #+begin_example conf
      [include]
-     path = ~/dotfiles/git/windows10.conf
-     path = ~/dotfiles/git/linux.conf
-     path = ~/dotfiles/git/macos.conf
-    #+end_src
-
-   
-** Supported Operating Systems
+         path = ~/dotfiles/git/macos.conf
+   #+end_example
 
    There are customisations for different operating systems:
 
    #+begin_src shell :exports both
-     ls ./git/*.conf
+     ls *.conf | xargs -I{} echo "[[file:{}][{}]]"
    #+end_src
 
    #+RESULTS:
-   | ./git/common.conf    |
-   | ./git/linux.conf     |
-   | ./git/macos.conf     |
-   | ./git/windows10.conf |
+   | [[file:common.conf][common.conf]]    |
+   | [[file:linux.conf][linux.conf]]     |
+   | [[file:macos.conf][macos.conf]]     |
+   | [[file:windows10.conf][windows10.conf]] |
  
  
  
