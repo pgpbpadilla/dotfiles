@@ -340,13 +340,13 @@ mpd_music_dir = "~/musik-bkp/library"
 ##
 ## Note: Possible display modes: classic, columns.
 ##
-#playlist_display_mode = columns
+playlist_display_mode = columns
 #
-#browser_display_mode = classic
+browser_display_mode = columns
 #
-#search_engine_display_mode = classic
+search_engine_display_mode = columns
 #
-#playlist_editor_display_mode = classic
+playlist_editor_display_mode = columns
 #
 #discard_colors_if_item_is_selected = yes
 #
@@ -374,7 +374,7 @@ mpd_music_dir = "~/musik-bkp/library"
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = alternative
 #
 #data_fetching_delay = yes
 #
@@ -463,7 +463,7 @@ mpd_music_dir = "~/musik-bkp/library"
 #
 #ask_for_locked_screen_width_part = yes
 #
-#jump_to_now_playing_song_at_start = yes
+jump_to_now_playing_song_at_start = yes
 #
 #ask_before_clearing_playlists = yes
 #
@@ -471,9 +471,9 @@ mpd_music_dir = "~/musik-bkp/library"
 #
 #display_volume_level = yes
 #
-#display_bitrate = no
+display_bitrate = yes
 #
-#display_remaining_time = no
+#display_remaining_time = yes
 #
 ## Available values: none, basic, extended, perl.
 ##
