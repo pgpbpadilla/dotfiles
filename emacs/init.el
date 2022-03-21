@@ -3,13 +3,16 @@
 ;;; Enable MELPA packages
 ;;; https://melpa.org/#/getting-started
 (require 'package)
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-initialize)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 
 ;;; Use-package
 (eval-when-compile (require 'use-package))
 
 ;;; load-path
-;;
 (dolist (i '(
 	           "~/.emacs.d/themes/"
              "~/dotfiles/emacs/"
@@ -39,15 +42,26 @@
 ;;; Helm stuff
 (require 'init-helm)
 
-
 ;; Projectile
-(unless (package-installed-p 'projectile)
-  (package-install 'projectile))
-(require 'projectile)
-(projectile-global-mode)
 ;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(setq projectile-completion-system 'helm)
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  (setq projectile-completion-system 'helm)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map))
+  )
+
+;;; helm-projectile
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
+(use-package imenu-anywhere
+  :ensure t)
 
 
 ;;; Custom variables
