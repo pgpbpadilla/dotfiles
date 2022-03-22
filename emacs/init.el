@@ -221,5 +221,12 @@
 (global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)) )
 (global-set-key "\M-p"  (lambda () (interactive) (scroll-down 4)) )
 
+;;; Window resize
+;; unfortunately does not play well with Org mode buffers,
+;; checkout: https://www.emacswiki.org/emacs/DoReMi
+;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+;; (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+;; (global-set-key (kbd "S-C-<down>") 'shrink-window)
+;; (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;;; Init.el ends here
