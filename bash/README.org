@@ -2,7 +2,7 @@
 
   To install simply source the appropriate file, e.g.:
 
-  #+begin_src bash :results output code
+  #+begin_src bash :results output code :exports both
     cat example/.bashrc
   #+end_src
 
