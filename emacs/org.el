@@ -129,5 +129,9 @@
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-reminder")))
 	       )
+        ("r" "Reminders Only"
+	       ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+reminder")))
+	       )
 	      )
       )
