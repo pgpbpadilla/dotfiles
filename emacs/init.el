@@ -111,9 +111,13 @@
 
 
 ;;; Spacemacs Theme
-(setq custom-safe-themes t
-      custom-enabled-themes '(spacemacs-light))
-(load-theme 'spacemacs-light t)
+;;(setq custom-safe-themes t
+;;      custom-enabled-themes '(spacemacs-light))
+;;(load-theme 'spacemacs-light t)
+
+;;; Background colors
+;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
+(add-to-list 'default-frame-alist '(background-color . "#fffcf2"))
 
 
 ;;; JavaScript Options
