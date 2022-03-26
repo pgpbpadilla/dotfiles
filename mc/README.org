@@ -19,7 +19,6 @@
       : 
       : 0 directories, 3 files
 
-
    2. Install the configuration in this repository by
       linking to the current directory:
   
