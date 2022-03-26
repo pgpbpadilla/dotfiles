@@ -1,0 +1,10 @@
+* Midnight Commander
+
+  Install config files:
+
+  #+begin_src bash :results output
+    ln -sfv ./ini ~/.config/mc/ini
+    ln -sfv ./panels.ini ~/.config/mc/panels.ini
+  #+end_src
+
+
