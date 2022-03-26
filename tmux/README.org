@@ -1,23 +1,55 @@
-* =tmux=
+* =tmux=: terminal multi-plexer
+
+** Configuration files
+
+   #+begin_src bash :results output :export both
+     ls *.conf
+   #+end_src
+
+   #+RESULTS:
+   : tmux.conf
 
 ** Install dotfiles
    
-   *WARN*: You must use absolute paths, otherwise =tmux= won't like
-   it:
+   *WARN*: You must use absolute paths when using symbolic links,
+   otherwise =tmux= won't like it:
 
    #+begin_src bash :result output
-     ln -sfv "${PWD}"/.tmux.conf "${HOME}"/.tmux.conf
+     ln -sfv "${PWD}"/tmux.conf "${HOME}"/.tmux.conf
    #+end_src
 
+   #+RESULTS:
+   : /Users/pgpb.padilla/.tmux.conf -> /Users/pgpb.padilla/dotfiles/tmux/tmux.conf
 
-   The current configuration contains only settings to highlight the
-   active pane when multiple panes are open.
+** Plugings
 
-   #+begin_src bash :results output drawer
-     cat "${HOME}"/.tmux.conf
+   The current configuration loads a couple of plugins, the most
+   important ones are:
+
+   - =tpm=: a plugin to manage =tmux= plugins
+   - =sensible=: common /sensible/ defaults for =tmux=
+   - =continuum=: automatically save and restore sessions
+     Depends on: 
+       - =resurrect=: save and restore =tmux= sessions
+
+   #+begin_src bash :results output
+     grep "'tmux-plugins" tmux.conf
    #+end_src
 
+   #+RESULTS:
+   : set -g @plugin 'tmux-plugins/tpm'
+   : set -g @plugin 'tmux-plugins/tmux-sensible'
+   : set -g @plugin 'tmux-plugins/tmux-resurrect'
+   : set -g @plugin 'tmux-plugins/tmux-continuum'
 
+   Take a look at the config file for more details: [[file+emacs:tmux.conf][tmux.conf]]
+   
 ** Bookmarks                                                       :bookmark:
    
 *** =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
+
+*** TPM: Tmux Plugin Manager - [[https://github.com/tmux-plugins/tpm][github: tmux-plugins/tpm]]
+
+*** =tmux-continuum= - [[https://github.com/tmux-plugins/tmux-continuum][github: tmux-plugins/tmux-continuum]]
+
+    Automatically save/restore your =tmux= sessions
