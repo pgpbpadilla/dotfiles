@@ -1,10 +1,36 @@
 * Midnight Commander
 
-  Install config files:
+** Installation
 
-  #+begin_src bash :results output
-    ln -sfv ./ini ~/.config/mc/ini
-    ln -sfv ./panels.ini ~/.config/mc/panels.ini
-  #+end_src
+   1. Review pre-existing configuration. <<review-config>>
+      The current configuration looks like:
+      
+	    #+begin_src bash :results output
+	      ls -la "${HOME}"/.config/mc
+	      tree "${HOME}"/.config/mc
+	    #+end_src
+	 
+	    #+RESULTS:
+      : lrwxr-xr-x  1 pgpb.padilla  staff  31 26 Mär 17:41 /Users/pgpb.padilla/.config/mc -> /Users/pgpb.padilla/dotfiles/mc
+      : /Users/pgpb.padilla/.config/mc
+      : ├── README.org
+      : ├── ini
+      : └── panels.ini
+      : 
+      : 0 directories, 3 files
 
 
+   2. Install the configuration in this repository by
+      linking to the current directory:
+  
+	    #+begin_src bash :results output
+	      ln -sfv "$(pwd)" "${HOME}"/.config
+	    #+end_src
+	 
+	    #+RESULTS:
+      : /Users/pgpb.padilla/.config/mc -> /Users/pgpb.padilla/dotfiles/mc
+
+      As a bonus, any changes you make via MC's UI will be
+      automatically saved to this repository.
+      
+   3. Verify installed configuration by re-running [[review-config]]
