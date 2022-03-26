@@ -1,25 +1,29 @@
+#+PROPERTY: header-args: :results output :exports both
+
 * =tmux=: terminal multi-plexer
 
 ** Configuration files
 
-   #+begin_src bash :results output :export both
+   #+begin_src bash
      ls *.conf
    #+end_src
 
    #+RESULTS:
    : tmux.conf
 
+
 ** Install dotfiles
    
    *WARN*: You must use absolute paths when using symbolic links,
    otherwise =tmux= won't like it:
 
-   #+begin_src bash :result output
+   #+begin_src bash
      ln -sfv "${PWD}"/tmux.conf "${HOME}"/.tmux.conf
    #+end_src
 
    #+RESULTS:
    : /Users/pgpb.padilla/.tmux.conf -> /Users/pgpb.padilla/dotfiles/tmux/tmux.conf
+
 
 ** Plugings
 
@@ -42,14 +46,12 @@
    : set -g @plugin 'tmux-plugins/tmux-resurrect'
    : set -g @plugin 'tmux-plugins/tmux-continuum'
 
+
    Take a look at the config file for more details: [[file+emacs:tmux.conf][tmux.conf]]
    
 ** Bookmarks                                                       :bookmark:
    
-*** =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
-
-*** TPM: Tmux Plugin Manager - [[https://github.com/tmux-plugins/tpm][github: tmux-plugins/tpm]]
-
-*** =tmux-continuum= - [[https://github.com/tmux-plugins/tmux-continuum][github: tmux-plugins/tmux-continuum]]
-
-    Automatically save/restore your =tmux= sessions
+   - =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
+   - TPM: Tmux Plugin Manager - [[https://github.com/tmux-plugins/tpm][github: tmux-plugins/tpm]]
+   - =tmux-continuum= - [[https://github.com/tmux-plugins/tmux-continuum][github: tmux-plugins/tmux-continuum]]
+     Automatically save/restore your =tmux= sessions
