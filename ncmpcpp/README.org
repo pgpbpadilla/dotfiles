@@ -1,0 +1,27 @@
+#+PROPERTY: header-args:bash :results verbatim
+
+* =ncmpcpp= - [[https://github.com/ncmpcpp][github]]
+
+** =musik= alias
+   
+ 	 Use the =musik= symlink, it will start =ncmpcpp=:
+
+   #+begin_src bash
+     tree ~/bin | grep musik
+   #+end_src
+
+   #+RESULTS:
+   : ├── musik -> /usr/local/bin/ncmpcpp
+
+*** Remotely
+    
+    #+begin_src bash
+      ssh personal-mac 'tree ~/bin | grep musik' 
+    #+end_src
+
+    #+RESULTS:
+    : ├── musik -> /usr/local/bin/ncmpcpp
+
+
+  
+
