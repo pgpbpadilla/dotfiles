@@ -1,29 +1,87 @@
+#+PROPERTY: header-args:bash :results verbatim
+
+* Backlog
+
+** TODO Minimal Brewfile
+
+   In a more sofisticated setup we would install first a minimal set
+   of packages to be able to work.
+
+** TODO Extras Brewfile
+
+   Later we can install extras using an additional /Brewfile/
+
+  
 * Dotfiles
 
   User configuration files for various programs.
+  
+** Configure a new computer from scratch
+   
+*** Homebrew packages
 
-  For program-specific instructions look at the README files:
+    We use a [[file+emacs:./homebrew/Brewfile][Brewfile]] which specifies packages to be installed using
+    the Homebrew package manager. To install all simply do:
 
-  #+begin_src bash :exports both
-    for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
-    do
-        readme="${d}/README.org"
-        if [ ! -f ${readme} ]; then
-           echo "${readme} [MISSING]"
-           continue
-        fi
+    #+begin_example bash
+    brew bundle install --quiet --file=./homebrew/Brewfile
+    #+end_example
 
-       echo "[[${readme}][${readme}]]"
-    done
-  #+end_src
+*** Bash customizations
 
-  #+RESULTS:
-  | [[file:./bash/README.org][./bash/README.org]]    |           |
-  | ./beets/README.org   | [MISSING] |
-  | ./emacs/README.org   | [MISSING] |
-  | [[file:./git/README.org][./git/README.org]]     |           |
-  | ./iterm/README.org   | [MISSING] |
-  | ./mpd/README.org     | [MISSING] |
-  | ./ncmpcpp/README.org | [MISSING] |
-  | [[file:./tmux/README.org][./tmux/README.org]]    |           |
-  | ./xdotool/README.org | [MISSING] |
+    Review existing bash configuration:
+
+    #+begin_src bash
+      tree -a -L 1 ~/ | grep bashrc
+    #+end_src
+
+    #+RESULTS:
+    : ├── .bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
+    : ├── .bashrc~
+
+**** Installation
+    
+     Should be as simply as installing a symlink to my =.bashrc= file:
+
+     #+begin_src bash
+       ln -svf $(pwd)/bash/macos.bashrc.sh "${HOME}"/.bashrc
+     #+end_src
+ 
+     #+RESULTS:
+     : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
+
+*** TODO Emacs
+
+    Here be the emacs config steps, probably simply linking
+    =~/.emacs.d/init.el= 
+
+** Program-specific instructions
+
+   Checkout the invididual README files:
+   
+   #+begin_src bash :exports results :results output table
+     for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
+     do
+         readme="${d}/README.org"
+         if [ ! -f ${readme} ]; then
+            echo "${readme} [MISSING]"
+            continue
+         fi
+
+        echo "[[${readme}][${readme}]]"
+     done
+   #+end_src
+
+   #+RESULTS:
+   | [[file:./bash/README.org][./bash/README.org]]     |           |
+   | ./beets/README.org    | [MISSING] |
+   | ./emacs/README.org    | [MISSING] |
+   | [[file:./git/README.org][./git/README.org]]      |           |
+   | ./homebrew/README.org | [MISSING] |
+   | ./iterm/README.org    | [MISSING] |
+   | [[file:./mc/README.org][./mc/README.org]]       |           |
+   | ./mpd/README.org      | [MISSING] |
+   | [[file:./ncmpcpp/README.org][./ncmpcpp/README.org]]  |           |
+   | [[file:./tmux/README.org][./tmux/README.org]]     |           |
+   | ./xdotool/README.org  | [MISSING] |
+
