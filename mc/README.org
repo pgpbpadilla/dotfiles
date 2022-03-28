@@ -2,11 +2,12 @@
 
 ** Installation
 
-   1. Review pre-existing configuration. <<review-config>>
+   1. Review pre-existing configuration.
       The current configuration looks like:
-      
+
+      #+NAME: review-config
 	    #+begin_src bash :results output
-	      ls -la "${HOME}"/.config/mc
+	      ls -la "${HOME}"/.config/mc | cut -d' ' -f12-
 	      tree "${HOME}"/.config/mc
 	    #+end_src
 	 
@@ -23,7 +24,13 @@
       linking to the current directory:
   
 	    #+begin_src bash :results output
-	      ln -sfv "$(pwd)" "${HOME}"/.config
+        echo "Existing config ..."
+        ls -la "${HOME}"/.config/mc | cut -d' ' -f12-
+        echo "Removing existing config.."
+        rm -rv ~/.config/mc
+        echo "Installing new config ..."
+        ln -sfv "$(pwd)" "${HOME}"/.config
+        echo "Done. Ok."
 	    #+end_src
 	 
 	    #+RESULTS:
