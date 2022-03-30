@@ -185,10 +185,6 @@
 (global-set-key (kbd "M-<f9>") 'flyspell-check-next-highlighted-word)
 
 
-;;; Encryption for Org-files
-(require 'epa-file)
-(epa-file-enable)
-
 
 ;; Save backups and temp files to a central location to avoid
 ;; certain tools (Grunt-watch) to show annoying ENOENT file because
@@ -209,6 +205,17 @@
   (message "Ok: windows hacks loaded.")
   )
 
+;;; Encryption for Org-files
+(require 'epa-file)
+(epa-file-enable)
+
+(when (eq system-type 'gnu/linux)
+  ;; https://emacs.stackexchange.com/a/32882/11978
+  (message "In a Linux system")
+  (require 'epg)
+  (setq epg-pinentry-mode 'loopback)
+  (message "pinentry setup complete")
+  )
 
 ;;; Darwin (MacOS) customizations
 (when (eq system-type 'darwin)
