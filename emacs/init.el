@@ -2,6 +2,10 @@
 
 ;;; Install use-package
 (require 'package)
+;;; Enable MELPA packages
+;;; https://melpa.org/#/getting-started
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 
 ;; list the packages you want
 (setq package-list '(use-package))
@@ -16,9 +20,6 @@
   (unless (package-installed-p package)
     (package-install package)))
       
-;;; Enable MELPA packages
-;;; https://melpa.org/#/getting-started
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 
 ;;; Use-package
