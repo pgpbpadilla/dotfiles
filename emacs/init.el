@@ -1,11 +1,23 @@
 ;;; init.el begins here
 
-;;; Enable MELPA packages
-;;; https://melpa.org/#/getting-started
+;;; Install use-package
 (require 'package)
+
+;; list the packages you want
+(setq package-list '(use-package))
+(package-initialize)
+
+;; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
-(package-initialize)
+
+;; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+      
+;;; Enable MELPA packages
+;;; https://melpa.org/#/getting-started
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 
