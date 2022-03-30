@@ -8,7 +8,23 @@
 
 
 ;; list the packages you want
-(setq package-list '(use-package))
+(setq package-list '(use-package
+                      neotree
+                      auto-highlight-symbol
+                      auto-complete
+                      auto-dim-other-buffers
+                      use-package
+                      yasnippet
+                      visual-fill
+                      spacemacs-theme
+                      real-auto-save
+                      org-projectile
+                      org-bullets
+                      magit
+                      load-relative
+                      imenu-anywhere
+                      helm-projectile
+                      helm-org))
 (package-initialize)
 
 ;; fetch the list of packages available 
