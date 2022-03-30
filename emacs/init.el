@@ -133,10 +133,7 @@
 (setq 
  ansi-color-faces-vector '[default default default italic underline success warning error]
  ansi-color-names-vector '["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]
- word-wrap 'nil
- ;; GPG must be installed already
- epg-gpg-program "gpg"
- )
+ word-wrap 'nil)
 
 
 ;;; Spacemacs Theme
@@ -224,14 +221,9 @@
 ;;; Encryption for Org-files
 (require 'epa-file)
 (epa-file-enable)
-
-(when (eq system-type 'gnu/linux)
-  ;; https://emacs.stackexchange.com/a/32882/11978
-  (message "In a Linux system")
-  (require 'epg)
-  (setq epg-pinentry-mode 'loopback)
-  (message "pinentry setup complete")
-  )
+(require 'epg)
+(setq epg-gpg-program "gpg"
+      epg-pinentry-mode 'loopback)
 
 ;;; Darwin (MacOS) customizations
 (when (eq system-type 'darwin)
