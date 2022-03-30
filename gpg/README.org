@@ -1,0 +1,15 @@
+* GPG
+
+** Installation
+
+*** WSL2
+
+    *WARN*: The current configuration is only valid for Ubuntu under
+    WSL2. 
+
+    Solution found: https://unix.stackexchange.com/a/655819/55912
+
+    #+begin_src bash :results verbatim
+    ln -svf $(pwd)/*.conf ${HOME}/.gnupg/
+    #+end_src
+

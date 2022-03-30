@@ -225,6 +225,17 @@
 (setq epg-gpg-program "gpg"
       epg-pinentry-mode 'loopback)
 
+(when (eq system-type 'gnu/linux)
+  (message "Inside a Linux system")
+  (use-package pinentry
+    :ensure t
+    :config
+    (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
+    (pinentry-start)
+    )
+  (message "Linux-specific options set")
+  )
+
 ;;; Darwin (MacOS) customizations
 (when (eq system-type 'darwin)
   (load-relative "./darwin.el")
