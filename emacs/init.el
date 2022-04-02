@@ -9,6 +9,7 @@
 
 ;; list the packages you want
 (setq package-list '(use-package
+                      command-log-mode
                       neotree
                       auto-highlight-symbol
                       auto-complete
@@ -246,6 +247,9 @@
 ;;; Org Mode
 (load-relative "./org.el")
 
+;; Install command-log-mode
+(use-package command-log-mode
+  :ensure t)
 
 ;;; Global Shortcuts
 
