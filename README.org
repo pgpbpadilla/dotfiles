@@ -1,90 +1,20 @@
 #+PROPERTY: header-args:bash :results verbatim
 
-* Backlog
-
-** DONE Minimal Brewfile
-   CLOSED: [2022-04-03 So 14:15]
-   :LOGBOOK:
-   - CLOSING NOTE [2022-04-03 So 14:15]
-   :END:
-
-   In a more sofisticated setup we would install first a minimal set
-   of packages to be able to work.
-
-** DONE Extras Brewfile
-   CLOSED: [2022-04-03 So 14:15]
-   :LOGBOOK:
-   - CLOSING NOTE [2022-04-03 So 14:15]
-   :END:
-
-   Later we can install extras using an additional /Brewfile/
-
-  
 * Dotfiles
 
   User configuration files for various programs.
   
+
 ** Configure a new computer from scratch
-   
-*** Homebrew core packages - [[https://brew.sh/][brew.sh]]
 
-    Essential packages can be installed with:
-    
-    #+begin_example bash
-    brew bundle install --quiet --file=./homebrew/Brewfile.core
-    #+end_example
+   1. Install core applications
+      + MacOS
+        * [[file:homebrew/README.org][homebrew/README.org]]
+   2. Install Bash customizations
+      + [[file:bash/README.org][bash/README.org]]
 
-**** Homebrew extras
-
-     Non-essential packages can be installed with:
-     
-     #+begin_example bash
-     brew bundle install --quite --file=./homebrew/Brewfile.extras
-     #+end_example
-
-**** Homebrew-related topics
-
-***** Cleanup unused packages
-
-       #+begin_example bash
-       brew bundle dump --help
-       #+end_example
-
-       
-*** Bash customizations
-
-    Review existing bash configuration:
-
-    #+begin_src bash
-      tree -a -L 1 ~/ | grep bashrc
-    #+end_src
-
-    #+RESULTS:
-    : ├── .bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
-    : ├── .bashrc~
-
-**** Installation
-    
-     Should be as simply as installing a symlink to my =.bashrc= file:
-
-     
-***** MacOS
-
-      #+begin_src bash
-        ln -svf $(pwd)/bash/macos.bashrc.sh "${HOME}"/.bashrc
-      #+end_src
- 
-      #+RESULTS:
-      : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
-
-*** TODO Emacs
-
-    Here be the emacs config steps, probably simply linking
-    =~/.emacs.d/init.el= 
 
 ** Program-specific instructions
-
-   Checkout the invididual README files:
    
    #+begin_src bash :exports results :results output table
      for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
@@ -104,7 +34,8 @@
    | ./beets/README.org    | [MISSING] |
    | ./emacs/README.org    | [MISSING] |
    | [[file:./git/README.org][./git/README.org]]      |           |
-   | ./homebrew/README.org | [MISSING] |
+   | [[file:./gpg/README.org][./gpg/README.org]]      |           |
+   | [[file:./homebrew/README.org][./homebrew/README.org]] |           |
    | ./iterm/README.org    | [MISSING] |
    | [[file:./mc/README.org][./mc/README.org]]       |           |
    | ./mpd/README.org      | [MISSING] |

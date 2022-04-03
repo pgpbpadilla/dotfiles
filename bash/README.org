@@ -1,18 +1,115 @@
+#+PROPERTY: header-args:bash :results verbatim
+
+* TODO Backlog [0/2]
+
+** TODO Auto-detect OS
+
+   - [ ] use =uname= to distinguish between diff. OS
+   - [ ] apply only the customizations that make sense
+
+** TODO Auto-install dev-tools
+
+   For each script in the =*devtools=, the script should:
+
+   - [ ] detect if the tool is already installed
+     - [ ] install if necessary
+   - [ ] configure it if already installed
+     - [ ] skip configuration if tool is not installed
+   
+
 * Bash customizations
+  
+** Installation
 
-  To install simply source the appropriate file, e.g.:
+*** General installation
+   
+    To install simply source the appropriate file, e.g.:
 
-  #+begin_src bash :results output code :exports both
-    cat example/.bashrc
-  #+end_src
+    #+begin_src bash :results output code :exports 
+      cat example/.bashrc
+    #+end_src
 
-  #+RESULTS:
-  #+begin_src bash
-  #!/usr/bin/env bash
+    #+RESULTS:
+    #+begin_src bash
+    #!/usr/bin/env bash
 
-  source ~/dotfiles/bash/macos.bashrc.sh
-  echo "Loaded company-agnostic customizations"
-  #+end_src
+    source ~/dotfiles/bash/macos.bashrc.sh
+    echo "Loaded company-agnostic customizations"
+    #+end_src
 
 
+*** MacOS installation via symlink
 
+    1. Review existing bash configuration:
+      
+       #+begin_src bash
+         ls -l ~/.bashrc | cut -d ' ' -f13-
+       #+end_src
+   
+       #+RESULTS:
+       : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
+
+    2. Install symlink:
+
+     	 #+begin_src bash
+     	   ln -svf $(pwd)/macos.bashrc.sh "${HOME}"/.bashrc
+     	 #+end_src
+     	
+     	 #+RESULTS:
+       : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
+
+
+** General description
+
+   Customizations are configured via OS-specifict Bash scripts:
+
+   #+begin_src bash
+     ls *bashrc*
+   #+end_src
+
+   #+RESULTS:
+   : common.bashrc.sh
+   : linux.bashrc.sh
+   : macos.bashrc.sh
+   : windows10.bashrc.sh
+   
+*** Common customizations
+
+    The file [[file:common.bashrc.sh][common.bashrc.sh]] contains the Bash configuration that is
+    common across Operating Systems.
+    
+    It defines functions to load Bash scripts that define aliases, e.g.: 
+
+    #+begin_src bash
+      ls *alias* 
+    #+end_src
+      
+    #+RESULTS:
+    : common.alias.sh
+    : macos.alias.sh
+    : windows10.alias.sh
+      
+    and functions to load Bash scripts that configure /devtools/,
+    e.g.: 
+      
+    #+begin_src bash
+      tree *macos.devtools*
+    #+end_src
+      
+    #+RESULTS:
+    #+begin_example
+    macos.devtools
+    ├── git.sh
+    ├── go.bash
+    ├── homebrew.sh
+    ├── jenv-init.sh
+    ├── macports.sh
+    ├── nvm.sh
+    ├── rvm.sh
+    ├── sops.sh
+    ├── texlive.sh
+
+    0 directories, 11 files
+    #+end_example
+   
+    
