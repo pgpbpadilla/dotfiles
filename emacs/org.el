@@ -125,13 +125,6 @@
       '(
         ("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
         ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
-	      ("m" "@me"
-	       ((agenda ""))
-	       (
-          (org-agenda-tag-filter-preset '("-reminder"))
-          (org-agenda-tag-filter-preset '("+@me"))
-          )
-	       )
         ("p" "Project Only"
 	       ((agenda ""))
 	       (
