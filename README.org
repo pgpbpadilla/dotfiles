@@ -2,12 +2,20 @@
 
 * Backlog
 
-** TODO Minimal Brewfile
+** DONE Minimal Brewfile
+   CLOSED: [2022-04-03 So 14:15]
+   :LOGBOOK:
+   - CLOSING NOTE [2022-04-03 So 14:15]
+   :END:
 
    In a more sofisticated setup we would install first a minimal set
    of packages to be able to work.
 
-** TODO Extras Brewfile
+** DONE Extras Brewfile
+   CLOSED: [2022-04-03 So 14:15]
+   :LOGBOOK:
+   - CLOSING NOTE [2022-04-03 So 14:15]
+   :END:
 
    Later we can install extras using an additional /Brewfile/
 
@@ -18,15 +26,31 @@
   
 ** Configure a new computer from scratch
    
-*** Homebrew packages
+*** Homebrew core packages - [[https://brew.sh/][brew.sh]]
 
-    We use a [[file+emacs:./homebrew/Brewfile][Brewfile]] which specifies packages to be installed using
-    the Homebrew package manager. To install all simply do:
-
+    Essential packages can be installed with:
+    
     #+begin_example bash
-    brew bundle install --quiet --file=./homebrew/Brewfile
+    brew bundle install --quiet --file=./homebrew/Brewfile.core
     #+end_example
 
+**** Homebrew extras
+
+     Non-essential packages can be installed with:
+     
+     #+begin_example bash
+     brew bundle install --quite --file=./homebrew/Brewfile.extras
+     #+end_example
+
+**** Homebrew-related topics
+
+***** Cleanup unused packages
+
+       #+begin_example bash
+       brew bundle dump --help
+       #+end_example
+
+       
 *** Bash customizations
 
     Review existing bash configuration:
@@ -43,12 +67,15 @@
     
      Should be as simply as installing a symlink to my =.bashrc= file:
 
-     #+begin_src bash
-       ln -svf $(pwd)/bash/macos.bashrc.sh "${HOME}"/.bashrc
-     #+end_src
+     
+***** MacOS
+
+      #+begin_src bash
+        ln -svf $(pwd)/bash/macos.bashrc.sh "${HOME}"/.bashrc
+      #+end_src
  
-     #+RESULTS:
-     : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
+      #+RESULTS:
+      : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
 
 *** TODO Emacs
 
