@@ -1,5 +1,8 @@
 ;;; init.el begins here
 
+;; https://emacs.stackexchange.com/a/56067/11978
+(setq gnutls-algorithm-priority "normal:-vers-tls1.3")
+
 ;;; Install use-package
 (require 'package)
 ;;; Enable MELPA packages
