@@ -127,11 +127,13 @@
         ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
         ("p" "Project Only"
 	       ((agenda ""))
-	       (
-          (org-agenda-tag-filter-preset '("-reminder"))
-          )
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-urlaub")))
 	       )
-        ("r" "Reminders Only"
+        ("r" "Daily reminders"
+	       ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+daily" "+reminder")))
+	       )
+        ("R" "All Reminders"
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("+reminder")))
 	       )
