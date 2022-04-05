@@ -1,0 +1,68 @@
+#+PROPERTY: header-args:bash :results verbatim
+
+* Emacs configuration
+** Installation
+
+   1. Ignore Emacs customizations. Ensure the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]] exists:
+
+      #+begin_src bash :var file="emacs-custom.el"
+        custom_file=~/.config/${file}
+        touch "${custom_file}"
+        cat "${custom_file}"
+      #+end_src
+      
+      Emacs custom variables will be written there and the Emacs init
+      file will ignore that file on purpose. I want this becasue I'm
+      want to ensure only my [[file:init.el][./init.el]] file is loaded.
+
+      #+begin_src bash
+        grep -C 2 custom-file ./init.el
+      #+end_src
+
+      #+RESULTS:
+      : ;; Set location for customizations file
+      : ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
+      : (setq custom-file "~/.config/emacs-custom.el")
+      : ;; Purposely ignore all variables written to the =custom-file=
+      : ;; (load custom-file)
+      : 
+      :
+
+      /Note how the line that loads the =custom-file= is commented out./
+
+   2. Review current Emacs [[file:init.el][~/.emacs.d/init.el]] file, and backup any
+      configs that you want to keep:
+
+      #+begin_src bash
+        tree -L 1 ~/.emacs.d | grep init.el
+      #+end_src
+
+      #+RESULTS:
+      : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
+      : ├── init.el~
+
+      - *GOTCHA*: The location of the Emacs init might differ, depending
+      	on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
+      	
+      	The following snippet should help you find it:
+      	
+      	#+begin_src bash
+      	  tree -a -L 1 ${HOME} | grep emacs
+      	#+end_src
+      	
+      	#+RESULTS:
+      	: ├── .emacs.d
+
+   3. Install Emacs init file using a symlink
+
+      *WARN*: /this will overwrite (=-f=) the file if it exists/
+
+      #+begin_src bash
+        ls -l ~/.emacs.d/init.el | cut -d ' ' -f13-
+        ln -svf $(pwd)/init.el ${HOME}/.emacs.d/init.el
+      #+end_src
+
+      #+RESULTS:
+      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
+      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
+
