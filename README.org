@@ -32,7 +32,7 @@
    #+RESULTS:
    | [[file:./bash/README.org][./bash/README.org]]     |           |
    | ./beets/README.org    | [MISSING] |
-   | ./emacs/README.org    | [MISSING] |
+   | [[file:./emacs/README.org][./emacs/README.org]]    |           |
    | [[file:./git/README.org][./git/README.org]]      |           |
    | [[file:./gpg/README.org][./gpg/README.org]]      |           |
    | [[file:./homebrew/README.org][./homebrew/README.org]] |           |
