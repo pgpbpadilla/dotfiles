@@ -5,13 +5,12 @@
   User configuration files for various programs.
   
 
-** Configure a new computer from scratch
+** Configure a computer from scratch
 
-   1. Install core applications
-      + MacOS
-        * [[file:homebrew/README.org][homebrew/README.org]]
-   2. Install Bash customizations
-      + [[file:bash/README.org][bash/README.org]]
+*** Core applications
+**** MacOS - [[file:homebrew/README.org][file:homebrew/README.org]]
+*** Emacs - [[file:emacs/README.org]]
+*** Bash customizations - [[file:bash/README.org][file:bash/README.org]]
 
 
 ** Program-specific instructions
@@ -42,4 +41,8 @@
    | [[file:./ncmpcpp/README.org][./ncmpcpp/README.org]]  |           |
    | [[file:./tmux/README.org][./tmux/README.org]]     |           |
    | ./xdotool/README.org  | [MISSING] |
+
+** Updating all code block results
+
+   Run all code blocks: =C-c C-v C-b=
 
