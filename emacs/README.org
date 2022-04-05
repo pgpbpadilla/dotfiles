@@ -1,6 +1,46 @@
 #+PROPERTY: header-args:bash :results verbatim
 
 * Emacs configuration
+** System requirements
+
+   Most Emacs packages are installed during the initial load of the
+   init file. However, there are dependencies to system binaries:
+
+*** Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
+
+    The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpb= binary to be installed
+    and also be in the system =PATH=.
+
+    This is because the Emacs configuration explicitly uses the =gpg=
+    binary instead of its absolute path:
+    
+    #+begin_src bash
+      grep -C 1 gpg-program *.el
+    #+end_src
+
+    #+RESULTS:
+    : init.el-(require 'epg)
+    : init.el:(setq epg-gpg-program "gpg"
+    : init.el-      epg-pinentry-mode 'loopback)
+
+    
+**** Installing GnuPG - [[https://gnupg.org/][gnupg.org]]
+     
+***** MacOS
+     
+      =gpg= can be installed via [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]:
+
+      #+begin_src bash
+        grep gnupg ../homebrew/Brewfile.core
+      #+end_src
+
+      #+RESULTS:
+      : brew "gnupg"
+      
+***** Debian
+
+      checkout [[https://packages.debian.org/en/sid/apt-clone][apt-clone]]
+
 ** Installation
 
    1. Ignore Emacs customizations. Ensure the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]] exists:
@@ -53,16 +93,29 @@
       	#+RESULTS:
       	: ├── .emacs.d
 
-   3. Install Emacs init file using a symlink
+   3. Install Emacs bootstrap file [[file:boostrap.el][./bootstrap.el]]
 
-      *WARN*: /this will overwrite (=-f=) the file if it exists/
+      *WARN*: /this will overwrite (=-f=) the target file if it exists/
 
       #+begin_src bash
+        echo "Init file before installation:"
         ls -l ~/.emacs.d/init.el | cut -d ' ' -f13-
-        ln -svf $(pwd)/init.el ${HOME}/.emacs.d/init.el
+        echo "The new init file:"
+        ln -svf $(pwd)/bootstrap.el ${HOME}/.emacs.d/init.el
       #+end_src
 
       #+RESULTS:
-      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
-      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
+      : Init file before installation:
+      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
+      : The new init file:
+      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
 
+      The bootstrap script simply loads the custom init file:
+
+      #+begin_src bash
+        cat ./bootstrap.el
+      #+end_src
+
+      #+RESULTS:
+      : ;;; Bootstrap Emacs configuration
+      : (load "~/dotfiles/emacs/init.el")

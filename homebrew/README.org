@@ -3,12 +3,17 @@
 * Brewfile - [[https://github.com/Homebrew/homebrew-bundle][homebrew-bundle]]
   
 ** Core packages - [[https://brew.sh/][brew.sh]]
+   :PROPERTIES:
+   :CUSTOM_ID: brewfile-core
+   :END:
 
    Essential packages can be installed with:
     
    #+begin_example bash
    brew bundle install --quiet --file=./homebrew/Brewfile.core
    #+end_example
+
+   To see the list of packages take a look at [[file+emacs:Brewfile.core][./Brewfile.core]]
 
 ** Homebrew extras
 
