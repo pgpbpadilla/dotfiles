@@ -71,10 +71,10 @@
 ;; Configures Org Mode: how to identify Stuck projects
 (setq org-stuck-projects 
       '(
-        ;; Exclude items with tags: notes, improve
+        ;; Exclude items with tags: notes, improve, info, template
         ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO, INFO
         ;; Include items that part of a =PROJECT=
-        "-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO" 
+        "-template-info-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO" 
         ("NEXT" "TODO") 
         ("@shop") 
         ;; Exclude every children of an item marked with the IGNORE TODO keyword
