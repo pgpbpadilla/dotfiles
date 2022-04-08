@@ -28,7 +28,10 @@
                       load-relative
                       imenu-anywhere
                       helm-projectile
-                      helm-org))
+                      helm-org
+                      markdown-preview-eww
+                      markdown-preview-mode
+                      markdown-mode))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -44,6 +47,9 @@
 
 ;;; Use-package
 (eval-when-compile (require 'use-package))
+
+(use-package markdown-mode
+  :ensure t)
 
 ;;; load-path
 (dolist (i '(
