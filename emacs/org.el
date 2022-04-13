@@ -125,13 +125,23 @@
       '(
         ("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
         ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
-        ("p" "Project Only"
-	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-urlaub")))
+        ("p" "Public tasks (public)" ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private")))
+	       )
+        ("P" . "Project tasks")
+        ("Pm" "My tasks (public)" ((agenda ""))
+         ;; Remove those for which I'm not responsible
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-I" "-C")))
+	       )
+        ("Pp" "Private tasks" ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+private")))
+	       )
+        ("Pa" "All tasks" ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve")))
 	       )
         ("r" "Daily reminders"
 	       ((agenda ""))
-         ((org-agenda-tag-filter-preset '("+daily" "+reminder")))
+         ((org-agenda-tag-filter-preset '("+daily" "+reminder" "-private")))
 	       )
         ("R" "All Reminders"
 	       ((agenda ""))
