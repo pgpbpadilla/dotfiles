@@ -149,3 +149,10 @@
 	       )
 	      )
       )
+
+
+;;; Macros
+
+;; Time-range: <time>--<time>
+(fset 't-range
+   (kmacro-lambda-form [?\C-u ?\C-c ?. return ?- ?- ?\C-u ?\C-c ?. return] 0 "%d"))
