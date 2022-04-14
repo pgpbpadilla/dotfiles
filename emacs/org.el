@@ -156,3 +156,21 @@
 ;; Time-range: <time>--<time>
 (fset 't-range
    (kmacro-lambda-form [?\C-u ?\C-c ?. return ?- ?- ?\C-u ?\C-c ?. return] 0 "%d"))
+
+
+;;; Capture templates
+
+;; Minutes of meeting 
+(defun my/mom-template ()
+  
+  (setq title "* %u %?\n  %T--%T\n\n"
+        people "** People [/]\n\n   - [ ] abc\n\n"
+        minutes "** Minutes of meeting\n\n"
+        actions "** Action Items\n\n*** TODO xyz\n\n")
+  ;; return the template as a string
+  (concat title people minutes actions))
+
+(setq org-capture-templates
+      '(
+        ("m" "Minutes of meeting" entry (file "") (function my/mom-template))
+        ))
