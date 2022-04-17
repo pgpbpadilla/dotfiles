@@ -6,10 +6,7 @@
   :ensure t)
 
 ;;; load-path
-(dolist (i '(
-	           "~/.emacs.d/themes/"
-             "~/dotfiles/emacs/"
-	           ))
+(dolist (i '("~/.emacs.d/themes/" "~/dotfiles/emacs/"))
   ;; Add all at end of `load-path' to avoid conflicts.
   (add-to-list 'load-path (file-name-as-directory i) t))
 
@@ -34,28 +31,10 @@
 
 
 ;;; Helm stuff
-(require 'init-helm)
+(require 'init-helm-projectile)
 
-;; Projectile
-;; https://docs.projectile.mx/projectile/installation.html#installation-via-package-el
-(use-package projectile
-  :ensure t
-  :init
-  (projectile-mode +1)
-  (setq projectile-completion-system 'helm)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map))
-  )
 
-;;; helm-projectile
-(use-package helm-projectile
-  :ensure t
-  :config
-  (helm-projectile-on))
 
-(use-package imenu-anywhere
-  :ensure t)
 
 
 ;;; Custom variables
