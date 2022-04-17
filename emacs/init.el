@@ -16,6 +16,7 @@
 ;; Purposely ignore all variables written to the =custom-file=
 ;; (load custom-file)
 
+(setq default-input-method 'german-postfix)
 
 ;; Auto-dim other buffers
 ;; https://github.com/mina86/auto-dim-other-buffers.el/blob/master/README.md
@@ -32,9 +33,6 @@
 
 ;;; Helm stuff
 (require 'init-helm-projectile)
-
-
-
 
 
 ;;; Custom variables
