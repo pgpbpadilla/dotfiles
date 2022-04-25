@@ -139,13 +139,18 @@
         ("Pa" "All tasks" ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
 	       )
-        ("r" "Daily reminders"
+        ("R" . "Reminders")
+        ("Rd" "Daily reminders"
 	       ((agenda ""))
          ((org-agenda-tag-filter-preset '("+daily" "+reminder" "-private" "-template")))
 	       )
-        ("R" "All Reminders"
+        ("Ra" "All Reminders"
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("+reminder" "-template")))
+	       )
+        ("Ro" "Other Reminders"
+	       ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+reminder" "-template" "-daily")))
 	       )
 	      )
       )
