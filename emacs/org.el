@@ -152,6 +152,10 @@
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("+reminder" "-template" "-daily")))
 	       )
+        ("j" "All meetings"
+	       ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+termin")))
+	       )
 	      )
       )
 
