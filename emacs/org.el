@@ -123,7 +123,7 @@
 ;; List all improvements that are not DONE.
 (setq org-agenda-custom-commands 
       '(
-        ("i" "Improvements" tags "improve/-DONE-INFO-WONTDO")
+        ("i" "Improvements" tags "+improve-info/-DONE-INFO-WONTDO")
         ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
         ("p" "Public tasks (public)" ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
