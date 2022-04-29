@@ -3,7 +3,10 @@
 (load-relative "packages.el")
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :config
+  ;; Auto-insert new lines for long lines
+  (add-hook 'markdown-mode-hook #'turn-on-auto-fill))
 
 ;;; load-path
 (dolist (i '("~/.emacs.d/themes/" "~/dotfiles/emacs/"))
