@@ -218,4 +218,11 @@
 ;; (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 (load-relative "./abbrev.el")
+
+;;; Magit customisations
+;; Open Magit and use Full Window instead of splitting the buffer
+;; https://stackoverflow.com/a/9440613/400544
+(setq magit-display-buffer-function 'switch-to-buffer)
+
+
 ;;; Init.el ends here
