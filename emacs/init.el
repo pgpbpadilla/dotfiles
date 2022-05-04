@@ -1,6 +1,6 @@
 ;;; init.el begins here
 
-(load-relative "packages.el")
+(load "~/dotfiles/emacs/init-packages.el")
 
 (use-package markdown-mode
   :ensure t
@@ -29,10 +29,6 @@
   (auto-dim-other-buffers-mode t)
   )
 
-;; load-relative
-(unless (package-installed-p 'load-relative)
-  (package-install 'load-relative))
-
 
 ;;; Helm stuff
 (require 'init-helm-projectile)
@@ -45,6 +41,7 @@
 ;;; otherwise, it inserts a tab character.
 ;;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Indent-Convenience.html
 (electric-indent-mode nil)
+(electric-pair-mode t)
 
 (use-package auto-complete
   :ensure t

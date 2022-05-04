@@ -45,3 +45,5 @@
 
 ;;; Use-package
 (eval-when-compile (require 'use-package))
+
+(provide 'init-packages)
