@@ -222,7 +222,8 @@
 ;;; Magit customisations
 ;; Open Magit and use Full Window instead of splitting the buffer
 ;; https://stackoverflow.com/a/9440613/400544
-(setq magit-display-buffer-function 'switch-to-buffer)
+;; TODO: Fix, some other magit commands break if we do this
+;; (setq magit-display-buffer-function 'switch-to-buffer)
 
 
 ;;; Init.el ends here
