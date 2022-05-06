@@ -156,11 +156,13 @@
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("+termin")))
 	       )
-        ("o" "Out of Office"
+        ("O" . "Out of Office")
+        ("Om" "Monthly view"
          ((agenda ""))
 	       ((org-agenda-span 'month)
           (org-agenda-tag-filter-preset '("+ooo")))
          )
+        ("Oa" "All events" tags "+ooo/-INFO")
 	      )
       )
 
