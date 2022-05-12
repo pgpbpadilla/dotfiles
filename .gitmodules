@@ -1,0 +1,3 @@
+[submodule "emacs/org-yt"]
+	path = emacs/org-yt
+	url = git@github.com:TobiasZawada/org-yt.git
