@@ -1,3 +1,7 @@
+;;; Turn on auto-indent
+(setq org-startup-indented t)
+
+
 ;;; Configure Agenda
 
 (defun org-refresh () 
