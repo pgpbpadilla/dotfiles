@@ -1,5 +1,8 @@
-;;; Turn on auto-indent
-(setq org-startup-indented t)
+;;; Adapt indentation to heading level
+;; https://orgmode.org/manual/Org-Indent-Mode.html
+(setq org-adapt-indentation t)
+;; Disable indent-mode since it disables =org-adapt-indentation=
+(setq org-startup-indented nil)
 
 
 ;;; Configure Agenda
