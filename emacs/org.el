@@ -128,6 +128,9 @@
 ;; 
 ;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
 ;; List all improvements that are not DONE.
+(setq not-project-tags '("-improve" "-private" "-template" "-I" "-C"))
+(setq daily-reminder-tags '("+daily" "+reminder" "-private" "-template"))
+
 (setq org-agenda-custom-commands 
       '(
         ("i" "Improvements" tags "+improve-info/-DONE-INFO-WONTDO")
@@ -146,10 +149,13 @@
         ("Pa" "All tasks" ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
 	       )
+        ("d" "Daily reminders" ((agenda ""))
+         ((org-agenda-tag-filter-preset daily-reminder-tags))
+         )
         ("R" . "Reminders")
         ("Rd" "Daily reminders"
 	       ((agenda ""))
-         ((org-agenda-tag-filter-preset '("+daily" "+reminder" "-private" "-template")))
+         ((org-agenda-tag-filter-preset daily-reminder-tags))
 	       )
         ("Ra" "All Reminders"
 	       ((agenda ""))
