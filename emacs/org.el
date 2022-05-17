@@ -123,7 +123,8 @@
 (setq org-export-backends '(ascii html icalendar latex md odt))
 
 
-;; Custom Agenda commands
+;;; TODO: Extract to separate file
+;;; Custom Agenda commands
 ;; Examples: https://orgmode.org/manual/Matching-tags-and-properties.html
 ;; 
 ;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
@@ -133,7 +134,12 @@
 
 (setq org-agenda-custom-commands 
       '(
-        ("i" "Improvements" tags "+improve-info/-DONE-INFO-WONTDO")
+        ("I" . "Improvements")
+        ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
+        ("Iw" "work in progress"
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+improve")))
+         )
         ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
         ("p" "Public tasks (public)"
          ((agenda ""))
