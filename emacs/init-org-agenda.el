@@ -6,7 +6,11 @@
          ((agenda ""))
          ((org-agenda-tag-filter-preset '("+improve")))
          )
-        ("z" "Ziele" tags "+goal+life-backlog-reminder/-INFO")
+        ;; Goal, Task, Action
+        ("Z" . "Ziele")
+        ("Zg" "Goals" tags "+goal-task-action")
+        ("Zt" "Tasks" tags "+task-action")
+        ("Za" "Actions" tags "+action")
         ("p" "Public tasks (public)"
          ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
