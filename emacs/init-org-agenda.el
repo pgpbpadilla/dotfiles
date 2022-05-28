@@ -1,3 +1,5 @@
+(setq no-info "/-INFO")
+
 (setq org-agenda-custom-commands 
       '(
         ("I" . "Improvements")
@@ -7,10 +9,26 @@
          ((org-agenda-tag-filter-preset '("+improve")))
          )
         ;; Goal, Task, Action
-        ("Z" . "Ziele")
-        ("Zg" "Goals" tags "+goal-task-action")
-        ("Zt" "Tasks" tags "+task-action")
-        ("Za" "Actions" tags "+action")
+        ;; These terminology is kind of arbitrary, the general idea
+        ;; is to break down big chunks of work into smaller more
+        ;; manageable chunks.
+        ;; Goals tend to be more about what is desired and why.
+        ;; Tasks are the first attempt to break down a goal into
+        ;; smaller pieces.
+        ;; Actions are yet on level to identify small chunks of
+        ;; work and in principle a sequence of actions should be
+        ;; enough to accomplish a task.
+        ("G" . "Goals, Tasks, Actions")
+        ("Gg" "Goals" tags (concat "+goal-task-action" no-info))
+        ("Gt" "Tasks" tags (concat "+task-action" no-info))
+        ("Ga" "Actions" tags (concat "+action" no-info))
+        ;; Goals without a Project can be called Dreams cause they'll
+        ;; remain unaccomplished unless some work is done.
+        ("Gd" "Dreams" tags "+dream")
+        ;; Projects without Goals are Hobbies and there's nothing to
+        ;; accomplish, most of them are just fun, but mabe having Fun
+        ;; is the Goal.
+        ("Gh" "Hobbies" tags "+hobby")
         ("p" "Public tasks (public)"
          ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
