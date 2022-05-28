@@ -186,7 +186,7 @@
 
 
 ;;; Org Mode
-(load-relative "./org.el")
+(require 'init-org)
 
 ;; Install command-log-mode
 (use-package command-log-mode
