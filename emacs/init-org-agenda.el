@@ -1,4 +1,4 @@
-(setq no-info "/-INFO")
+(setq no-info "-info-journal/-INFO-DONE-WONTDO-IGNORE")
 
 (setq org-agenda-custom-commands 
       '(
@@ -29,6 +29,8 @@
         ;; accomplish, most of them are just fun, but mabe having Fun
         ;; is the Goal.
         ("Gh" "Hobbies" tags "+hobby")
+        ;; Accomplished goals are results
+        ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
         ("p" "Public tasks (public)"
          ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))

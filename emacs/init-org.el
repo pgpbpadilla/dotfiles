@@ -163,7 +163,7 @@
 ;;; Load Online images
 ;; https://emacs.stackexchange.com/questions/42281/org-mode-is-it-possible-to-display-online-images
 ;; To show images use: =C-c C-x C-v=
-
+  
 ;; Requires cloning: https://github.com/TobiasZawada/org-yt
 (load-relative "./org-yt/org-yt.el")
 (defun org-image-link (protocol link _description)
