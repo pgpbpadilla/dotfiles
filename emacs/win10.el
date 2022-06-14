@@ -2,7 +2,10 @@
  ;; Use Unix file-encoding
  default-buffer-file-coding-system 'utf-8-unix
  buffer-file-coding-system 'utf-8-unix
-)
+ )
+
+;; http://xahlee.info/emacs/emacs/emacs_encoding_decoding_faq.html
+(set-language-environment "UTF-8")
 
 ;; Use native font
 (set-face-attribute 'default nil 
