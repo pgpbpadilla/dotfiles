@@ -188,7 +188,7 @@
  :image-data-fun #'org-image-link)
 
 ;;; https://www.orgroam.com/
-(use-package org-roam
-  :ensure t)
+;;; (use-package org-roam
+;;;  :ensure t)
 
 (provide 'init-org)
