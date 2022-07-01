@@ -8,33 +8,39 @@
          ((agenda ""))
          ((org-agenda-tag-filter-preset '("+improve")))
          )
-        ;; Goal, Task, Action
-        ;; These terminology is kind of arbitrary, the general idea
-        ;; is to break down big chunks of work into smaller more
-        ;; manageable chunks.
-        ;; Goals tend to be more about what is desired and why.
-        ;; Tasks are the first attempt to break down a goal into
-        ;; smaller pieces.
-        ;; Actions are yet on level to identify small chunks of
-        ;; work and in principle a sequence of actions should be
-        ;; enough to accomplish a task.
+        ;;; Goals stuff
+        ;; See Org etry: =C-c h goals task action=
+        ;; file:~/org/cdc3c97dd4.org.gpg::#goal-task-action
         ("G" . "Goals, Tasks, Actions")
+
+        ;;; Show all items for Specific goals
+        ("Gp" "Peace of Mind" tags (concat "+action+pom" no-info))
+        ("Gf" "Gesund bleiben" tags (concat "+action+fit" no-info))
+        ("Gs" "Deustsche Sprache" tags (concat "+action+de+sprache" no-info))
+
+        ;;; Unfiltered entries
         ("Gg" "Goals" tags (concat "+goal-task-action" no-info))
         ("Gt" "Tasks" tags (concat "+task-action" no-info))
         ("Ga" "Actions" tags (concat "+action" no-info))
-        ;; Goals without a Project can be called Dreams cause they'll
+        
+        ;;; Goals without a Project can be called Dreams cause they'll
         ;; remain unaccomplished unless some work is done.
         ("Gd" "Dreams" tags "+dream")
+
         ;; Projects without Goals are Hobbies and there's nothing to
         ;; accomplish, most of them are just fun, but mabe having Fun
         ;; is the Goal.
         ("Gh" "Hobbies" tags "+hobby")
+
         ;; Accomplished goals are results
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
+
         ("p" "Public tasks (public)"
          ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
 	       )
+
+        ;;; Project stuff
         ("P" . "Project tasks")
         ("Pm" "My tasks (public)"
          ((agenda ""))
@@ -53,6 +59,8 @@
          ((agenda ""))
          ((org-agenda-tag-filter-preset daily-reminder-tags))
          )
+
+        ;;; Reminders stuff
         ("R" . "Reminders")
         ("Rd" "Daily reminders"
          ((agenda ""))
