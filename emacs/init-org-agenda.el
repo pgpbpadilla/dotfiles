@@ -36,7 +36,7 @@
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
 
         ;; Dangling/Zombie items
-        ("Gz" "Dangling/Zombie items" tags "-goal-hobby-dream-journal/-DONE-WONTDO")
+        ("Gz" "Dangling/Zombie items" tags "-goal-hobby-dream-journal/-DONE-WONTDO-INFO-IGNORE")
 
         ("p" "Public tasks (public)"
          ((agenda ""))
