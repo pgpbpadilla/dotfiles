@@ -35,6 +35,9 @@
         ;; Accomplished goals are results
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
 
+        ;; Dangling/Zombie items
+        ("Gz" "Dangling/Zombie items" tags "-goal-hobby-dream-journal/-DONE-WONTDO")
+
         ("p" "Public tasks (public)"
          ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
