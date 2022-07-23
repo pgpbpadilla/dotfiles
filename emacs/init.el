@@ -222,6 +222,6 @@
 ;;; Magit customisations
 ;; Open Magit and use Full Window instead of splitting the buffer
 ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
-(setq magit-display-buffer-function #'magit-display-buffer-fullframeke-status-v1)
+(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
 ;;; Init.el ends here
