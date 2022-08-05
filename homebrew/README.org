@@ -25,10 +25,12 @@
 
 ** Homebrew-related topics
 
-*** Cleanup unused packages
-
-     #+begin_example bash
-     brew bundle dump --help
-     #+end_example
+   Review the =brew= command's help for instructions on how to cleanup
+   unused dependencies and how to dump all currently installed
+   formulas into a =Brewfile=:
+   
+   #+begin_example bash
+   brew bundle --help
+   #+end_example
 
 
