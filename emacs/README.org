@@ -70,7 +70,7 @@
 
       /Note how the line that loads the =custom-file= is commented out./
 
-   2. Review current Emacs [[file:init.el][~/.emacs.d/init.el]] file, and backup any
+   2. Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
       configs that you want to keep:
 
       #+begin_src bash

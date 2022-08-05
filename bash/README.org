@@ -43,7 +43,7 @@
     1. Review existing bash configuration:
       
        #+begin_src bash
-         ls -l ~/.bashrc | cut -d ' ' -f13-
+         ls -l ~/.bash_profile | cut -d ' ' -f13-
        #+end_src
    
        #+RESULTS:
@@ -52,7 +52,7 @@
     2. Install symlink:
 
      	 #+begin_src bash
-     	   ln -svf $(pwd)/macos.bashrc.sh "${HOME}"/.bashrc
+     	   ln -svf $(pwd)/macos.bashrc.sh "${HOME}"/.bash_profile
      	 #+end_src
      	
      	 #+RESULTS:
