@@ -20,7 +20,7 @@
    Non-essential packages can be installed with:
      
    #+begin_example bash
-   brew bundle install --quite --file=./homebrew/Brewfile.extras
+   brew bundle install --quiet --file=./homebrew/Brewfile.extras
    #+end_example
 
 ** Homebrew-related topics

@@ -47,6 +47,4 @@ cask "latexit"
 cask "mactex"
 cask "openoffice"
 cask "texmaker"
-cask "transmission"
-cask "virtualbox"
-cask "xquartz"
+
