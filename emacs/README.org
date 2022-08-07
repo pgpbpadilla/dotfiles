@@ -93,7 +93,7 @@
       	#+RESULTS:
       	: ├── .emacs.d
 
-   3. Install Emacs bootstrap file [[file:boostrap.el][./bootstrap.el]]
+   3. Install [[file:bootstrap.el]]
 
       *WARN*: /this will overwrite (=-f=) the target file if it exists/
 

@@ -26,7 +26,7 @@
     To install simply source the appropriate file, e.g.:
 
     #+begin_src bash :results output code :exports 
-      cat example/.bashrc
+      cat example/.bash_profile
     #+end_src
 
     #+RESULTS:
@@ -46,18 +46,12 @@
          ls -l ~/.bash_profile | cut -d ' ' -f13-
        #+end_src
    
-       #+RESULTS:
-       : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
-
     2. Install symlink:
 
      	 #+begin_src bash
-     	   ln -svf $(pwd)/macos.bashrc.sh "${HOME}"/.bash_profile
+     	   ln -svf $(pwd)/example/macos.bash_profile "${HOME}"/.bash_profile
      	 #+end_src
      	
-     	 #+RESULTS:
-       : /Users/pgpb.padilla/.bashrc -> /Users/pgpb.padilla/dotfiles/bash/macos.bashrc.sh
-
 
 ** General description
 
