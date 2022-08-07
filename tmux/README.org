@@ -30,11 +30,12 @@
    The current configuration loads a couple of plugins, the most
    important ones are:
 
-   - =tpm=: a plugin to manage =tmux= plugins
-   - =sensible=: common /sensible/ defaults for =tmux=
-   - =continuum=: automatically save and restore sessions
-     Depends on: 
-       - =resurrect=: save and restore =tmux= sessions
+   1. [[TPM]]: a plugin to manage =tmux= plugins
+      *WARN*: Must be installed before any of the other plugins work  
+   2. =sensible=: common /sensible/ defaults for =tmux=
+   3. =continuum=: automatically save and restore sessions
+      Depends on: 
+      - =resurrect=: save and restore =tmux= sessions
 
    #+begin_src bash :results output
      grep "'tmux-plugins" tmux.conf
@@ -51,7 +52,7 @@
    
 ** Bookmarks                                                       :bookmark:
    
-   - =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
-   - TPM: Tmux Plugin Manager - [[https://github.com/tmux-plugins/tpm][github: tmux-plugins/tpm]]
-   - =tmux-continuum= - [[https://github.com/tmux-plugins/tmux-continuum][github: tmux-plugins/tmux-continuum]]
-     Automatically save/restore your =tmux= sessions
+   1. =tmux= Cheat Sheet - [[https://tmuxcheatsheet.com/][tmuxcheatsheet.com]]
+   2. <<TPM>>: Tmux Plugin Manager - [[https://github.com/tmux-plugins/tpm][github: tmux-plugins/tpm]]
+   3. =tmux-continuum= - [[https://github.com/tmux-plugins/tmux-continuum][github: tmux-plugins/tmux-continuum]]
+      Automatically save/restore your =tmux= sessions
