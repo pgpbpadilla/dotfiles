@@ -23,10 +23,10 @@
     : init.el:(setq epg-gpg-program "gpg"
     : init.el-      epg-pinentry-mode 'loopback)
 
-    
+
 **** Installing GnuPG - [[https://gnupg.org/][gnupg.org]]
      
-***** MacOS
+***** MacOS - [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]
      
       =gpg= can be installed via [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]:
 
@@ -36,6 +36,10 @@
 
       #+RESULTS:
       : brew "gnupg"
+
+      *WARN*: Additional configuration needs to be installed, see:
+      [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
+
       
 ***** Debian
 

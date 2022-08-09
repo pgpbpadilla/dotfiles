@@ -17,11 +17,3 @@
 (set-face-attribute 'default nil :height 140)
 (message "Darwin options applied.")
 
-
-;;; MacOS: pinentry, gpg
-(when (eq system-type 'darwin)
-  ;; Configure EasyPG to use loopback for pinentry
-  (unless (package-installed-p 'pinentry)
-    (package-install 'pinentry))
-  (setq epa-pinentry-mode 'loopback)
-  (pinentry-start))

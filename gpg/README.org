@@ -1,6 +1,50 @@
+#+PROPERTY: header-args:bash :results verbatim
+
 * GPG
 
 ** Installation
+
+*** MacOS
+    :PROPERTIES:
+    :CUSTOM_ID: macos-gpg-config
+    :END:
+
+    1. Review current GPG Agent config:
+       <<review-current>>
+    
+       #+begin_src bash
+         tree ~/.gnupg | grep gpg-agent.conf
+       #+end_src
+   
+       #+RESULTS:
+       : ├── gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
+
+       and ensure you're not overwriting useful changes:
+
+       #+begin_src bash
+         cat ~/.gnupg/gpg-agent.conf
+       #+end_src
+
+       #+RESULTS:
+       : # https://emacs.stackexchange.com/a/68304/11978
+       : allow-emacs-pinentry
+       : pinentry-program /usr/local/bin/pinentry-mac
+   
+    2. Install MacOS-specific version:
+   
+       #+begin_src bash
+         echo "Intalling config for MacOS ..."
+         ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg/
+       #+end_src
+   
+       #+RESULTS:
+       : Intalling config for MacOS ...
+       : /Users/pablo.padillabeltran/.gnupg//gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
+
+    3. Verify only config compatible with this OS are installed, see:
+       [[review-current]].
+
+   
 
 *** WSL2
 
@@ -10,6 +54,12 @@
     Solution found: https://unix.stackexchange.com/a/655819/55912
 
     #+begin_src bash :results verbatim
-    ln -svf $(pwd)/*.conf ${HOME}/.gnupg/
+      echo "Installing config for Linux!! ..."
+      ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg/
     #+end_src
+
+    #+RESULTS:
+    : Installing config for Linux!! ...
+    : /Users/pablo.padillabeltran/.gnupg//gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/linux/gpg-agent.conf
+    : /Users/pablo.padillabeltran/.gnupg//gpg.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/linux/gpg.conf
 
