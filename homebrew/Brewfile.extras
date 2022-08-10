@@ -1,5 +1,6 @@
 brew "python@3.9"
 brew "pyenv"
+brew "pyenv-virtualenv"
 brew "glib"
 brew "automake"
 brew "libtool"
