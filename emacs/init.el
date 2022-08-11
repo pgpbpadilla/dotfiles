@@ -58,7 +58,8 @@
 (column-number-mode t)
 (show-paren-mode t)
 (global-visual-line-mode)
-(display-line-numbers-mode)
+;;; If enabled everywhere, it breaks the Org Agenda view
+;; (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
 
 ;; show right margin at 80 chars
