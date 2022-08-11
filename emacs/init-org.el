@@ -149,9 +149,9 @@
 (defun my/mom-template ()
   
   (setq title "* %u %?\n  %T--%T\n\n"
-        people "** People [/]\n\n   - [ ] abc\n\n"
+        people "** People \n\n   - xyz\n\n"
         minutes "** Minutes of meeting\n\n"
-        actions "** Action Items\n\n*** TODO xyz\n\n")
+        actions "** Action Items [/]\n\n*** TODO xyz\n\n")
   ;; return the template as a string
   (concat title people minutes actions))
 
