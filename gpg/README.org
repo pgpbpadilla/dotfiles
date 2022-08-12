@@ -9,40 +9,53 @@
     :CUSTOM_ID: macos-gpg-config
     :END:
 
-    1. Review current GPG Agent config:
-       <<review-current>>
+**** Review current GPG Agent config
+
+     <<review-current>>
     
-       #+begin_src bash
-         tree ~/.gnupg | grep gpg-agent.conf
-       #+end_src
+     #+begin_src bash
+       tree ~/.gnupg | grep gpg-agent.conf
+     #+end_src
    
        #+RESULTS:
        : ├── gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
 
-       and ensure you're not overwriting useful changes:
+     and ensure you're not overwriting useful changes:
 
-       #+begin_src bash
-         cat ~/.gnupg/gpg-agent.conf
-       #+end_src
+     #+begin_src bash
+       cat ~/.gnupg/gpg-agent.conf
+     #+end_src
 
        #+RESULTS:
        : # https://emacs.stackexchange.com/a/68304/11978
        : allow-emacs-pinentry
        : pinentry-program /usr/local/bin/pinentry-mac
    
-    2. Install MacOS-specific version:
+
+**** Install: Not Apple Sillicon
    
+     #+begin_src bash
+       echo "Intalling config for MacOS ..."
+       ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
+     #+end_src
+
+
+**** Install: Apple Sillicon:
+
        #+begin_src bash
-         echo "Intalling config for MacOS ..."
-         ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg/
+         echo "Intalling config for MacOS with Apple Sillicon ..."
+         ln -svf $(pwd)/macos/apple-sillicon/*.conf ${HOME}/.gnupg
        #+end_src
    
        #+RESULTS:
        : Intalling config for MacOS ...
        : /Users/pablo.padillabeltran/.gnupg//gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
+   
 
-    3. Verify only config compatible with this OS are installed, see:
-       [[review-current]].
+**** Verify
+
+     Only config compatible with this OS are installed, see:
+     [[review-current]].
 
    
 
