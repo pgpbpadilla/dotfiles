@@ -158,6 +158,7 @@
 (setq org-capture-templates
       '(
         ("m" "Minutes of meeting" entry (file "") (function my/mom-template))
+        ("j" "Journal entry" entry (file "") "* %?\n %U")
         ))
 
 
