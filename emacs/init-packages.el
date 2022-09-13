@@ -10,6 +10,7 @@
 
 ;; list the packages you want
 (setq package-list '(use-package
+                      keyfreq
                       command-log-mode
                       neotree
                       auto-highlight-symbol

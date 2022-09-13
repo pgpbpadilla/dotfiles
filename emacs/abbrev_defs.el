@@ -15,6 +15,7 @@
     ("smes" "subject-matter experts" nil :count 1)
     ("td" "Today" nil :count 2)
     ("tfo" "to find out" nil :count 1)
+    ("vllt" "vielleicht" nil :count 1)
     ("wtft" "was the first time" nil :count 2)
     ("x" "for" nil :count 2)
    ))

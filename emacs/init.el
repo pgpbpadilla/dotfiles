@@ -225,4 +225,11 @@
 ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
 (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
+
+;;; Track key frequencies
+;; https://github.com/dacap/keyfreq
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
 ;;; Init.el ends here
