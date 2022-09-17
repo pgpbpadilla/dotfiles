@@ -198,4 +198,13 @@
 ;;; (use-package org-roam
 ;;;  :ensure t)
 
+
+;;; Set colors for headings
+;; DONE items are hard to read, I'd like them more prominent
+;; Alternatives:
+;; - SpringGreen4
+;; - MidnightBlue
+(set-face-attribute 'org-headline-done nil :foreground "MidnightBlue")
+
+;;; Export as an Emacs package
 (provide 'init-org)
