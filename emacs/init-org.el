@@ -54,6 +54,11 @@
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
+;;; Always create ID for links
+;; https://orgmode.org/manual/Handling-Links.html#FOOT29
+(require 'org-id)
+;; https://emacs.stackexchange.com/a/64240/11978
+(setq org-id-link-to-org-use-id t)
 
 ;;; Shortcuts
 (global-set-key (kbd "C-c l") 'org-store-link)
