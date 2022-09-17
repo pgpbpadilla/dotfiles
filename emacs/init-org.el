@@ -148,7 +148,7 @@
 ;; Minutes of meeting 
 (defun my/mom-template ()
   
-  (setq title "* %?\n  %T\n\n"
+  (setq title "* %?\t:termin:mom:\n  %T\n\n"
         people "** People \n\n   - xyz\n\n"
         minutes "** Minutes of meeting\n\n"
         actions "** Action Items [/]\n\n*** TODO xyz\n\n")
