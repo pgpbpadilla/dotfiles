@@ -1,3 +1,14 @@
+;;; Hide some tags in Agenda view so that there are no multi-line entries
+(setq org-agenda-hide-tags-regexp
+      (regexp-opt '("goal"
+                    "task"
+                    "action"
+                    "PROJECT"
+                    "reminder"
+                    "termin")
+                  )
+      )
+
 (setq no-info "-info-journal/-INFO-DONE-WONTDO-IGNORE")
 
 (setq org-agenda-custom-commands 
