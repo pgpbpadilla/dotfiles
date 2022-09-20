@@ -232,4 +232,7 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+;;; Fill column options
+(global-set-key (kbd "C-x M-f") 'fill-region)
+
 ;;; Init.el ends here
