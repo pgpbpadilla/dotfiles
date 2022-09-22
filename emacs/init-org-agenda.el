@@ -5,7 +5,8 @@
                     "action"
                     "PROJECT"
                     "reminder"
-                    "termin")
+                    "termin"
+                    "bookmark")
                   )
       )
 
