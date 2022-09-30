@@ -48,6 +48,11 @@
        ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
      #+end_src
 
+     #+RESULTS:
+     : Intalling config for MacOS ...
+     : /Users/pgpb.padilla/.gnupg/gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
+     : /Users/pgpb.padilla/.gnupg/gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
+
 
 **** Install: Apple Sillicon:
 
