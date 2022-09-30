@@ -23,22 +23,26 @@
      <<review-current>>
     
      #+begin_src bash
-       tree ~/.gnupg | grep gpg-agent.conf
+       tree ~/.gnupg | grep ".conf"
      #+end_src
    
        #+RESULTS:
-       : ├── gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
+       : ├── gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
+       : ├── gpg-agent.conf~
+       : ├── gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
 
      and ensure you're not overwriting useful changes:
 
      #+begin_src bash
-       cat ~/.gnupg/gpg-agent.conf
+       cat ~/.gnupg/*.conf
      #+end_src
 
        #+RESULTS:
        : # https://emacs.stackexchange.com/a/68304/11978
        : allow-emacs-pinentry
        : pinentry-program /usr/local/bin/pinentry-mac
+       : #ignore-invalid-option personal-aead-preferences
+       : personal-aead-preferences none
    
 
 **** Install: Not Apple Sillicon
