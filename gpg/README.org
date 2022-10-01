@@ -4,6 +4,15 @@
 
 ** Installation
 
+*** Linux
+
+    #+begin_src bash
+    echo "Intalling config for MacOS ..."
+    ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
+    #+end_src
+
+
+
 *** MacOS
     :PROPERTIES:
     :CUSTOM_ID: macos-gpg-config
