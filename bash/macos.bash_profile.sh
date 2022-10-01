@@ -7,7 +7,7 @@ load_alias "${BASE_DIR}/macos.alias.sh"
 load_devtools "${BASE_DIR}/macos.devtools"
 
 # Export user binaries
-export PATH="/usr/local/bin:$PATH"
+export PATH="~/bin:/usr/local/bin:$PATH"
 
 
 # User-specific configuration files (a.k.a. /dotfiles/)
