@@ -123,7 +123,7 @@
 (require 'real-auto-save)
 (add-hook 'prog-mode-hook 'real-auto-save-mode)
 (add-hook 'org-mode-hook 'real-auto-save-mode)
-(setq real-auto-save-interval 5) ;; in seconds
+(setq real-auto-save-interval 15) ;; in seconds
 
 
 ;;; Flyspell
