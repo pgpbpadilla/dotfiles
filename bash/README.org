@@ -25,17 +25,16 @@
    
     To install simply source the appropriate file, e.g.:
 
-    #+begin_src bash :results output code :exports 
-      cat example/.bash_profile
+    #+begin_src bash code :exports 
+      cat example/*
     #+end_src
 
     #+RESULTS:
-    #+begin_src bash
-    #!/usr/bin/env bash
+    : #!/usr/bin/env bash
+    : 
+    : source ~/dotfiles/bash/macos.bash_profile.sh
+    : echo "Loaded company-agnostic customizations"
 
-    source ~/dotfiles/bash/macos.bashrc.sh
-    echo "Loaded company-agnostic customizations"
-    #+end_src
 
 
 *** MacOS installation via symlink
