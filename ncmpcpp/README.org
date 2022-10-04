@@ -13,7 +13,20 @@
    #+RESULTS:
    : ├── musik -> /usr/local/bin/ncmpcpp
 
+
+   If the symlink does not exist, you can create it with:
+
+   #+begin_src bash
+     ln -s /urs/local/bin/ncmpcpp ${HOME}/bin/musik
+   #+end_src
+
+   #+RESULTS:
+
+
 *** Remotely
+
+    You can control the playback remotely, however the audio output
+    will remain remote too:
     
     #+begin_src bash
       ssh personal-mac 'tree ~/bin | grep musik' 
