@@ -7,7 +7,7 @@
 *** Linux
 
     #+begin_src bash
-    echo "Intalling config for MacOS ..."
+    echo "Intalling config for Linux ..."
     ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
     #+end_src
 
