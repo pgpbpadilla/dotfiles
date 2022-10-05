@@ -168,7 +168,7 @@
 (setq epg-gpg-program "gpg"
       epg-pinentry-mode 'loopback)
 
-(when (eq system-type 'gnu/linux)
+(when (eq system-type 'gnu/linux
   (message "Inside a Linux system")
   (use-package pinentry
     :ensure t
@@ -176,6 +176,10 @@
     (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
     (pinentry-start)
     )
+  ;;; My system uses =lp= instead of =lpr=
+  ;; https://stackoverflow.com/questions/28765952/emacs-printing-error-unknown-option-j
+  (setq lpr-command "lp"
+        lpr-add-switches nil)
   (message "Linux-specific options set")
   )
 
