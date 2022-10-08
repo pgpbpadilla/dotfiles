@@ -1,0 +1,44 @@
+* Debian from scratch
+  :PROPERTIES:
+  :ID:       4990c70f-908a-4f33-adcd-c8c815aacf73
+  :END:
+  
+** Install with =apt=
+
+   Use the Brewfiles as a reference: [[file:~/dotfiles/homebrew/README.org][Homebrew]]
+
+
+** Dropbox: [[https://www.dropbox.com/install][install]]
+
+*** GOTCHA: throttle downloads: [[https://fast.com][speed test]]
+
+    By default it will try to download everything as fast as possible,
+    but that may impact your current work, so you can throttle it
+    with:
+
+    #+begin_src bash
+      dropbox throttle 25000 15000
+    #+end_src
+
+    Speeds are in KBs
+    
+
+*** GOTCHA: there's no selective sync for linux
+
+    Stop sync with:
+
+    #+begin_src bash
+      dropbox stop
+    #+end_src
+
+    Now you can setup your exclusion list.
+
+    
+**** Exclude list
+
+     #+begin_example bash
+     # general help
+     dropbox 
+     dropbox exclude list
+     dropbox exclude add <foldername>
+     #+end_example
