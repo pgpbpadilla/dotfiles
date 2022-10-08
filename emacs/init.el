@@ -168,7 +168,7 @@
 (setq epg-gpg-program "gpg"
       epg-pinentry-mode 'loopback)
 
-(when (eq system-type 'gnu/linux
+(when (eq system-type 'gnu/linux)
   (message "Inside a Linux system")
   (use-package pinentry
     :ensure t
