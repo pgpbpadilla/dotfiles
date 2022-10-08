@@ -4,6 +4,15 @@
 
 ** Installation
 
+   GPG keys are in my 1Password account.
+
+   Download and install them with GPG
+
+   #+begin_example bash
+   gpg --import --help
+   #+end_example
+
+
 *** Linux
 
     #+begin_src bash

@@ -3,6 +3,13 @@
   :ID:       4990c70f-908a-4f33-adcd-c8c815aacf73
   :END:
   
+** References
+
+   1. [[id:3ceef158-6441-41c8-9d17-32693e98bcee][Setup old macbook as backup machine]]
+      These are all the things I had to do to setup Debian recently
+      [2022-10-08 Sa]
+
+
 ** Install with =apt=
 
    Use the Brewfiles as a reference: [[file:~/dotfiles/homebrew/README.org][Homebrew]]
