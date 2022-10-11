@@ -1,3 +1,7 @@
+;;; Handle custom protocols
+
+(org-add-link-type "gnucash" (lambda (path) (browse-url-xdg-open path)))
+
 ;;; Adapt indentation to heading level
 ;; https://orgmode.org/manual/Org-Indent-Mode.html
 (setq org-adapt-indentation t)
