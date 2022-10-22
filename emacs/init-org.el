@@ -208,7 +208,17 @@
 
 ;;; Handle custom protocols
 
-(org-add-link-type "gnucash" (lambda (path) (browse-url-xdg-open path)))
+(when (eq system-type 'gnu/linux)
+  (message "Inside a Linux system")
+  (org-add-link-type "gnucash" (lambda (path) (browse-url-xdg-open path)))
+  )
+
+(when (eq system-type 'darwin)
+  (message "Inside a Darwin system")
+  (org-add-link-type "gnucash" (lambda (path)
+                                 (shell-command (concat "open " path))))
+  )
+
 
 ;;; Export as an Emacs package
 (provide 'init-org)
