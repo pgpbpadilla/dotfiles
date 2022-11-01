@@ -220,5 +220,15 @@
   )
 
 
+
+;;; Org Slides
+;; https://github.com/takaxp/org-tree-slide
+(use-package org-tree-slide
+  :ensure t
+  :custom
+  (org-image-actual-width nil))
+(global-set-key (kbd "C-c s") 'org-tree-slide-mode)
+
+
 ;;; Export as an Emacs package
 (provide 'init-org)
