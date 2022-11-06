@@ -239,4 +239,10 @@
 ;;; Fill column options
 (global-set-key (kbd "C-x M-f") 'fill-region)
 
+
+;;; Focus mode
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
 ;;; Init.el ends here
