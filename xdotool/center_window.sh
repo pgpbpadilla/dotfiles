@@ -5,7 +5,7 @@ IFS='x' read screenWidth screenHeight < <(xdpyinfo | grep dimensions | grep -o '
 width=$(xdotool getactivewindow getwindowgeometry --shell | head -4 | tail -1 | sed 's/[^0-9]*//')
 height=$(xdotool getactivewindow getwindowgeometry --shell | head -5 | tail -1 | sed 's/[^0-9]*//')
 
-newWidth=$((screenWidth/10 * 6))
+newWidth=$((screenWidth/100 * 55))
 newHeight=$((screenHeight/100 * 93))
 
 newPosX=$((screenWidth/2 - newWidth/2))
