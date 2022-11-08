@@ -126,7 +126,7 @@
 
 
 ;; Export backends
-(setq org-export-backends '(ascii html icalendar latex md odt))
+(setq org-export-backends '(ascii html icalendar latex beamer md odt))
 
 
 ;;; TODO: Extract to separate file
