@@ -46,7 +46,7 @@
       '(
         ("TODO" . org-warning) 
         ("WONTDO" . (:foreground "blue" :weight bold))
-        ("INFO" . (:foreground "blue" :waight bold))
+        ("INFO" . (:foreground "blue" :weight bold))
         )
       )
 
