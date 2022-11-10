@@ -212,6 +212,8 @@
   (message "Inside a Linux system")
   ;;; Should open Gnucash links with Gnucash app
   (org-add-link-type "gnucash" (lambda (path) (browse-url-xdg-open path)))
+  ;;; Should open Gnucash links with PDF viewer
+  (org-add-link-type "pdf" (lambda (path) (browse-url-xdg-open path)))
   ;;; Export PDF with Latex on Linux
   (setq org-latex-pdf-process '("latexmk -pdf -interaction=nonstopmode -output-directory=%o %f"))
 
