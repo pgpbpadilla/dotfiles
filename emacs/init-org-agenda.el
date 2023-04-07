@@ -10,7 +10,7 @@
                   )
       )
 
-(setq no-info "-info-journal/-INFO-DONE-WONTDO-IGNORE")
+(setq hidden "-info-journal-reminder/-INFO-DONE-WONTDO-IGNORE")
 
 (setq org-agenda-custom-commands 
       '(
@@ -26,14 +26,14 @@
         ("G" . "Goals, Tasks, Actions")
 
         ;;; Show all items for Specific goals
-        ("Gp" "Peace of Mind" tags (concat "+action+pom" no-info))
-        ("Gf" "Gesund bleiben" tags (concat "+action+fit" no-info))
-        ("Gs" "Deustsche Sprache" tags (concat "+action+de+sprache" no-info))
+        ("Gp" "Peace of Mind" tags (concat "+action+pom" hidden))
+        ("Gf" "Gesund bleiben" tags (concat "+action+fit" hidden))
+        ("Gs" "Deustsche Sprache" tags (concat "+action+de+sprache" hidden))
 
         ;;; Unfiltered entries
-        ("Gg" "Goals" tags (concat "+goal-task-action" no-info))
-        ("Gt" "Tasks" tags (concat "+task-action" no-info))
-        ("Ga" "Actions" tags (concat "+action" no-info))
+        ("Gg" "Goals" tags (concat "+goal-task-action" hidden))
+        ("Gt" "Tasks" tags (concat "+task-action" hidden))
+        ("Ga" "Actions" tags (concat "+action" hidden))
         
         ;;; Goals without a Project can be called Dreams cause they'll
         ;; remain unaccomplished unless some work is done.
