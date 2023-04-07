@@ -10,7 +10,7 @@
                   )
       )
 
-(setq hidden "-info-journal-reminder/-INFO-DONE-WONTDO-IGNORE")
+(setq hidden "-info-journal-reminder-hobby/-INFO-DONE-WONTDO-IGNORE")
 
 (setq org-agenda-custom-commands 
       '(
@@ -42,7 +42,7 @@
         ;; Projects without Goals are Hobbies and there's nothing to
         ;; accomplish, most of them are just fun, but mabe having Fun
         ;; is the Goal.
-        ("Gh" "Hobbies" tags "+hobby")
+        ("Gh" "Hobbies" tags (concat "+hobby-task-action" hidden))
 
         ;; Accomplished goals are results
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
