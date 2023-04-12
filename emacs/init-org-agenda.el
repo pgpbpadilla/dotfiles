@@ -10,7 +10,7 @@
                   )
       )
 
-(setq hidden "-info-journal-reminder-hobby/-INFO-DONE-WONTDO-IGNORE")
+(setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
 (setq org-agenda-custom-commands 
       '(
@@ -48,7 +48,7 @@
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
 
         ;; Dangling/Zombie items
-        ("Gz" "Dangling/Zombie items" tags "-goal-hobby-dream-journal/-DONE-WONTDO-INFO-IGNORE")
+        ("Gz" "Dangling/Zombie items" tags (concat "-goal" hidden))
 
         ("p" "Public tasks (public)"
          ((agenda ""))
