@@ -193,6 +193,9 @@
 ;;; Org Mode
 (require 'init-org)
 
+;;; ZSA Keyboard automation
+(require 'zsa)
+
 ;; Install command-log-mode
 (use-package command-log-mode
   :ensure t)
