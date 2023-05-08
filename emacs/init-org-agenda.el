@@ -91,7 +91,7 @@
 	       )
         ("j" "All meetings"
 	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+termin")))
+	       ((org-agenda-tag-filter-preset '("+termin" "-template")))
 	       )
         ("O" . "Out of Office")
         ("Om" "Monthly view"
