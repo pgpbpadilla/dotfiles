@@ -232,6 +232,11 @@
 ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
 (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
+;;; Color words in diff view
+;; https://emacs.stackexchange.com/a/52921/11978
+;; https://magit.vc/manual/magit/Diff-Options.html
+(setq magit-diff-refine-hunk (quote all))
+
 
 ;;; Track key frequencies
 ;; https://github.com/dacap/keyfreq
