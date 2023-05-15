@@ -232,10 +232,23 @@
 ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
 (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
-;;; Color words in diff view
+;;; Color words in diff view <<magit-diff-color>>
 ;; https://emacs.stackexchange.com/a/52921/11978
 ;; https://magit.vc/manual/magit/Diff-Options.html
 (setq magit-diff-refine-hunk (quote all))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+
+ ;;; Fix magit word coloring, I need more contrast in the changed words
+ ;; Changing the the background color to make the diffs easier to read
+ ;; search: magit-diff-color
+ '(diff-refine-added ((t (:inherit diff-refine-changed :background "White"))))
+ '(diff-refine-removed ((t (:inherit diff-refine-changed :background "White")))))
+
 
 
 ;;; Track key frequencies
