@@ -217,6 +217,13 @@
 (global-set-key "\M-n"  (lambda () (interactive) (scroll-up   4)) )
 (global-set-key "\M-p"  (lambda () (interactive) (scroll-down 4)) )
 
+;;; ace-window
+;; https://github.com/abo-abo/ace-window
+(use-package ace-window
+  :ensure t
+  :bind ("M-o" . ace-window))
+
+
 ;;; Window resize
 ;; unfortunately does not play well with Org mode buffers,
 ;; checkout: https://www.emacswiki.org/emacs/DoReMi
