@@ -223,6 +223,13 @@
   :ensure t
   :bind ("M-o" . ace-window))
 
+;;; ace-jump-mode
+;; https://www.emacswiki.org/emacs/AceJump
+;; https://github.com/winterTTr/ace-jump-mode
+;; Mouse-less navigation
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-c SPC" . ace-jump-mode)) 
 
 ;;; Window resize
 ;; unfortunately does not play well with Org mode buffers,
