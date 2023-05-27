@@ -1,7 +1,6 @@
 (use-package helm
   :ensure t
   :config
-  (require 'helm-config)
   (helm-mode 1))
 
 ;; Projectile
