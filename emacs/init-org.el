@@ -154,7 +154,7 @@
 (defun my/mom-template ()
   
   (setq title "* %?\t:termin:mom:\n  %T\n\n"
-        people "** People \n\n   - xyz\n\n"
+        people "** People \n\n   1. xyz\n\n"
         minutes "** Minutes of meeting\n\n"
         actions "** Action Items [/]\n\n*** TODO xyz\n\n")
   ;; return the template as a string
