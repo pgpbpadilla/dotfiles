@@ -14,6 +14,7 @@
 
 (setq org-agenda-custom-commands 
       '(
+        ("f" "Time tracking" tags (concat "+time+track" hidden))
         ("I" . "Improvements")
         ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
         ("Iw" "work in progress"
