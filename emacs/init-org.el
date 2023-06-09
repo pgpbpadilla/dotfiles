@@ -129,15 +129,6 @@
 (setq org-export-backends '(ascii html icalendar latex beamer md odt))
 
 
-;;; TODO: Extract to separate file
-;;; Custom Agenda commands
-;; Examples: https://orgmode.org/manual/Matching-tags-and-properties.html
-;; 
-;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
-;; List all improvements that are not DONE.
-(setq not-project-tags '("-improve" "-private" "-template" "-I" "-C"))
-(setq daily-reminder-tags '("+daily" "+reminder" "-private" "-template"))
-
 (require 'init-org-agenda)
 
 
