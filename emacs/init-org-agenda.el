@@ -11,9 +11,11 @@
       (regexp-opt '("goal"
                     "task"
                     "action"
+                    "hobby"
                     "PROJECT"
                     "reminder"
                     "time"
+                    "info"
                     "track"
                     "termin"
                     "bookmark")
