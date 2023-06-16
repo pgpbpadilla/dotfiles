@@ -87,7 +87,7 @@
         ;; Exclude items with tags: notes, improve, info, template
         ;; Exclude items with TODO keywords: MAYBE, DONE, WONTDO, INFO
         ;; Include items that part of a =PROJECT=
-        "-template-info-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO" 
+        "-template-info-notes-improve+PROJECT/-MAYBE-DONE-WONTDO-INFO-IGNORE" 
         ("NEXT" "TODO") 
         ("@shop") 
         ;; Exclude every children of an item marked with the IGNORE TODO keyword
