@@ -4,6 +4,9 @@
 ;; Disable indent-mode since it disables =org-adapt-indentation=
 (setq org-startup-indented nil)
 
+;;; Hide drawers on startup
+;; https://orgmode.org/manual/Initial-visibility.html
+(setq org-startup-folded 'overview)
 
 ;;; Configure Agenda
 
