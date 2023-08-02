@@ -14,6 +14,7 @@
                     "hobby"
                     "PROJECT"
                     "reminder"
+                    "recurring"
                     "time"
                     "info"
                     "track"
@@ -62,6 +63,13 @@
 
         ;; Dangling/Zombie items
         ("Gz" "Dangling/Zombie items" tags (concat "-goal" hidden))
+
+        ;; Filter by priority
+        ;; https://emacs-orgmode.gnu.narkive.com/bsur8gfw/orgmode-custom-agenda-view-filter-by-priority-and-scheduled-date
+        ("n" "Now! a.k.a. Prio=A"
+         ((agenda ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]")))
+         )
 
         ("p" "Public tasks (public)"
          ((agenda ""))
