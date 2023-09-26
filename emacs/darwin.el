@@ -14,6 +14,6 @@
 
 
 ;; Fix font size
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 145)
 (message "Darwin options applied.")
 
