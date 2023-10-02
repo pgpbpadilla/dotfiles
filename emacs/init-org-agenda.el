@@ -17,6 +17,7 @@
                     "recurring"
                     "time"
                     "info"
+                    "journal"
                     "track"
                     "termin"
                     "bookmark")
