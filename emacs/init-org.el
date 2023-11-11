@@ -1,3 +1,11 @@
+;;; Encryption for Org-files
+(require 'epa-file)
+(epa-file-enable)
+(require 'epg)
+(setq epg-gpg-program "gpg"
+      epg-pinentry-mode 'loopback)
+
+
 ;;; Adapt indentation to heading level
 ;; https://orgmode.org/manual/Org-Indent-Mode.html
 (setq org-adapt-indentation t)

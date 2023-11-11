@@ -161,12 +161,6 @@
   (message "Ok: windows hacks loaded.")
   )
 
-;;; Encryption for Org-files
-(require 'epa-file)
-(epa-file-enable)
-(require 'epg)
-(setq epg-gpg-program "gpg"
-      epg-pinentry-mode 'loopback)
 
 (when (eq system-type 'gnu/linux)
   (message "Inside a Linux system")
