@@ -274,4 +274,9 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
+;; Emacs refactor: https://github.com/Wilfred/emacs-refactor
+(use-package emr
+  :ensure t
+  :bind ("M-RET" . emr-show-refactor-menu)
+  )
 ;;; Init.el ends here

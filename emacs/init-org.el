@@ -17,11 +17,11 @@
 (setq org-startup-folded 'overview)
 
 ;;; Configure Agenda
-
+;; WARN: variable =org-agenda-dir= needs to be set
 (defun org-refresh () 
   "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
   (interactive)
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org.gpg$"))
+  (setq org-agenda-files (directory-files-recursively org-agenda-dir "\\.org.gpg$"))
   (message "All Org agenda files have been reloaded."))
 
 (org-refresh)
