@@ -84,9 +84,13 @@
 (setq org-default-notes-file (concat org-directory "/notes.org.gpg"))
 
 
-;;; Location of Journal files, not include in the agenda files
+;;; Location of Journal/Archive files, not include in the agenda files
+
 ;; WARN: variable =my-org-journal-files= needs to be alreade set
 (defvar my-org-journal-files (directory-files-recursively my-org-journal-dir "\\.org.gpg$"))
+
+;; WARN: variable =my-org-archive-files= needs to be alreade set
+(defvar my-org-archive-files (directory-files-recursively my-org-archive-dir "\\.org.gpg$"))
 
 ;; refile to another file
 (setq org-refile-targets
@@ -94,6 +98,7 @@
         (nil :maxlevel . 3)
         (org-agenda-files :maxlevel . 3)
         (my-org-journal-files :maxlevel . 3)
+        (my-org-archive-files :maxlevel . 3)
         )
       )
 

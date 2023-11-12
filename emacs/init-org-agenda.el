@@ -31,7 +31,9 @@
         ("f" "Time tracking" tags (concat "+time+track" hidden))
         ("F" . "Find/Search")
         ("Fj" "Journal search" search ""
-         ((org-agenda-files (file-expand-wildcards "~/org/0f6de25076/*.org.gpg")))) 
+         ((org-agenda-files (file-expand-wildcards "~/org/0f6de25076/*.org.gpg"))))
+        ("Fa" "Archive search" search ""
+         ((org-agenda-files (file-expand-wildcards "~/org/2204c36fc7/*.org.gpg")))) 
         ("I" . "Improvements")
         ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
         ("Iw" "work in progress"
