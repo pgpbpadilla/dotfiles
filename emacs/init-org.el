@@ -84,6 +84,7 @@
 ;; refile to another file
 (setq org-refile-targets
       '((nil :maxlevel . 3)
+        (directory-files-recursively org-journal-dir "\\.org.gpg$")
         (org-agenda-files :maxlevel . 3)))
 
 ;; (setq org-refile-use-outline-path 'file)
