@@ -26,14 +26,19 @@
 
 (setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
+
+(defvar my-org-extra-files (append my-org-journal-files my-org-archive-files))
+
 (setq org-agenda-custom-commands 
       '(
         ("f" "Time tracking" tags (concat "+time+track" hidden))
         ("F" . "Find/Search")
         ("Fj" "Journal search" search ""
-         ((org-agenda-files (file-expand-wildcards "~/org/0f6de25076/*.org.gpg"))))
+         ((org-agenda-files my-org-journal-files)))
         ("Fa" "Archive search" search ""
-         ((org-agenda-files (file-expand-wildcards "~/org/2204c36fc7/*.org.gpg")))) 
+         ((org-agenda-files my-org-archive-files)))
+        ("Fe" "Search everywhere" search ""
+         ((org-agenda-text-search-extra-files my-org-extra-files)))
         ("I" . "Improvements")
         ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
         ("Iw" "work in progress"
