@@ -16,12 +16,15 @@
 ;; https://orgmode.org/manual/Initial-visibility.html
 (setq org-startup-folded 'overview)
 
+
 ;;; Configure Agenda
-;; WARN: variable =org-agenda-dir= needs to be set
+
+;; WARN: variable =my-org-agenda-dir= needs to be set
+(defvar my-org-agenda-files (directory-files-recursively my-org-agenda-dir "\\.org.gpg$"))
 (defun org-refresh () 
-  "Evaluate the variable `org-agenda-files` as defined in the emacs init file"
+  "Reload agenda files, usually to include newly created files."
   (interactive)
-  (setq org-agenda-files (directory-files-recursively org-agenda-dir "\\.org.gpg$"))
+  (setq org-agenda-files my-org-agenda-files)
   (message "All Org agenda files have been reloaded."))
 
 (org-refresh)
@@ -81,11 +84,18 @@
 (setq org-default-notes-file (concat org-directory "/notes.org.gpg"))
 
 
+;;; Location of Journal files, not include in the agenda files
+;; WARN: variable =my-org-journal-files= needs to be alreade set
+(defvar my-org-journal-files (directory-files-recursively my-org-journal-dir "\\.org.gpg$"))
+
 ;; refile to another file
 (setq org-refile-targets
-      '((nil :maxlevel . 3)
-        (directory-files-recursively org-journal-dir "\\.org.gpg$")
-        (org-agenda-files :maxlevel . 3)))
+      '(
+        (nil :maxlevel . 3)
+        (org-agenda-files :maxlevel . 3)
+        (my-org-journal-files :maxlevel . 3)
+        )
+      )
 
 ;; (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)

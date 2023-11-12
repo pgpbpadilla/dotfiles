@@ -29,6 +29,9 @@
 (setq org-agenda-custom-commands 
       '(
         ("f" "Time tracking" tags (concat "+time+track" hidden))
+        ("F" . "Find/Search")
+        ("Fj" "Journal search" search ""
+         ((org-agenda-files (file-expand-wildcards "~/org/0f6de25076/*.org.gpg")))) 
         ("I" . "Improvements")
         ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
         ("Iw" "work in progress"
