@@ -32,6 +32,30 @@
 (setq org-agenda-custom-commands 
       '(
         ("f" "Time tracking" tags (concat "+time+track" hidden))
+
+        ("d" "Daily reminders"
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset daily-tags))
+         )
+
+        ;; Filter by priority
+        ;; https://emacs-orgmode.gnu.narkive.com/bsur8gfw/orgmode-custom-agenda-view-filter-by-priority-and-scheduled-date
+        ("n" "Now! a.k.a. Prio=A"
+         ((agenda ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]")))
+         )
+
+        ("p" "Public tasks (public)"
+         ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
+	       )
+
+        ("j" "All meetings"
+	       ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+termin" "-template")))
+	       )
+
+
         ("F" . "Find/Search")
         ("Fj" "Journal search" search ""
          ((org-agenda-files my-org-journal-files)))
@@ -39,12 +63,25 @@
          ((org-agenda-files my-org-archive-files)))
         ("Fe" "Search everywhere" search ""
          ((org-agenda-text-search-extra-files my-org-extra-files)))
-        ("I" . "Improvements")
-        ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
-        ("Iw" "work in progress"
+        
+
+        ;;; Project stuff
+        ("P" . "Project tasks")
+        ("Pm" "My tasks (public)"
          ((agenda ""))
-         ((org-agenda-tag-filter-preset '("+improve")))
-         )
+         ;; Remove those for which I'm not responsible
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template" "-I" "-C")))
+	       )
+        ("Pp" "Private tasks"
+         ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("+private")))
+	       )
+        ("Pa" "All tasks"
+         ((agenda ""))
+	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
+	       )
+
+        
         ;;; Goals stuff
         ;; See Org etry: =C-c h goals task action=
         ;; file:~/org/cdc3c97dd4.org.gpg::#goal-task-action
@@ -75,39 +112,7 @@
         ;; Dangling/Zombie items
         ("Gz" "Dangling/Zombie items" tags (concat "-goal" hidden))
 
-        ;; Filter by priority
-        ;; https://emacs-orgmode.gnu.narkive.com/bsur8gfw/orgmode-custom-agenda-view-filter-by-priority-and-scheduled-date
-        ("n" "Now! a.k.a. Prio=A"
-         ((agenda ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]")))
-         )
 
-        ("p" "Public tasks (public)"
-         ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
-	       )
-
-        ;;; Project stuff
-        ("P" . "Project tasks")
-        ("Pm" "My tasks (public)"
-         ((agenda ""))
-         ;; Remove those for which I'm not responsible
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template" "-I" "-C")))
-	       )
-        ("Pp" "Private tasks"
-         ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+private")))
-	       )
-        ("Pa" "All tasks"
-         ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
-	       )
-        ("d" "Daily reminders"
-         ((agenda ""))
-         ((org-agenda-tag-filter-preset daily-tags))
-         )
-
-        ;;; Reminders stuff
         ("R" . "Reminders")
         ("Rd" "Daily reminders"
          ((agenda ""))
@@ -121,10 +126,8 @@
 	       ((agenda ""))
 	       ((org-agenda-tag-filter-preset '("+reminder" "-template" "-daily")))
 	       )
-        ("j" "All meetings"
-	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+termin" "-template")))
-	       )
+
+
         ("O" . "Out of Office")
         ("Om" "Monthly view"
          ((agenda ""))
@@ -132,6 +135,14 @@
           (org-agenda-tag-filter-preset '("+ooo")))
          )
         ("Oa" "All events" tags "+ooo/-INFO")
+
+        
+        ("I" . "Improvements")
+        ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
+        ("Iw" "work in progress"
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+improve")))
+         )        
 	      )
       )
 
