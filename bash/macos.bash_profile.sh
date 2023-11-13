@@ -18,4 +18,4 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 
 # pin gnupg: 2.4+ have a bug: https://stackoverflow.com/q/76388376/400544
 # fix: https://stackoverflow.com/a/76404609/400544
-export PATH="/usr/local/Cellar/gnupg@2.2/2.2.41/bin:$PATH"
+export PATH="$(brew --prefix)/Cellar/gnupg@2.2/2.2.41/bin:$PATH"
