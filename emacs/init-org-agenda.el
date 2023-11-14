@@ -27,7 +27,12 @@
 (setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
 
-(defvar my-org-extra-files (append my-org-journal-files my-org-archive-files))
+(defun my/org-extra-files ()
+  (append
+   (my/org-journal-files)
+   (my/org-archive-files))
+  )
+
 
 (setq org-agenda-custom-commands 
       '(
@@ -58,11 +63,11 @@
 
         ("F" . "Find/Search")
         ("Fj" "Journal search" search ""
-         ((org-agenda-files my-org-journal-files)))
+         ((org-agenda-files (my/org-journal-files))))
         ("Fa" "Archive search" search ""
-         ((org-agenda-files my-org-archive-files)))
+         ((org-agenda-files (my/org-archive-files))))
         ("Fe" "Search everywhere" search ""
-         ((org-agenda-text-search-extra-files my-org-extra-files)))
+         ((org-agenda-text-search-extra-files my/org-extra-files)))
         
 
         ;;; Project stuff

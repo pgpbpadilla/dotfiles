@@ -1,3 +1,5 @@
+(require 'org-utils)
+
 ;;; Encryption for Org-files
 (require 'epa-file)
 (epa-file-enable)
@@ -18,15 +20,6 @@
 
 
 ;;; Configure Agenda
-
-;; WARN: variable =my-org-agenda-dir= needs to be set
-(defvar my-org-agenda-files (directory-files-recursively my-org-agenda-dir "\\.org.gpg$"))
-(defun org-refresh () 
-  "Reload agenda files, usually to include newly created files."
-  (interactive)
-  (setq org-agenda-files my-org-agenda-files)
-  (message "All Org agenda files have been reloaded."))
-
 (org-refresh)
 
 (setq org-agenda-span 'day)
@@ -84,23 +77,6 @@
 (setq org-default-notes-file (concat org-directory "/notes.org.gpg"))
 
 
-;;; Location of Journal/Archive files, not include in the agenda files
-
-;; WARN: variable =my-org-journal-files= needs to be alreade set
-(defvar my-org-journal-files (directory-files-recursively my-org-journal-dir "\\.org.gpg$"))
-
-;; WARN: variable =my-org-archive-files= needs to be alreade set
-(defvar my-org-archive-files (directory-files-recursively my-org-archive-dir "\\.org.gpg$"))
-
-;; refile to another file
-(setq org-refile-targets
-      '(
-        (nil :maxlevel . 3)
-        (org-agenda-files :maxlevel . 3)
-        (my-org-journal-files :maxlevel . 3)
-        (my-org-archive-files :maxlevel . 3)
-        )
-      )
 
 ;; (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
