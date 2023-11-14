@@ -76,7 +76,8 @@
 ;; All Notes captured will go to this file
 (setq org-default-notes-file (concat org-directory "/notes.org.gpg"))
 
-
+;;; Define refile targets
+(my/org-refile-targets)
 
 ;; (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)

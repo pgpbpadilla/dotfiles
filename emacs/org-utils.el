@@ -14,8 +14,8 @@
         '(
           (nil :maxlevel . 3)
           (org-agenda-files :maxlevel . 3)
-          ((my/org-journal-files) :maxlevel . 3)
-          ((my/org-archive-files) :maxlevel . 3)
+          (my/org-journal-files :maxlevel . 3)
+          (my/org-archive-files :maxlevel . 3)
           )
         ))
 
