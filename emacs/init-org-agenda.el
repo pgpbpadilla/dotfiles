@@ -67,7 +67,7 @@
         ("Fa" "Archive search" search ""
          ((org-agenda-files (my/org-archive-files))))
         ("Fe" "Search everywhere" search ""
-         ((org-agenda-text-search-extra-files my/org-extra-files)))
+         ((org-agenda-text-search-extra-files (my/org-extra-files))))
         
 
         ;;; Project stuff
