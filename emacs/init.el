@@ -279,4 +279,12 @@
   :ensure t
   :bind ("M-RET" . emr-show-refactor-menu)
   )
+
+
+;;; LaTeX stuff
+(use-package tex
+  :ensure auctex)
+(use-package auctex-latexmk
+  :ensure t)
+
 ;;; Init.el ends here

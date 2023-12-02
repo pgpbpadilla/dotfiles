@@ -106,6 +106,7 @@
                              '(
                                (shell . t)
                                (gnuplot . t)
+                               (latex . t)
                                )
                              )
 
