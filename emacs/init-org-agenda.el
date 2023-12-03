@@ -26,14 +26,6 @@
 
 (setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
-
-(defun my/org-extra-files ()
-  (append
-   (my/org-journal-files)
-   (my/org-archive-files))
-  )
-
-
 (setq org-agenda-custom-commands 
       '(
         ("f" "Time tracking" tags (concat "+time+track" hidden))

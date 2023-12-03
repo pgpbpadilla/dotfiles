@@ -20,6 +20,13 @@
         ))
 
 
+(defun my/org-extra-files ()
+  (append
+   (my/org-journal-files)
+   (my/org-archive-files))
+  )
+
+
 (defun org-refresh () 
   "Reload agenda files, usually to include newly created files."
   (interactive)

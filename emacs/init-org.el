@@ -232,5 +232,9 @@
 (global-set-key (kbd "C-c s") 'org-tree-slide-mode)
 
 
+;;; Additional places to use for indexing Org IDs
+(setq org-id-extra-files (my/org-extra-files))
+
+
 ;;; Export as an Emacs package
 (provide 'init-org)
