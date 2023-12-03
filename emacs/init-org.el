@@ -1,4 +1,5 @@
 (require 'org-utils)
+(require 'latex-classes)
 
 ;;; Encryption for Org-files
 (require 'epa-file)
