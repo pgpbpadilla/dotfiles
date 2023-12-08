@@ -4,7 +4,8 @@
 ;; Remove asap.
 ;; My guess is that gnupg@2.2.42 brought this bug as a hotfix
 ;; should try to downgrade to 2.2.41
-(fset 'epg-wait-for-status 'ignore)
+;; Gnupg team issue tracker: https://dev.gnupg.org/T6481
+;; (fset 'epg-wait-for-status 'ignore)
 
 ;; set directory to use for loading agenda files
 (defvar my-org-agenda-dir "~/org/31e520d4df")
