@@ -35,7 +35,7 @@
       #+end_src
 
       #+RESULTS:
-      : brew "gnupg"
+      : brew "gnupg@2.2"
 
       *WARN*: Additional configuration needs to be installed, see:
       [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
