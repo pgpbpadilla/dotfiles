@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-# pin gnupg: 2.4+ have a bug: https://stackoverflow.com/q/76388376/400544
-# fix: https://stackoverflow.com/a/76404609/400544
-export PATH="$(brew --prefix)/opt/gnupg@2.2/bin:$PATH"
+# uses my private Homebrew tap formula:
+# https://github.com/pgpbpadilla/homebrew-pgpb
+# $ brew info gnupg@2.2.41
+# ==> pgpbpadilla/pgpb/gnupg@2.2.41: stable 2.2.41
+export PATH="$(brew --prefix)/Cellar/gnupg@2.2.41/2.2.41/bin:$PATH"
