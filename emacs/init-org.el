@@ -236,6 +236,10 @@
 ;;; Additional places to use for indexing Org IDs
 (setq org-id-extra-files (my/org-extra-files))
 
+;;; Needed to stop the Org Markdown exporter from
+;; promoting level 2 headings to level 1.
+;; https://emacs.stackexchange.com/a/76549/11978
+(setq org-export-allow-bind-keywords t)
 
 ;;; Export as an Emacs package
 (provide 'init-org)
