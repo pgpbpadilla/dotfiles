@@ -239,6 +239,8 @@
 ;;; Needed to stop the Org Markdown exporter from
 ;; promoting level 2 headings to level 1.
 ;; https://emacs.stackexchange.com/a/76549/11978
+;; TODO: This is not secure, should use local variables:
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html
 (setq org-export-allow-bind-keywords t)
 
 ;;; Export as an Emacs package
