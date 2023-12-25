@@ -108,8 +108,17 @@
                                (shell . t)
                                (gnuplot . t)
                                (latex . t)
+                               (plantuml . t)
                                )
                              )
+
+;; PlantUML: https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
+(require 'subr-x)
+(setq brew-prefix (string-trim (shell-command-to-string "brew --prefix")))
+;; source: brew list plantuml
+(setq plantuml-jar "Cellar/plantuml/1.2023.13/libexec/plantuml.jar")
+(setq org-plantuml-jar-path (format "%s/%s" brew-prefix plantuml-jar))
+
 
 ;; Show fancy bullets
 ;; https://github.com/sabof/org-bullets
