@@ -47,34 +47,36 @@
 
 ** Installation
 
-   1. Ignore Emacs customizations. Ensure the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]] exists:
+   1. Load my personal [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]]:
 
       #+begin_src bash :var file="emacs-custom.el"
-        custom_file=~/.config/${file}
-        touch "${custom_file}"
-        cat "${custom_file}"
-      #+end_src
-      
-      Emacs custom variables will be written there and the Emacs init
-      file will ignore that file on purpose. I want this becasue I'm
-      want to ensure only my [[file:init.el][./init.el]] file is loaded.
-
-      #+begin_src bash
-        grep -C 2 custom-file ./init.el
+        ls ~/.config/${file}
+        ack -B 2 -A 2 "emacs-custom" ./init.el
       #+end_src
 
       #+RESULTS:
+      : /Users/pgpb.padilla/.config/emacs-custom.el
       : ;; Set location for customizations file
       : ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
       : (setq custom-file "~/.config/emacs-custom.el")
       : ;; Purposely ignore all variables written to the =custom-file=
       : ;; (load custom-file)
-      : 
-      :
 
-      /Note how the line that loads the =custom-file= is commented out./
+   2. Ignore the default =custom-file= (commented out):
+      
+      #+begin_src bash
+        ack -B 2  "load custom-file" ./init.el
+      #+end_src
 
-   2. Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
+      #+RESULTS:
+      : (setq custom-file "~/.config/emacs-custom.el")
+      : ;; Purposely ignore all variables written to the =custom-file=
+      : ;; (load custom-file)
+
+      This is because I want my settings to always be loaded from my
+      =~/dotfiles= repo. 
+
+   3. Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
       configs that you want to keep:
 
       #+begin_src bash
@@ -82,7 +84,7 @@
       #+end_src
 
       #+RESULTS:
-      : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/init.el
+      : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
       : ├── init.el~
 
       - *GOTCHA*: The location of the Emacs init might differ, depending
@@ -95,31 +97,32 @@
       	#+end_src
       	
       	#+RESULTS:
-      	: ├── .emacs.d
+        : ├── .emacs.d
+        : ├── .emacs.keyfreq
 
-   3. Install [[file:bootstrap.el]]
+   4. Install [[file:bootstrap.el]]
 
       *WARN*: /this will overwrite (=-f=) the target file if it exists/
 
       #+begin_src bash
         echo "Init file before installation:"
-        ls -l ~/.emacs.d/init.el | cut -d ' ' -f13-
+        ls ~/.emacs.d/init.el
         echo "The new init file:"
         ln -svf $(pwd)/bootstrap.el ${HOME}/.emacs.d/init.el
       #+end_src
 
       #+RESULTS:
       : Init file before installation:
-      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
+      : /Users/pgpb.padilla/.emacs.d/init.el
       : The new init file:
       : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
 
-      The bootstrap script simply loads the custom init file:
+      The bootstrap script loads the my init file:
 
       #+begin_src bash
-        cat ./bootstrap.el
+        ack load ./bootstrap.el
       #+end_src
 
       #+RESULTS:
-      : ;;; Bootstrap Emacs configuration
+      : ;; set directory to use for loading agenda files
       : (load "~/dotfiles/emacs/init.el")
