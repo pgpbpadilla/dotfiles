@@ -6,41 +6,26 @@
   :ID:       CCAB00C9-127E-42C6-807D-C997D29F5F2E
   :END:
 
-  1. By default Emacs will look for Yas Snippets in:
-
+  1. Emacs will look for Yas Snippets in:
      #+begin_src emacs-lisp
        (print yas-snippet-dirs)
      #+end_src
      
      #+RESULTS:
-     : ("~/.emacs.d/snippets" "/Users/pgpb.padilla/.emacs.d/snippets")
+     : ("/Users/pgpb.padilla/dotfiles/emacs/yasnippet/snippets")
+
+  2. Noop. There's nothing to install. If you have this repo, then
+     Emacs will load the snippets correctly.
+
+     #+begin_src bash
+       ack -B 2 -A 2 yas-snippet-dirs ~/dotfiles/emacs/init.el
+     #+end_src
+
+     #+RESULTS:
+     : ;;; Yasnippet
+     : (yas-global-mode 1)
+     : (setq yas-snippet-dirs (list (expand-file-name "~/dotfiles/emacs/yasnippet/snippets")))
+     : 
+     : 
    
-  2. WARNING: backup existing snippets to this repository before
-     installing the snippets.
-
-     Check how many snippets are there:
-      
-     #+begin_src bash
-       echo "Is the target dir already a symlink?"
-       ls -l ~/.emacs.d/ | grep snippets | cut -d ' ' -f 12-
-     #+end_src
-
-     #+RESULTS:
-     : Is the target dir already a symlink?
-     :   19 26 Dez 15:13 snippets -> ./yasnipet/snippets
-
-  3. Install symlink:
-
-     #+begin_src bash
-       echo "Deleting existing snippets ..."
-       rm -rvf ~/.emacs.d/snippets
-       echo "Installing new snippets ..."
-       ln -svf $(pwd)/snippets ~/.emacs.d/snippets
-     #+end_src
-
-     #+RESULTS:
-     : Deleting existing snippets ...
-     : /Users/pgpb.padilla/.emacs.d/snippets
-     : Installing new snippets ...
-     : /Users/pgpb.padilla/.emacs.d/snippets -> /Users/pgpb.padilla/dotfiles/emacs/yasnippet/snippets
 

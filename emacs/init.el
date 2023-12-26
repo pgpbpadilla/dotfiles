@@ -116,7 +116,8 @@
 
 ;;; Yasnippet
 (yas-global-mode 1)
-(add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets"))
+(setq yas-snippet-dirs
+      (list (expand-file-name "~/dotfiles/emacs/yasnippet/snippets")))
 
 
 ;;; Auto-save
