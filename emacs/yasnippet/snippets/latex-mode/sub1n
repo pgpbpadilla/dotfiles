@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sub1n
+# key: sub1n
+# binding: direct-keybinding
+# --
+$1_{12 \ldots n}

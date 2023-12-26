@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Set hlevel to 2 for Org file
+# key: .org.hlevel2
+# --
+
+* COMMENT Local variables
+
+  Taken from: 
+  https://emacs.stackexchange.com/a/76549/11978
+  
+# Local Variables:
+# org-md-toplevel-hlevel: 2
+# End:
+  
+

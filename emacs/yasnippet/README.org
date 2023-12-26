@@ -1,0 +1,58 @@
+#+PROPERTY: header-args :results verbatim
+
+
+* Install custom Yas Snippets: [[https://github.com/joaotavora/yasnippet][Github:yasnippet]]
+  :PROPERTIES:
+  :ID:       CCAB00C9-127E-42C6-807D-C997D29F5F2E
+  :END:
+
+  1. Get this repo
+     #+begin_src bash
+       git clone git@github.com:pgpbpadilla/emacs-yasnippet.git ~/.emacs-yassnippet
+     #+end_src
+
+     #+RESULTS:
+
+  2. By default Emacs will look for Yas Snippets in:
+
+     #+begin_src emacs-lisp
+       (print yas-snippet-dirs)
+     #+end_src
+     
+     #+RESULTS:
+     : ("~/.emacs.d/snippets" "/Users/pgpb.padilla/.emacs.d/snippets")
+     
+   
+  3. WARNING: backup existing snippets to this repository before
+     installing the snippets.
+
+     Check how many snippets are there:
+      
+     #+begin_src bash
+       echo "Is the target dir already a symlink?"
+       ls -l ~/.emacs.d/snippets | cut -d ' ' -f 12-
+       echo "How many snippets without backup are there?"
+       find ~/.emacs.d/snippets -type f | wc -l
+     #+end_src
+
+     #+RESULTS:
+     : Is the target dir already a symlink?
+     : /Users/pgpb.padilla/.emacs.d/snippets -> /Users/pgpb.padilla/.emacs-yassnippet
+     : How many snippets without backup are there?
+     :        0
+
+  4. Install symlink:
+
+     #+begin_src bash
+       echo "Deleting existing snippets ..."
+       rm -rvf ~/.emacs.d/snippets
+       echo "Installing new snippets ..."
+       ln -svf ~/.emacs-yassnippet ~/.emacs.d/snippets
+     #+end_src
+
+     #+RESULTS:
+     : Deleting existing snippets ...
+     : /Users/pgpb.padilla/.emacs.d/snippets
+     : Installing new snippets ...
+     : /Users/pgpb.padilla/.emacs.d/snippets -> /Users/pgpb.padilla/.emacs-yassnippet
+

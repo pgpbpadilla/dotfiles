@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Image for my Blog
+# key: b.img
+# --
+
+#+begin_export html
+![Sample graphs](../assets/images/ogdf-sample-graphs.png)
+#+end_export
+

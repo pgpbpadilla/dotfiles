@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fnss
+# key: fnss
+# binding: direct-keybinding
+# --
+$1_{$2}^{$3}($4)

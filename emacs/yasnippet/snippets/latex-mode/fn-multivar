@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fn-multivar
+# key: fn-multivar
+# binding: direct-keybinding
+# --
+$1($2, $3, \ldots, $4)

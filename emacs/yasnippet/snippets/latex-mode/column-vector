@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: column-vector
+# key: col-vec
+# binding: direct-keybinding
+# --
+|$1)

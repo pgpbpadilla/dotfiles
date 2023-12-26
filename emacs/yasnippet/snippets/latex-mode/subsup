@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: subsup
+# key: subsup
+# binding: direct-keybinding
+# --
+$1^{$2}_{$3}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: imglink
+# key: imglink
+# --
+
+[![Sample graphs](/assets/images/ogdf-sample-graphs.png)](/assets/images/ogdf-sample-graphs.png)  

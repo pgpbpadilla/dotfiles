@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: mrow-transpose
+# key: mrow-transpose
+# binding: direct-keybinding
+# --
+$1_{$2}^{T} $1_{1}  & $1_{$2}^{T} $1_{2} & \ldots & $1_{$2}^{T} $1_{$3}

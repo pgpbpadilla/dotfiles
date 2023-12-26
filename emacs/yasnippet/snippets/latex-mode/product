@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: product
+# key: product
+# binding: direct-keybinding
+# --
+$1 \ldots $3

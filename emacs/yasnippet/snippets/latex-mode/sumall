@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sumall
+# key: sumall
+# binding: direct-keybinding
+# --
+\sum_{$1}

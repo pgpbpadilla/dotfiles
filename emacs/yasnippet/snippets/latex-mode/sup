@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: s^
+# key: sup
+# binding: direct-keybinding
+# --
+$1^{$2}

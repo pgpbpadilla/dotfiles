@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dfrac
+# key: dfrac
+# binding: direct-keybinding
+# --
+\dfrac{$1}{$2}

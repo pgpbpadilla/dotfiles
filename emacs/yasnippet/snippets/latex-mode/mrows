@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: mrows
+# key: mrows
+# binding: direct-keybinding
+# --
+$1_{11} & $1_{12} & \ldots & $1_{1n} \\\\
+$1_{21} & $1_{22} & \ldots & $1_{2n} \\\\
+\ldots \\\\
+$1_{n1} & $1_{n2} & \ldots & $1_{nn}

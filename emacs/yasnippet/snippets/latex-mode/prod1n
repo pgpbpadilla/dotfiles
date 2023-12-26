@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: prod1n
+# key: prod1n
+# binding: direct-keybinding
+# --
+$1_{1}$1_{2}\ldots $1_{n}

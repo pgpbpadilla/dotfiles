@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: imglink
+# key: imglink
+# --
+[![${0}](/assets/images/${1})](/assets/images/${1})

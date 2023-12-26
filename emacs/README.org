@@ -6,6 +6,11 @@
    Most Emacs packages are installed during the initial load of the
    init file. However, there are dependencies to system binaries:
 
+*** [[id:CCAB00C9-127E-42C6-807D-C997D29F5F2E][Yas Snippets]]
+
+    My config files: [[file:yasnippet/][yasnipet]]
+    
+
 *** Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
 
     The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpb= binary to be installed

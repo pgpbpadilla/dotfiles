@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cofactorrow
+# key: cofactorrow
+# binding: direct-keybinding
+# --
+$1_{$2 1} & $1_{$2 2} & \ldots & $1_{$2, j-1} & $1_{$2, j+1} & \ldots & $1_{$2 n}

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: product-fn
+# key: productfn
+# binding: direct-keybinding
+# --
+$1_{1}($2_{1}) $1_{2}($2_{2}) \ldots $1_{n}($2_{n})

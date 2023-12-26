@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figcap
+# key: figcap
+# --
+
+<div style="text-align: center">
+    <img width="500" 
+        src="/assets/images/file.png">
+    <figcaption>some caption text</figcaption>
+</div>

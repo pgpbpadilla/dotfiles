@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sequence
+# key: sequence
+# binding: direct-keybinding
+# --
+$1_{$2}, \ldots, $3_{$4}

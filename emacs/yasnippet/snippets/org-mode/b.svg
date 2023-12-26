@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: SVG Jekyll Blog asset as Markdown image 
+# key: .md.svg
+# --
+
+#+begin_export html
+![${0}](/assets/svg/${1}.svg)
+#+end_export
+

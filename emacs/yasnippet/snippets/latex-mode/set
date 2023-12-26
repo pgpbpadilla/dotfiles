@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: set
+# key: set
+# binding: direct-keybinding
+# --
+\left\\{ $1, $2, \ldots, $3 \right\\}

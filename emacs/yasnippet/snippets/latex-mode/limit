@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: limit
+# key: limit
+# binding: direct-keybinding
+# --
+\lim_{$1 \to $2} $3
