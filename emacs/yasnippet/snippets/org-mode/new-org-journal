@@ -1,5 +1,5 @@
-# key: .org.new.journal
-# name: New Org Journal
+# key: .org.journal
+# name: Org Journal
 # --
 #+TITLE: Journal: ${1:topic}
 #+CATEGORY: ${2:category}

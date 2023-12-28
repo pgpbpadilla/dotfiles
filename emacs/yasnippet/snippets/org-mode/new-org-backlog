@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Org Backlog
+# key: .org.backlog
+# --
+#+TITLE: Backlog: ${1:topic}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :$2:
+
+* Backlog: $1                                                 :PROJECT:
+
+** A task $0
+
+* Bookmarks: $1                                                        :bookmark:
+
+* Recurring: $1                                                        :recurring:
+
+* Journal: $1                                                           :journal:
+
