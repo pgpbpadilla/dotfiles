@@ -1,0 +1,11 @@
+# key: .org.new.journal
+# name: New Org Journal
+# --
+#+TITLE: Journal: ${1:topic}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :journal:$2:
+
+* Journal: $1
+
+** $0: DELETEME: Sample entry
+   ${3:=ts: C-u C-c !=}
