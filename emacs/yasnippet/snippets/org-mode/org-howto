@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Org How-to
+# key: .org.howto
+# --
+#+TITLE: How-to: ${1:topic}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :howto:$2:info:
+
+* How-to: $1
+
+  $0

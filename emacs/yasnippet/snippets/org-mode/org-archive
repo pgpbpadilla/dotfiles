@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Org Archive
+# key: .org.archive
+# --
+#+TITLE: Archive: ${1:topic}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :info:$2
+
+* Archive: $1                                                
+
+*WARN:* DO NOT ADD THE ARCHIVE TAG. IF YOU DO THE CUSTOM AGENDA
+SEARCH COMMANDS WON'T WORK.
+

@@ -1,0 +1,91 @@
+# -*- mode: snippet -*-
+# name: Org+LaTeX letter
+# key: .org.tex.letter
+# --
+#+TITLE: Letter: ${1:subject}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :latex:letter:$2:
+
+#+LATEX_CLASS: letter
+#+LATEX_CLASS_OPTIONS: [12pt]
+#+LATEX_HEADER: \signature{${3:John Doe}}
+#+LATEX_HEADER: \address{Street ABC, City XYZ, 12345}
+
+
+* TODO LaTeX Letter template [0/3]                                 :noexport:
+  :PROPERTIES:
+  :EXPORT_OPTIONS: noexport
+  :END:
+
+  1. [ ] Update Org headers
+
+     
+** INFO How to write Letters in LaTeX: [[https://en.wikibooks.org/wiki/LaTeX/Letters ][wikibooks]]                   :bookmark:
+
+
+** INFO How to export the letter
+
+   1. Navigate to heading that contains the letter
+   2. =C-c C-e=: Open Export dispatcher
+   3. =C-s=: Export scope, only current heading
+   4. =l o=: Latex + Open resulting file
+
+
+** INFO Simple Letter example :example:
+   
+   #+begin_export latex
+   \begin{letter}{Recipient: Name, Address}
+
+     \opening{Dear Sir/Madam ...}
+
+     Paragraph ...
+
+     \begin{enumerate}
+
+     \item 123 abc
+     \item xyz 456
+
+     \end{enumerate}
+
+
+     Paragraph 1
+
+     Paragraph 2
+
+
+     \closing{Truly yours,}
+     \ps{P.S. Here goes your ps.}
+     \encl{Enclosures.}
+   \end{letter}
+   #+end_export
+
+
+
+* TODO Letter: $1
+   
+   #+begin_export latex
+   \begin{letter}{Recipient: Name, Address}
+
+     \opening{Dear Sir/Madam ...}
+
+     $0 Paragraph ...
+
+     \begin{enumerate}
+
+     \item 123 abc
+     \item xyz 456
+
+     \end{enumerate}
+
+
+     Paragraph 1
+
+     Paragraph 2
+
+
+     \closing{Truly yours,}
+     \ps{P.S. Here goes your ps.}
+     \encl{Enclosures.}
+   \end{letter}
+   #+end_export
+
