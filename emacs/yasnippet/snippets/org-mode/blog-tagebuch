@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: Journal Eintrag auf Deutsch
+# key: .blog.tagebuch
+
+# Fix: Disable auto-indentation.
+# If not set to fixed, then it will try to indent the list of tags,
+# which results in the wrong indentation
+# Ref: https://emacs.stackexchange.com/a/39356/11978
+# expand-env: ((yas-indent-line 'fixed))
+
+# --
+#+LANGUAGE: de
+#+OPTIONS: toc:nil  broken-links:mark
+
+#+begin_export html
+---
+layout: post.liquid
+title:  "${1:title}"
+date: ${2:date}
+last_updated: $2
+tags:
+  - journal
+  - deutsch
+  - überprüfen
+categories: [deutsch, journal]
+#permalink: /YYYY-mm-dd-title
+toc: false
+---
+#+end_export
+
+
+$0
+
