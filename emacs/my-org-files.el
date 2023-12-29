@@ -14,6 +14,17 @@
   "~/org/2204c36fc7"
   "Directory for Archive files.")
 
+(defvar my-gpg-key "pgpb.padilla@gmail.com"
+  "The local GPG key to use for encryption.")
+
+(defvar
+  gpg-header (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" my-gpg-key)
+  "Emacs header to define local GPG encryption key."
+ )
+
+(defvar extension ".org.gpg"
+  "The extension to use for all encrypted Org files.")
+
 (defun my-org-dirs ()
   "List special Org directories."
   (interactive)
@@ -21,5 +32,46 @@
            when (and (boundp symbol)
                      (string-match-p "my-org-.*-dir" (symbol-name symbol)))
            collect symbol))
+
+(defun out-dir-options ()
+  "Return a list of options from a list of symbols"
+  (interactive)
+
+  (mapcar (lambda (symbol)
+            (cons
+             (symbol-name symbol)
+             (symbol-value symbol))
+            )
+          (my-org-dirs))
+  )
+
+(defun random-name ()
+  "Return a random file name."
+  (interactive)
+
+  (require 'subr-x)
+  (setq random-name
+        (string-trim
+         ;; todo: replace with pure-elisp function
+         (shell-command-to-string
+          "echo $(openssl rand -hex 5)"))))
+
+(defun my-org-file ()
+  "Create new Org file."
+  (interactive)
+
+  (setq options (out-dir-options))
+  (setq selected (completing-read "Choose dir: " options nil t))
+  (setq out-dir (cdr (assoc selected options)))
+
+  (setq new-file (concat
+                  (format "%s/%s" out-dir (random-name))
+                  extension))
+
+  ;; fix: get rid of the EPA key selection dialog
+  ;; https://superuser.com/a/1446730/148349
+  (setq-local epa-file-encrypt-to '(my-gpg-key))
+  (write-region gpg-header nil new-file)
+  (message new-file))
 
 (provide 'my-org-files)

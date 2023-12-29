@@ -38,6 +38,30 @@
    : my-org-archive-dir
 
 
+** Encryption header
+
+   Every file needs to specify the local GPG key that will be used for
+   encryption: 
+
+   #+begin_src elisp
+     (defvar my-gpg-key "pgpb.padilla@gmail.com"
+       "The local GPG key to use for encryption.")
+
+     (defvar
+       gpg-header (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" my-gpg-key)
+       "Emacs header to define local GPG encryption key."
+      )
+   #+end_src
+
+   
+** Encrypted file extension
+
+   #+begin_src elisp
+     (defvar extension ".org.gpg"
+       "The extension to use for all encrypted Org files.")
+   #+end_src
+
+
 ** Listing special Org directories
 
    We want to list the directories that will be used as targets for
@@ -74,46 +98,72 @@
 
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
-   #+begin_src elisp
-     (defun my-org-file ()
-       "Create new Org file."
-       (interactive)
-
-       (setq
-        ;; todo: move to top of file
-        gpg-header "# -*- mode:org; epa-file-encrypt-to: (\"pgpb.padilla@gmail.com\") -*-"
-        ;; todo: move to top of file
-        extension ".org.gpg"
-        )
-
-       (setq options (mapcar (lambda (symbol)
-                               (cons
-                                (symbol-name symbol)
-                                (symbol-value symbol))
-                               )
-                             (my-org-dirs)))
-       (setq selected (completing-read "Choose dir: " options nil t))
-       (setq out-dir (cdr (assoc selected options)))
-
-       (require 'subr-x)
-       (setq random-name
-             (string-trim
-              ;; todo: replace with pure-elisp function
-              (shell-command-to-string
-               "echo $(openssl rand -hex 5)")))
-
-       (setq new-file (concat
-                       (format "%s/%s" out-dir random-name)
-                       extension))
-
-       (write-region gpg-header nil new-file)
-       (message new-file)))
-   #+end_src
-
-   #+RESULTS:
-   : my-org-file
-
    
+*** Generate output directory options
+
+    #+begin_src elisp
+      (defun out-dir-options ()
+        "Return a list of options from a list of symbols"
+        (interactive)
+
+        (mapcar (lambda (symbol)
+                  (cons
+                   (symbol-name symbol)
+                   (symbol-value symbol))
+                  )
+                (my-org-dirs))
+        )
+    #+end_src
+
+    #+RESULTS:
+    : out-dir-options
+    
+
+*** Generate a random file name
+    
+    #+begin_src elisp
+      (defun random-name ()
+        "Return a random file name."
+        (interactive)
+
+        (require 'subr-x)
+        (setq random-name
+              (string-trim
+               ;; todo: replace with pure-elisp function
+               (shell-command-to-string
+                "echo $(openssl rand -hex 5)"))))
+    #+end_src
+
+    #+RESULTS:
+    : random-name
+
+    
+*** Create Org file in specified dir
+
+    #+begin_src elisp
+      (defun my-org-file ()
+        "Create new Org file."
+        (interactive)
+
+        (setq options (out-dir-options))
+        (setq selected (completing-read "Choose dir: " options nil t))
+        (setq out-dir (cdr (assoc selected options)))
+
+        (setq new-file (concat
+                        (format "%s/%s" out-dir (random-name))
+                        extension))
+
+        ;; fix: get rid of the EPA key selection dialog
+        ;; https://superuser.com/a/1446730/148349
+        (setq-local epa-file-encrypt-to '(my-gpg-key))
+        (write-region gpg-header nil new-file)
+        (message new-file))
+    #+end_src
+
+    #+RESULTS:
+    : my-org-file
+   
+
 *** Example: new file with random name
 
     #+begin_src elisp :tangle no :results value file
@@ -121,7 +171,7 @@
     #+end_src
 
     #+RESULTS:
-    [[file:~/org/2204c36fc7/edee5dc167.org.gpg]]
+    [[file:~/org/0f6de25076/8460e2267b.org.gpg]]
 
 ** Announce as =my-org-files=
 
