@@ -72,6 +72,7 @@
   ;; https://superuser.com/a/1446730/148349
   (setq-local epa-file-encrypt-to my-gpg-key)
   (write-region gpg-header nil new-file)
+  (find-file-other-window new-file)
   (message new-file))
 
 (provide 'my-org-files)

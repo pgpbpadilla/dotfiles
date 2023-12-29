@@ -157,6 +157,7 @@
         ;; https://superuser.com/a/1446730/148349
         (setq-local epa-file-encrypt-to my-gpg-key)
         (write-region gpg-header nil new-file)
+        (find-file-other-window new-file)
         (message new-file))
     #+end_src
 
@@ -171,7 +172,7 @@
     #+end_src
 
     #+RESULTS:
-    [[file:~/org/0f6de25076/8460e2267b.org.gpg]]
+    [[file:~/org/0f6de25076/28e170260e.org.gpg]]
 
 ** Announce as =my-org-files=
 
