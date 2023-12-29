@@ -70,7 +70,7 @@
 
   ;; fix: get rid of the EPA key selection dialog
   ;; https://superuser.com/a/1446730/148349
-  (setq-local epa-file-encrypt-to '(my-gpg-key))
+  (setq-local epa-file-encrypt-to my-gpg-key)
   (write-region gpg-header nil new-file)
   (message new-file))
 
