@@ -1,14 +1,14 @@
 (defvar my-org-agenda-dir 
-  "Directory for Agenda files."
-  "~/org/31e520d4df")
+  "~/org/31e520d4df"
+  "Directory for Agenda files.")
 
 (defvar my-org-journal-dir
-  "Directory for Journal files."
-  "~/org/0f6de25076")
+  "~/org/0f6de25076"
+  "Directory for Journal files.")
 
 (defvar my-org-archive-dir
-  "Directory for Archive files."
-  "~/org/2204c36fc7")
+  "~/org/2204c36fc7"
+  "Directory for Archive files.")
 
 
 (require 'org-utils)
