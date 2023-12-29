@@ -1,3 +1,16 @@
+(defvar my-org-agenda-dir 
+  "Directory for Agenda files."
+  "~/org/31e520d4df")
+
+(defvar my-org-journal-dir
+  "Directory for Journal files."
+  "~/org/0f6de25076")
+
+(defvar my-org-archive-dir
+  "Directory for Archive files."
+  "~/org/2204c36fc7")
+
+
 (require 'org-utils)
 (require 'latex-classes)
 
