@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Interactive Function
+# key: .e.ifn
+# --
+(defun $1 ()
+       "$2"
+       (interactive)
+       (message "$3"))
