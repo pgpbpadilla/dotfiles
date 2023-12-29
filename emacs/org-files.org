@@ -79,27 +79,35 @@
        "Create new Org file."
        (interactive)
 
-       (let ((out-dir (read-string "Output dir: ")))
-         (setq
-          ;; todo: move to top of file
-          gpg-header "# -*- mode:org; epa-file-encrypt-to: (\"pgpb.padilla@gmail.com\") -*-"
-          ;; todo: move to top of file
-          extension ".org.gpg"
-          )
+       (setq
+        ;; todo: move to top of file
+        gpg-header "# -*- mode:org; epa-file-encrypt-to: (\"pgpb.padilla@gmail.com\") -*-"
+        ;; todo: move to top of file
+        extension ".org.gpg"
+        )
 
-         (require 'subr-x)
-         (setq random-name
-               (string-trim
-                ;; todo: replace with pure-elisp function
-                (shell-command-to-string
-                 "echo $(openssl rand -hex 5)")))
+       (setq options (mapcar (lambda (symbol)
+                               (cons
+                                (symbol-name symbol)
+                                (symbol-value symbol))
+                               )
+                             (my-org-dirs)))
+       (setq selected (completing-read "Choose dir: " options nil t))
+       (setq out-dir (cdr (assoc selected options)))
 
-         (setq new-file (concat
-                         (format "%s/%s" out-dir random-name)
-                         extension))
+       (require 'subr-x)
+       (setq random-name
+             (string-trim
+              ;; todo: replace with pure-elisp function
+              (shell-command-to-string
+               "echo $(openssl rand -hex 5)")))
 
-         (write-region gpg-header nil new-file)
-         (message new-file)))
+       (setq new-file (concat
+                       (format "%s/%s" out-dir random-name)
+                       extension))
+
+       (write-region gpg-header nil new-file)
+       (message new-file)))
    #+end_src
 
    #+RESULTS:
@@ -113,7 +121,7 @@
     #+end_src
 
     #+RESULTS:
-    [[file:./ba29c72f3f.org.gpg]]
+    [[file:~/org/2204c36fc7/edee5dc167.org.gpg]]
 
 ** Announce as =my-org-files=
 
