@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: User Input
+# key: .e.uin
+# --
+(let ((${1:input-name} (read-string "$2: ")))
+     (message (format "Your input was: %s." $1))))
