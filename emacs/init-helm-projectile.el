@@ -29,5 +29,7 @@
 (global-set-key (kbd "C-.") 'helm-imenu-anywhere)
 
 
+(global-set-key (kbd "C-c g a") 'helm-projectile-ack)
+
 (provide 'init-helm-projectile)
 
