@@ -1,4 +1,5 @@
 #+TITLE: Brewfile
+#+property: header-args :results verbatim
 
 * Brewfile - [[https://github.com/Homebrew/homebrew-bundle][homebrew-bundle]]
   
@@ -22,6 +23,18 @@
    #+begin_example bash
    brew bundle install --quiet --file=./homebrew/Brewfile.extras
    #+end_example
+
+** Docker Desktop
+
+   List all deps in a given Brewfile:
+   
+   #+begin_src bash
+     brew bundle list --cask --formula --file Brewfile.docker
+   #+end_src
+
+   #+RESULTS:
+   : docker
+   : docker-completion
 
 ** Homebrew-related topics
 
