@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: Org export HTML: Centered Image
-# key: .o.h.img
+# name: Org export HTML: Centered link to image with preview
+# key: .o.h.limg
 
 # Fix: Disable auto-indentation.
 # If not set to fixed, then it will try to indent the list of tags,
@@ -11,6 +11,9 @@
 # --
 #+begin_export html
 <div style="text-align: center">
-  <img src="/assets/$1/$2">
+  <a href="assets/${1:type}/${2:filepath}">
+    <img src="assets/$1/$2"
+         alt="$3">
+  </a>
 </div>
 #+end_export

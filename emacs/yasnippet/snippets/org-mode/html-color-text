@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: HTML text with color
+# key: .o.h.tc
+# --
+@@html:<span style="color: $1">@@$2@@html:</span>@@

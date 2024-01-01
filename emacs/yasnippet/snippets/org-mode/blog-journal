@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: Journal entry
+# name: Blog Journal
 # key: .blog.journal
 
 # Fix: Disable auto-indentation.
@@ -21,7 +21,7 @@ last_updated: $2
 tags:
   - journal
 categories: [journal]
-#permalink: /YYYY-mm-dd-title
+#permalink: /$2-title
 toc: false
 ---
 

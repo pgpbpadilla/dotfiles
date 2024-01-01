@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: Org export HTML: Centered Image
-# key: .o.h.img
+# name: Org export HTML: Centered Figure
+# key: .o.h.fig
 
 # Fix: Disable auto-indentation.
 # If not set to fixed, then it will try to indent the list of tags,
@@ -12,5 +12,6 @@
 #+begin_export html
 <div style="text-align: center">
   <img src="/assets/$1/$2">
+  <figcaption>$3.</figcaption>
 </div>
 #+end_export
