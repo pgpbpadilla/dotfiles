@@ -104,14 +104,16 @@
 (setq org-image-actual-width nil)
 
 ;; enable evaluation of Shell code blocks
-(org-babel-do-load-languages 'org-babel-load-languages
-                             '(
-                               (shell . t)
-                               (gnuplot . t)
-                               (latex . t)
-                               (plantuml . t)
-                               )
-                             )
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (shell . t)
+   (gnuplot . t)
+   (latex . t)
+   (plantuml . t)
+   (python . t)
+   )
+ )
 
 ;; PlantUML: https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
 (require 'subr-x)
