@@ -9,6 +9,7 @@
     ("ebo" "exponential backoff: x->y days" nil :count 2)
     ("ema" "Emacs" nil :count 6)
     ("lett" "let the" nil :count 2)
+    ("md" "Markdown" nil :count 1)
     ("n26is" ": N26: Income Sorter :n26:is:" nil :count 1)
     ("ncm" "Clara Marie" nil :count 2)
     ("nk" "Knetledge" nil :count 1)

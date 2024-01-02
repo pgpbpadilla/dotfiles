@@ -288,4 +288,6 @@
 (use-package auctex-latexmk
   :ensure t)
 
+
+(require 'init-docker)
 ;;; Init.el ends here
