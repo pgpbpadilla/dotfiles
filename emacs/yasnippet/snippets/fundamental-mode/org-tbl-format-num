@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Org-mode table: formatted expression 
+# key: .o.f
+# --
+$1=$2;%0.2f$0
