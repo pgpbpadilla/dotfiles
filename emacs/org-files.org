@@ -18,24 +18,41 @@
    : nil
    
 
-** Define special Org directories
+** Special Org directories
 
-   #+begin_src elisp
-     (defvar my-org-agenda-dir 
-       "~/org/31e520d4df"
-       "Directory for Agenda files.")
+   The whole setup relies on certain variables being set at the start. For now a good place is to define them before the init script is loaded.
 
-     (defvar my-org-journal-dir
-       "~/org/0f6de25076"
-       "Directory for Journal files.")
 
-     (defvar my-org-archive-dir
-       "~/org/2204c36fc7"
-       "Directory for Archive files.")
-   #+end_src
+*** Listing special Org directories
 
-   #+RESULTS:
-   : my-org-archive-dir
+    We want to list the directories that will be used as targets for
+    new Org files:
+   
+    #+begin_src elisp
+      (defun my-org-dirs ()
+        "List special Org directories."
+        (interactive)
+        (cl-loop for symbol being the symbols
+                 when (and (boundp symbol)
+                           (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+                 collect symbol))
+    #+end_src
+
+    #+RESULTS:
+    : my-org-dirs
+
+   
+**** Example output
+    
+     The function should return the list of all my special Org
+     directories: 
+
+     #+begin_src elisp :tangle no
+       (my-org-dirs)
+     #+end_src
+
+     #+RESULTS:
+     : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
 
 
 ** Encryption header
@@ -46,11 +63,11 @@
    #+begin_src elisp
      (defun my-gpg-key () 
        "The local GPG key to use for encryption."
-       "pgpb.padilla@gmail.com")
+       "\"pgpb.padilla@gmail.com\"")
 
      (defun my-gpg-header ()
        "Emacs header to define local GPG encryption key."
-       (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" (my-gpg-key)))
+       (format "# -*- mode:org; epa-file-encrypt-to: (%s) -*-" (my-gpg-key)))
    #+end_src
 
    
@@ -60,38 +77,6 @@
      (defvar extension ".org.gpg"
        "The extension to use for all encrypted Org files.")
    #+end_src
-
-
-** Listing special Org directories
-
-   We want to list the directories that will be used as targets for
-   new Org files:
-   
-   #+begin_src elisp
-     (defun my-org-dirs ()
-       "List special Org directories."
-       (interactive)
-       (cl-loop for symbol being the symbols
-                when (and (boundp symbol)
-                          (string-match-p "my-org-.*-dir" (symbol-name symbol)))
-                collect symbol))
-   #+end_src
-
-   #+RESULTS:
-   : my-org-dirs
-
-   
-*** Example output
-    
-    The function should return the list of all my special Org
-    directories: 
-
-    #+begin_src elisp :tangle no
-      (my-org-dirs)
-    #+end_src
-
-    #+RESULTS:
-    : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
 
 
 ** Create new Org file interactively

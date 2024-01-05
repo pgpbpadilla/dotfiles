@@ -2,29 +2,6 @@
 ;; Instead edit the Org file and regenerate this
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
-(defvar my-org-agenda-dir 
-  "~/org/31e520d4df"
-  "Directory for Agenda files.")
-
-(defvar my-org-journal-dir
-  "~/org/0f6de25076"
-  "Directory for Journal files.")
-
-(defvar my-org-archive-dir
-  "~/org/2204c36fc7"
-  "Directory for Archive files.")
-
-(defun my-gpg-key () 
-  "The local GPG key to use for encryption."
-  "pgpb.padilla@gmail.com")
-
-(defun my-gpg-header ()
-  "Emacs header to define local GPG encryption key."
-  (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" (my-gpg-key)))
-
-(defvar extension ".org.gpg"
-  "The extension to use for all encrypted Org files.")
-
 (defun my-org-dirs ()
   "List special Org directories."
   (interactive)
@@ -32,6 +9,17 @@
            when (and (boundp symbol)
                      (string-match-p "my-org-.*-dir" (symbol-name symbol)))
            collect symbol))
+
+(defun my-gpg-key () 
+  "The local GPG key to use for encryption."
+  "\"pgpb.padilla@gmail.com\"")
+
+(defun my-gpg-header ()
+  "Emacs header to define local GPG encryption key."
+  (format "# -*- mode:org; epa-file-encrypt-to: (%s) -*-" (my-gpg-key)))
+
+(defvar extension ".org.gpg"
+  "The extension to use for all encrypted Org files.")
 
 (defun out-dir-options ()
   "Return a list of options from a list of symbols"
