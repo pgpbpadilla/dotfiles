@@ -18,7 +18,7 @@
   "The local GPG key to use for encryption."
   "pgpb.padilla@gmail.com")
 
-(defun gpg-header ()
+(defun my-gpg-header ()
   "Emacs header to define local GPG encryption key."
   (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" (my-gpg-key)))
 
@@ -71,7 +71,7 @@
   ;; fix: get rid of the EPA key selection dialog
   ;; https://superuser.com/a/1446730/148349
   (setq-local epa-file-encrypt-to (my-gpg-key))
-  (write-region (gpg-header) nil new-file)
+  (write-region (my-gpg-header) nil new-file)
   (find-file-other-window new-file)
   (message new-file))
 
