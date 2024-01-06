@@ -39,7 +39,7 @@ archive: %s" agenda-files journal-files archive-files)))
   (add-to-list 'default-frame-alist '(background-color . "#fffcf2")))
 
 (defun pgpb-global-keys ()
-  ;;; Global Shortcuts
+  ;; Global Shortcuts
 
   ;; Show-hide
   (global-set-key (kbd "C-c +") 'hs-show-block)
@@ -65,7 +65,7 @@ archive: %s" agenda-files journal-files archive-files)))
 
 
 (defun pgpb-magit ()
-  ;;; Magit customisations
+  ;; Magit customisations
   ;; Open Magit and use Full Window instead of splitting the buffer
   ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
