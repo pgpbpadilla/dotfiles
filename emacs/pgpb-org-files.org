@@ -1,7 +1,14 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb-org-files.el :session org-files :cache no
 
-* Org file utilities
+* TODO Create new encrypted Org files
 
+  This package needs to be restructured.
+
+  1. [ ] The main thing is that
+     [[file:pgpb-org.el]] should orchestrate calls to functions in this file.
+  2. [ ] there should not be calls to global variables or functions
+
+     
   Provides utilities to create files to be used within Org mode.
 
   
@@ -16,27 +23,35 @@
    #+RESULTS:
    : nil
    
-** Define special Org directories
 
-   #+begin_src elisp
-     (defvar my-org-agenda-dir 
-       "~/org/31e520d4df"
-       "Directory for Agenda files.")
+** TODO Encryption header
 
-     (defvar my-org-journal-dir
-       "~/org/0f6de25076"
-       "Directory for Journal files.")
+   1. [ ] The GPG keys should NOT be read from a global variable.
+      Values are provided in [[file:bootstrap.org]] and then injected in
+      [[id:93425A2C-AB14-417D-AC1D-9733C155DD31][Example call]]:
 
-     (defvar my-org-archive-dir
-       "~/org/2204c36fc7"
-       "Directory for Archive files.")
-   #+end_src
+      #+begin_src bash :session none :tangle no :results verbatim
+        ack -A 5 pgpb-org-main pgpb.el
+      #+end_src
 
-   #+RESULTS:
-   : my-org-archive-dir
+      #+RESULTS:
+      #+begin_example
+      (defun pgpb-org-main (gpg-keys org-dirs)
+        "Configure environment Org"
+        (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
+        (let ((agenda-files (nth 0 org-dirs))
+              (journal-files (nth 1 org-dirs))
+              (archive-files (nth 2 org-dirs)))
+      --
+      (pgpb-org-main pgpb-gpg-keys
+                     pgpb-org-dirs)
 
 
-** Encryption header
+      (require 'pgpb-docker)
+
+      #+end_example
+
+      
 
    Every file needs to specify the local GPG key that will be used for
    encryption: 
@@ -60,7 +75,10 @@
    #+end_src
 
 
-** Listing special Org directories
+** TODO Listing special Org directories
+
+   1. [ ] should not use global variables
+      
 
    We want to list the directories that will be used as targets for
    new Org files:
@@ -92,12 +110,16 @@
     : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
 
 
-** Create new Org file interactively
+** TODO Create new Org file interactively
+
+   1. [ ] no global vars
 
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
    
-*** Generate output directory options
+*** TODO Generate output directory options
+
+    1. [ ] no global vars 
 
     #+begin_src elisp
       (defun out-dir-options ()
@@ -136,7 +158,10 @@
     : random-name
 
     
-*** Create Org file in specified dir
+*** TODO Create Org file in specified dir
+
+    1. [ ] should also work with a list of gpg keys
+    2. [ ] no globals
 
     #+begin_src elisp
       (defun my-org-file ()
@@ -172,11 +197,12 @@
     #+RESULTS:
     [[file:~/org/0f6de25076/28e170260e.org.gpg]]
 
-** Announce as =my-org-files=
+
+** Announce package
 
    #+begin_src elisp
      (provide 'pgpb-org-files)
    #+end_src
 
    #+RESULTS:
-   : my-org-files
+   : pgpb-org-files

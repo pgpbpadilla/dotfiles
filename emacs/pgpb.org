@@ -11,7 +11,7 @@
      #+end_src
 
 
-** Entrypoint: Inputs for Org environment
+** TODO Entrypoint: Inputs for Org environment
 
    The goal is to have a single entrypoint that collects all required
    arguments so that we can configure an Org environment in different
@@ -36,7 +36,10 @@
    : pgpb-org-main
 
    
-*** Example call
+*** Example call: Configure Org mode
+    :PROPERTIES:
+    :ID:       93425A2C-AB14-417D-AC1D-9733C155DD31
+    :END:
 
     #+begin_src elisp :tangle no :results output
       (pgpb-org-main (list "key1" "key2")
@@ -326,7 +329,9 @@
     #+end_src
 
 
-** Rest of the file xxx
+** TODO Rest of the file xxx
+
+   Add some description about this stuff ...
 
    #+begin_src elisp
      (pgpb-install-packages)
