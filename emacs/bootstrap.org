@@ -1,0 +1,24 @@
+#+PROPERTY: header-args :results verbatim :tangle bootstrap.el :session bootstrap :cache no
+
+* bootstrap.el
+
+** Define Org environment variables
+
+   These variables need to be in the =bootstrap= file, since they
+   depend on the specific computer.
+   
+   #+begin_src elisp
+     (defvar pgpb-gpg-keys (list "pgpb.padilla@gmail.com"))
+     (defvar pgpb-org-dirs (list
+                            "~/org/31e520d4df" ;; agenda files
+                            "~/org/0f6de25076" ;; journal files
+                            "~/org/2204c36fc7" ;; archive files
+                            )) 
+   #+end_src
+
+  
+** Load the generic init script: [[file:init.el]]
+
+   #+begin_src elisp
+     (load "~/dotfiles/emacs/init.el")
+   #+end_src
