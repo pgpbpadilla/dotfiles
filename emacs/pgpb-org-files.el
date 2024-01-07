@@ -2,6 +2,55 @@
 ;; Instead edit the Org file and regenerate this
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
+(defun pgpb-org-agenda-files ()
+  (directory-files-recursively my-org-agenda-dir pgpb-org-file-regex))
+
+(defun pgpb-org-journal-files ()
+  (directory-files-recursively my-org-journal-dir pgpb-org-file-regex))
+
+(defun pgpb-org-archive-files ()
+  (directory-files-recursively my-org-archive-dir pgpb-org-file-regex))
+
+(defun pgpb-org-refile-targets ()
+  (setq org-refile-targets
+        '(
+          (nil :maxlevel . 3)
+          (org-agenda-files :maxlevel . 3)
+          (pgpb-org-journal-files :maxlevel . 3)
+          (pgpb-org-archive-files :maxlevel . 3)
+          )
+        ))
+
+
+(defun pgpb-org-extra-files ()
+  (append
+   (pgpb-org-journal-files)
+   (pgpb-org-archive-files))
+  )
+
+(defun pgpb-org-refile ()
+       ;;; Define refile targets
+  (pgpb-org-refile-targets)
+
+  ;; (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-allow-creating-parent-nodes 'confirm))
+
+(defun pgpb-org-refresh-files () 
+  "Reload agenda files, usually to include newly created files."
+  (interactive)
+  (setq org-agenda-files (pgpb-org-agenda-files))
+  (pgpb-org-refile-targets)
+  (message "All Org agenda files have been reloaded."))
+
+(defun my-org-dirs ()
+  "List special Org directories."
+  (interactive)
+  (cl-loop for symbol being the symbols
+           when (and (boundp symbol)
+                     (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+           collect symbol))
+
 (defvar my-gpg-key "pgpb.padilla@gmail.com"
   "The local GPG key to use for encryption.")
 
@@ -12,14 +61,6 @@
 
 (defvar extension ".org.gpg"
   "The extension to use for all encrypted Org files.")
-
-(defun my-org-dirs ()
-  "List special Org directories."
-  (interactive)
-  (cl-loop for symbol being the symbols
-           when (and (boundp symbol)
-                     (string-match-p "my-org-.*-dir" (symbol-name symbol)))
-           collect symbol))
 
 (defun out-dir-options ()
   "Return a list of options from a list of symbols"

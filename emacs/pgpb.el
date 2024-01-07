@@ -2,20 +2,8 @@
 ;; Instead edit the Org file and regenerate this
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
+(require 'pgpb-packages)
 (require 'pgpb-helpers)
-
-(defun pgpb-org-main (gpg-keys org-dirs)
-  "Configure environment Org"
-  (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
-  (let ((agenda-files (nth 0 org-dirs))
-        (journal-files (nth 1 org-dirs))
-        (archive-files (nth 2 org-dirs)))
-    (message "
-agenda: %s
-journal: %s
-archive: %s" agenda-files journal-files archive-files)))
-
-(load "~/dotfiles/emacs/pgpb-packages.el")
 
 (pgpb-install-packages)
 (pgpb-ignore-custom-file)

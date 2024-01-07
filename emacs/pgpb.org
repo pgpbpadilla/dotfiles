@@ -17,6 +17,13 @@
      #+end_src
 
 
+** Register/Install packages 
+
+   #+begin_src elisp
+     (require 'pgpb-packages)
+   #+end_src
+   
+
 ** Require helper functions: [[file:pgpb-helpers.org]]
 
    Load the necessary functions to continue the configuration of
@@ -25,6 +32,15 @@
    #+begin_src elisp
      (require 'pgpb-helpers)
    #+end_src
+
+
+** TODO Extract package: pgpb-darwin
+
+
+** TODO Extract package: pgpb-linux
+
+
+** TODO Extract package: pgpb-win
 
 
 ** Configure Emacs via helper functions
@@ -74,51 +90,5 @@
 
      (provide 'pgpb)
    #+end_src
-
-
-** TODO Entrypoint: Inputs for Org environment
-
-   The goal is to have a single entrypoint that collects all required
-   arguments so that we can configure an Org environment in different
-   machines by providing different values.
-
-   #+begin_src elisp
-     (defun pgpb-org-main (gpg-keys org-dirs)
-       "Configure environment Org"
-       (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
-       (let ((agenda-files (nth 0 org-dirs))
-             (journal-files (nth 1 org-dirs))
-             (archive-files (nth 2 org-dirs)))
-         (message "
-     agenda: %s
-     journal: %s
-     archive: %s" agenda-files journal-files archive-files)))
-
-     (load "~/dotfiles/emacs/pgpb-packages.el")
-   #+end_src
-
-   #+RESULTS:
-   : pgpb-org-main
-
-   
-*** Example call: Configure Org mode
-    :PROPERTIES:
-    :ID:       93425A2C-AB14-417D-AC1D-9733C155DD31
-    :END:
-
-    #+begin_src elisp :tangle no :results output
-      (pgpb-org-main (list "key1" "key2")
-                     (list "/path/to/agenda/files"
-                           "/path/to/journal/files"
-                           "/path/to/archive/files"))
-    #+end_src
-
-    #+RESULTS:
-    : "
-    : \"gpg-keys: (key1 key2); org-dirs: (/path/to/agenda/files /path/to/journal/files /path/to/archive/files)\"
-    : "
-     
-
-
 
 

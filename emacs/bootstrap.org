@@ -13,8 +13,8 @@
 
 ** Define Org environment variables
 
-   These variables need to be in the =bootstrap= file, since they
-   depend on the specific computer.
+   Set the GPG key(s) to be used for encrypting Org files, as well as
+   the directories to use for specific categories of files:
    
    #+begin_src elisp
      (defvar pgpb-gpg-keys (list "pgpb.padilla@gmail.com"))
@@ -25,7 +25,9 @@
                             )) 
    #+end_src
 
-  
+   These are expected by [[file:pgpb-org.org::#org-main][pgpb-org-main]] defined in [[file:pgpb-org.org]]. 
+   
+   
 ** Load the generic init script: [[file:init.el]]
 
    #+begin_src elisp
