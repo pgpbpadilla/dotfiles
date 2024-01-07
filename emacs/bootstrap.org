@@ -33,36 +33,3 @@
    #+end_src
 
 
-** TODO Move to [[file:pgpb.org]]
-   :PROPERTIES:
-   :header-args: :tangle no
-   :END:
-   
-   Load my personal [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]]:
-
-   #+begin_src bash :var file="emacs-custom.el"
-     ls ~/.config/${file}
-     ack -B 2 -A 2 "emacs-custom" ./*.el
-   #+end_src
-
-   #+RESULTS:
-   : /Users/pgpb.padilla/.config/emacs-custom.el
-   : ./pgpb.el-221-  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-   : ./pgpb.el-222-
-   : ./pgpb.el:223:  (setq custom-file "~/.config/emacs-custom.el")
-   : ./pgpb.el-224-  ;; Purposely ignore all variables written to the =custom-file=
-   : ./pgpb.el-225-  ;; (load custom-file)
-
-   - [ ] Ignore the default =custom-file= (commented out):
-
-     #+begin_src bash
-       ack -B 2  "load custom-file" ./*.el
-     #+end_src
-
-     #+RESULTS:
-     : ./pgpb.el-223-  (setq custom-file "~/.config/emacs-custom.el")
-     : ./pgpb.el-224-  ;; Purposely ignore all variables written to the =custom-file=
-     : ./pgpb.el:225:  ;; (load custom-file)
-
-     This is because I want my settings to always be loaded from my
-     =~/dotfiles= repo. 
