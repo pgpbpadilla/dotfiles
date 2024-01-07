@@ -48,54 +48,57 @@
 
 
 
-** TODO Installation
+** Installation
 
-   1. [ ] Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
-      configs that you want to keep:
+*** Backup config
+
+    Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
+    configs that you want to keep:
+
+    #+begin_src bash
+      tree -L 1 ~/.emacs.d | grep init.el
+    #+end_src
+
+    #+RESULTS:
+    : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
+    : ├── init.el~
+
+    - *GOTCHA*: The location of the Emacs init might differ, depending
+      on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
+
+      The following snippet should help you find it:
 
       #+begin_src bash
-        tree -L 1 ~/.emacs.d | grep init.el
+        tree -a -L 1 ${HOME} | grep emacs
       #+end_src
 
       #+RESULTS:
-      : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
-      : ├── init.el~
+      : ├── .emacs.d
+      : ├── .emacs.keyfreq
 
-      - *GOTCHA*: The location of the Emacs init might differ, depending
-        on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
-      	
-        The following snippet should help you find it:
-      	
-        #+begin_src bash
-      	  tree -a -L 1 ${HOME} | grep emacs
-        #+end_src
-      	
-        #+RESULTS:
-        : ├── .emacs.d
-        : ├── .emacs.keyfreq
 
-   2. [ ] Install [[file:bootstrap.el]]
+*** Install [[file:bootstrap.org]]
 
-      *WARN*: /this will overwrite (=-f=) the target file if it exists/
+    *WARN*: /this will overwrite (=-f=) the target file if it exists/
 
-      #+begin_src bash
-        echo "Init file before installation:"
-        ls ~/.emacs.d/init.el
-        echo "The new init file:"
-        ln -svf $(pwd)/bootstrap.el ${HOME}/.emacs.d/init.el
-      #+end_src
+    #+begin_src bash
+      echo "Init file before installation:"
+      ls ~/.emacs.d/init.el
+      echo "The new init file:"
+      ln -svf $(pwd)/bootstrap.el ${HOME}/.emacs.d/init.el
+    #+end_src
 
-      #+RESULTS:
-      : Init file before installation:
-      : /Users/pgpb.padilla/.emacs.d/init.el
-      : The new init file:
-      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
+    #+RESULTS:
+    : Init file before installation:
+    : /Users/pgpb.padilla/.emacs.d/init.el
+    : The new init file:
+    : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
 
-      The bootstrap script loads the my init file:
+    The bootstrap script loads the my init file:
 
-      #+begin_src bash
-        ack load ./bootstrap.el
-      #+end_src
+    #+begin_src bash
+      ack load ./bootstrap.el
+    #+end_src
 
-      #+RESULTS:
-      : (load "~/dotfiles/emacs/init.el")
+    #+RESULTS:
+    : (load "~/dotfiles/emacs/init.el")
