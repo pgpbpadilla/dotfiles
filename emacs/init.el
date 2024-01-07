@@ -290,4 +290,7 @@
 
 
 (require 'init-docker)
+
+(require 'weak-pinky)
+
 ;;; Init.el ends here

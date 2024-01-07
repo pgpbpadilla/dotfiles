@@ -1,0 +1,26 @@
+#+property: header-args :tangle weak-pinky.el :eval no :results output
+
+* Weak pinky or pinky finger pain
+
+  In order to reduce pain in my pinky fingers, I want to remap two common
+  Emacs keys to more ergonomic ones:
+
+  #+begin_src elisp
+    (keymap-global-set "M-J" 'next-line)
+    (keymap-global-set "M-I" 'previous-line)
+
+    (provide 'weak-pinky)
+  #+end_src
+
+  
+** *WARN*: =S= modifier not understood
+  
+   The actual secuences that I press are:
+
+   1. =M-S-j= -> =M-J=
+   2. =M-S-i= -> =M-I=
+
+
+   For whatever reason sequences/expresions with the modifier =S= are
+   not understood by =keymap-global-set=.
+  
