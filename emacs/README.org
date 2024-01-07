@@ -1,32 +1,28 @@
 #+PROPERTY: header-args:bash :results verbatim
 
 * Emacs configuration
+
 ** System requirements
 
    Most Emacs packages are installed during the initial load of the
    init file. However, there are dependencies to system binaries:
 
-*** [[id:CCAB00C9-127E-42C6-807D-C997D29F5F2E][Yas Snippets]]
+*** GnuPG: Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
 
-    My config files: [[file:yasnippet/][yasnipet]]
-    
-
-*** Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
-
-    The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpb= binary to be installed
+    The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpg= binary to be installed
     and also be in the system =PATH=.
 
     This is because the Emacs configuration explicitly uses the =gpg=
     binary instead of its absolute path:
     
     #+begin_src bash
-      grep -C 1 gpg-program *.el
+      ack -C 1 gpg-program *.el
     #+end_src
 
     #+RESULTS:
-    : init.el-(require 'epg)
-    : init.el:(setq epg-gpg-program "gpg"
-    : init.el-      epg-pinentry-mode 'loopback)
+    : pgpb-org.el-8-(require 'epg)
+    : pgpb-org.el:9:(setq epg-gpg-program "gpg"
+    : pgpb-org.el-10-      epg-pinentry-mode 'loopback)
 
 
 **** Installing GnuPG - [[https://gnupg.org/][gnupg.org]]
@@ -50,38 +46,11 @@
 
       checkout [[https://packages.debian.org/en/sid/apt-clone][apt-clone]]
 
-** Installation
 
-   1. Load my personal [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]]:
 
-      #+begin_src bash :var file="emacs-custom.el"
-        ls ~/.config/${file}
-        ack -B 2 -A 2 "emacs-custom" ./init.el
-      #+end_src
+** TODO Installation
 
-      #+RESULTS:
-      : /Users/pgpb.padilla/.config/emacs-custom.el
-      : ;; Set location for customizations file
-      : ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-      : (setq custom-file "~/.config/emacs-custom.el")
-      : ;; Purposely ignore all variables written to the =custom-file=
-      : ;; (load custom-file)
-
-   2. Ignore the default =custom-file= (commented out):
-      
-      #+begin_src bash
-        ack -B 2  "load custom-file" ./init.el
-      #+end_src
-
-      #+RESULTS:
-      : (setq custom-file "~/.config/emacs-custom.el")
-      : ;; Purposely ignore all variables written to the =custom-file=
-      : ;; (load custom-file)
-
-      This is because I want my settings to always be loaded from my
-      =~/dotfiles= repo. 
-
-   3. Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
+   1. [ ] Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
       configs that you want to keep:
 
       #+begin_src bash
@@ -93,19 +62,19 @@
       : ├── init.el~
 
       - *GOTCHA*: The location of the Emacs init might differ, depending
-      	on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
+        on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
       	
-      	The following snippet should help you find it:
+        The following snippet should help you find it:
       	
-      	#+begin_src bash
+        #+begin_src bash
       	  tree -a -L 1 ${HOME} | grep emacs
-      	#+end_src
+        #+end_src
       	
-      	#+RESULTS:
+        #+RESULTS:
         : ├── .emacs.d
         : ├── .emacs.keyfreq
 
-   4. Install [[file:bootstrap.el]]
+   2. [ ] Install [[file:bootstrap.el]]
 
       *WARN*: /this will overwrite (=-f=) the target file if it exists/
 
@@ -129,5 +98,4 @@
       #+end_src
 
       #+RESULTS:
-      : ;; set directory to use for loading agenda files
       : (load "~/dotfiles/emacs/init.el")
