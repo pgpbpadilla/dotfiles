@@ -8,4 +8,11 @@
             (keymap-set magit-mode-map "M-f"
                         'magit-section-forward)))
 
+(add-hook 'magit-status-mode
+          (lambda ()
+            (keymap-set magit-mode-map "M-e"
+                        'magit-section-backward)
+            (keymap-set magit-mode-map "M-f"
+                        'magit-section-forward)))
+
 (provide 'weak-pinky)

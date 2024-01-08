@@ -22,10 +22,31 @@
    For whatever reason sequences/expresions with the modifier =S= are
    not understood by =keymap-global-set=.
   
-** Magit
+
+** TODO Undo: C-/
+   
+
+** TODO Org Agenda: up/down
+
+   Remove :eval no when you find out the correct *-mode-map to use for Org Agenda keymaps: 
+   
+   #+begin_src elisp :eval no
+     (add-hook 'magit-status-mode
+               (lambda ()
+                 (keymap-set magit-mode-map "M-e"
+                             'magit-section-backward)
+                 (keymap-set magit-mode-map "M-f"
+                             'magit-section-forward)))
+   #+end_src
+   
+   
+
+** TODO Magit
+
+   1. [ ] bug: hook is not working on Emacs restart
 
    #+begin_src elisp
-     (add-hook 'magit-status-mode
+     (add-hook 'magit-mode
                (lambda ()
                  (keymap-set magit-mode-map "M-e"
                              'magit-section-backward)
@@ -34,15 +55,22 @@
    #+end_src
 
    
-*** TODO j has a conflct with magit-jump-status
+** Annouce package
+
+#+begin_src elisp
+  (provide 'weak-pinky)
+#+end_src
+
+
+** Journal: Weak pinky
+*** DONE j has a conflct with magit-jump-status
+    CLOSED: [2024-01-08 Mo 21:45]
+    :LOGBOOK:
+    - CLOSING NOTE [2024-01-08 Mo 21:45]
+    :END:
 
     1) [ ] study: https://github.com/magit/magit/blob/main/lisp/magit-section.el
     2) [ ] it seems that i/j won't work, however, M-I/J do work fine, maybe
        let's just call it quits?
 
 
-** Annouce package
-
-#+begin_src elisp
-  (provide 'weak-pinky)
-#+end_src
