@@ -43,11 +43,25 @@
    
    
 
-** TODO Magit motions
+** DONE Magit motions
+   CLOSED: [2024-01-09 Di 21:37]
+   :LOGBOOK:
+   - CLOSING NOTE [2024-01-09 Di 21:37]
+   - CLOSING NOTE [2024-01-09 Di 21:19]
+   :END:
+   
+*** Testing
+
+    1. [ ] switch to target mode
+    2. [ ] =C-h k=: check is the key binding is available.
+       It's enough that the currently assigned key binding is one that
+       I don't care to overwrite.
+       
 
 *** DONE Sections motion
-    CLOSED: [2024-01-09 Di 21:17]
+    CLOSED: [2024-01-09 Di 21:37]
     :LOGBOOK:
+    - CLOSING NOTE [2024-01-09 Di 21:37]
     - CLOSING NOTE [2024-01-09 Di 21:17]
     - CLOSING NOTE [2024-01-09 Di 21:04]
     :END:
@@ -56,10 +70,10 @@
       (use-package magit
         :ensure t
         :bind (:map magit-mode-map
-                    ("C-e" . magit-section-backward)
-                    ("C-f" . magit-section-forward)
-                    ("M-e" . magit-section-backward-sibling)
-                    ("M-f" . magit-section-forward-sibling)))
+                    ("C-S" . magit-section-backward)
+                    ("C-D" . magit-section-forward)
+                    ("M-S" . magit-section-backward-sibling)
+                    ("M-D" . magit-section-forward-sibling)))
     #+end_src
 
    

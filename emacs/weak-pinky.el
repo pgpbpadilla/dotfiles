@@ -11,9 +11,9 @@
 (use-package magit
   :ensure t
   :bind (:map magit-mode-map
-              ("C-e" . magit-section-backward)
-              ("C-f" . magit-section-forward)
-              ("M-e" . magit-section-backward-sibling)
-              ("M-f" . magit-section-forward-sibling)))
+              ("C-S" . magit-section-backward)
+              ("C-D" . magit-section-forward)
+              ("M-S" . magit-section-backward-sibling)
+              ("M-D" . magit-section-forward-sibling)))
 
 (provide 'weak-pinky)
