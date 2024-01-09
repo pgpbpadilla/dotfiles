@@ -2,25 +2,27 @@
 
 * Weak pinky or pinky finger pain
 
-  In order to reduce pain in my pinky fingers, I want to remap two common
-  Emacs keys to more ergonomic ones:
+** Motions
+   
+   In order to reduce pain in my pinky fingers, I want to remap two common
+   Emacs keys to more ergonomic ones:
 
-  #+begin_src elisp
-    (keymap-global-set "M-J" 'next-line)
-    (keymap-global-set "M-I" 'previous-line)
-  #+end_src
+   #+begin_src elisp
+     (keymap-global-set "M-J" 'next-line)
+     (keymap-global-set "M-I" 'previous-line)
+   #+end_src
 
   
-** *WARN*: =S= modifier not understood
+*** *WARN*: =S= modifier not understood
   
-   The actual secuences that I press are:
+    The actual secuences that I press are:
 
-   1. =M-S-j= -> =M-J=
-   2. =M-S-i= -> =M-I=
+    1. =M-S-j= -> =M-J=
+    2. =M-S-i= -> =M-I=
 
 
-   For whatever reason sequences/expresions with the modifier =S= are
-   not understood by =keymap-global-set=.
+    For whatever reason sequences/expresions with the modifier =S= are
+    not understood by =keymap-global-set=.
   
 
 ** TODO Undo: C-/
@@ -41,18 +43,24 @@
    
    
 
-** TODO Magit
+** TODO Magit motions
 
-   1. [ ] bug: hook is not working on Emacs restart
-
-   #+begin_src elisp
-     (add-hook 'magit-mode
-               (lambda ()
-                 (keymap-set magit-mode-map "M-e"
-                             'magit-section-backward)
-                 (keymap-set magit-mode-map "M-f"
-                             'magit-section-forward)))
-   #+end_src
+*** DONE Sections motion
+    CLOSED: [2024-01-09 Di 21:17]
+    :LOGBOOK:
+    - CLOSING NOTE [2024-01-09 Di 21:17]
+    - CLOSING NOTE [2024-01-09 Di 21:04]
+    :END:
+    
+    #+begin_src elisp
+      (use-package magit
+        :ensure t
+        :bind (:map magit-mode-map
+                    ("C-e" . magit-section-backward)
+                    ("C-f" . magit-section-forward)
+                    ("M-e" . magit-section-backward-sibling)
+                    ("M-f" . magit-section-forward-sibling)))
+    #+end_src
 
    
 ** Annouce package
