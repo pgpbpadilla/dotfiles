@@ -2,7 +2,11 @@
 
 * Weak pinky or pinky finger pain
 
-** Motions
+** DONE Motions
+   CLOSED: [2024-01-10 Mi 20:06]
+   :LOGBOOK:
+   - CLOSING NOTE [2024-01-10 Mi 20:06]
+   :END:
    
    In order to reduce pain in my pinky fingers, I want to remap two common
    Emacs keys to more ergonomic ones:
@@ -25,11 +29,15 @@
     not understood by =keymap-global-set=.
   
 
-** TODO Undo: C-/
+** DONE Undo: C-/
+   CLOSED: [2024-01-10 Mi 20:06]
+   :LOGBOOK:
+   - CLOSING NOTE [2024-01-10 Mi 20:06]
+   :END:
 
-   1. [ ] find candidates
-   2. [ ] remap
-   3. [ ] test
+   1. [X] find candidates
+   2. [X] remap
+   3. [X] test
 
 
    #+begin_src elisp
@@ -98,12 +106,13 @@
    
 ** Annouce package
 
-#+begin_src elisp
-  (provide 'weak-pinky)
-#+end_src
+   #+begin_src elisp
+     (provide 'weak-pinky)
+   #+end_src
 
 
 ** Journal: Weak pinky
+
 *** DONE j has a conflct with magit-jump-status
     CLOSED: [2024-01-08 Mo 21:45]
     :LOGBOOK:
