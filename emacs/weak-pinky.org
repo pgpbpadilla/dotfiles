@@ -26,6 +26,15 @@
   
 
 ** TODO Undo: C-/
+
+   1. [ ] find candidates
+   2. [ ] remap
+   3. [ ] test
+
+
+   #+begin_src elisp
+     (keymap-global-set "C-<escape>" 'undo)
+   #+end_src
    
 
 ** TODO Org Agenda: up/down

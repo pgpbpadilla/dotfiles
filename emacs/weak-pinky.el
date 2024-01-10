@@ -1,6 +1,8 @@
 (keymap-global-set "M-J" 'next-line)
 (keymap-global-set "M-I" 'previous-line)
 
+(keymap-global-set "C-<escape>" 'undo)
+
 (add-hook 'magit-status-mode
           (lambda ()
             (keymap-set magit-mode-map "M-e"
