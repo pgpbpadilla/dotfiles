@@ -37,7 +37,13 @@
    #+end_src
    
 
-** TODO Org Agenda: up/down
+** WONTDO Org Agenda: up/down
+   CLOSED: [2024-01-10 Mi 19:50]
+   :LOGBOOK:
+   - Note taken on [2024-01-10 Mi 19:50] \\
+     no need to change anything, I think
+   - CLOSING NOTE [2024-01-10 Mi 19:50]
+   :END:
 
    Remove :eval no when you find out the correct *-mode-map to use for Org Agenda keymaps: 
    
@@ -59,7 +65,11 @@
    - CLOSING NOTE [2024-01-09 Di 21:19]
    :END:
    
-*** Testing
+*** DONE Testing
+    CLOSED: [2024-01-10 Mi 19:48]
+    :LOGBOOK:
+    - CLOSING NOTE [2024-01-10 Mi 19:48]
+    :END:
 
     1. [ ] switch to target mode
     2. [ ] =C-h k=: check is the key binding is available.
