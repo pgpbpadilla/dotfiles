@@ -3,13 +3,6 @@
 
 (keymap-global-set "C-<escape>" 'undo)
 
-(add-hook 'magit-status-mode
-          (lambda ()
-            (keymap-set magit-mode-map "M-e"
-                        'magit-section-backward)
-            (keymap-set magit-mode-map "M-f"
-                        'magit-section-forward)))
-
 (use-package magit
   :ensure t
   :bind (:map magit-mode-map
