@@ -55,8 +55,8 @@
 
    Remove :eval no when you find out the correct *-mode-map to use for Org Agenda keymaps: 
    
-   #+begin_src elisp :eval no
-     (add-hook 'magit-status-mode
+   #+begin_src elisp :tangle no
+     (add-hook 'magit-status-mode 
                (lambda ()
                  (keymap-set magit-mode-map "M-e"
                              'magit-section-backward)
