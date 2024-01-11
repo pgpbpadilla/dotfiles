@@ -143,4 +143,4 @@
 	      )
       )
 
-(provide 'init-org-agenda)
+(provide 'pgpb-org-agenda)

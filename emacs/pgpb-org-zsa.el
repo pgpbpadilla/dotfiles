@@ -15,6 +15,6 @@
 
 (global-set-key (kbd "C-c u") 'zsa-start)
 
-(provide 'zsa)
+(provide 'pgpb-org-zsa)
 
 

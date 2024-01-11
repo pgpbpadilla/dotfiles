@@ -1,6 +1,6 @@
-(require 'my-org-files)
-(require 'org-utils)
-(require 'latex-classes)
+(require 'pgpb-org-files)
+(require 'pgpb-org-utils)
+(require 'pgpb-latex)
 
 ;;; Encryption for Org-files
 (require 'epa-file)
@@ -147,7 +147,7 @@
 (setq org-export-backends '(ascii html icalendar latex beamer md odt))
 
 
-(require 'init-org-agenda)
+(require 'pgpb-org-agenda)
 
 
 ;;; Macros
@@ -248,6 +248,9 @@
 ;;; Additional places to use for indexing Org IDs
 (setq org-id-extra-files (my/org-extra-files))
 
+;;; ZSA Keyboard automation
+(require 'pgpb-org-zsa)
+
 
 ;;; Export as an Emacs package
-(provide 'init-org)
+(provide 'pgpb-org)

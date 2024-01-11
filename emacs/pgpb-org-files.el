@@ -75,4 +75,4 @@
   (find-file-other-window new-file)
   (message new-file))
 
-(provide 'my-org-files)
+(provide 'pgpb-org-files)

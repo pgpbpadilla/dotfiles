@@ -11,4 +11,4 @@
 
 
 ;;; Export as an Emacs package
-(provide 'latex-classes)
+(provide 'pgpb-latex)

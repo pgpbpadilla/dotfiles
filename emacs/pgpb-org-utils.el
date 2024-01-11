@@ -36,4 +36,4 @@
 
 
 ;;; Export as an Emacs package
-(provide 'org-utils)
+(provide 'pgpb-org-utils)

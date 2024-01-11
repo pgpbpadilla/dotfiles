@@ -1,4 +1,4 @@
-#+PROPERTY: header-args :results verbatim :tangle my-org-files.el :session org-files :cache no
+#+PROPERTY: header-args :results verbatim :tangle pgpb-org-files.el :session org-files :cache no
 
 * Org file utilities
 
@@ -177,7 +177,7 @@
 ** Announce as =my-org-files=
 
    #+begin_src elisp
-     (provide 'my-org-files)
+     (provide 'pgpb-org-files)
    #+end_src
 
    #+RESULTS:
