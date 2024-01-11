@@ -12,7 +12,7 @@
   (setq projectile-completion-system 'helm)
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map))
+              ("C-c j" . projectile-command-map))
   )
 
 ;;; helm-projectile
