@@ -46,3 +46,7 @@ flycheck_*.el
 
 # network security
 /network-security.data
+/ac-comphist.dat
+/org-clock-save.el
+/projectile-bookmarks.eld
+/transient/
