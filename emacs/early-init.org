@@ -21,7 +21,8 @@
    Use my personal GPG key to encrypt my Org files:
    
    #+begin_src elisp
-     (defvar pgpb-gpg-keys (list "pgpb.padilla@gmail.com"))
+     (defvar pgpb-gpg-keys (list "pgpb.padilla@gmail.com")
+       "GPG recipient to use for encrypting Org files.")
    #+end_src
 
    

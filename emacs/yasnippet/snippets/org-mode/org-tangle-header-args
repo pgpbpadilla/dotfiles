@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org: bable: tangle: header-args
+# key: .t.h
+# --
+#+PROPERTY: header-args :results verbatim :tangle ${1:file}.el :session $1 :cache no

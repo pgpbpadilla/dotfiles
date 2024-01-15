@@ -1,12 +1,22 @@
 #+PROPERTY: header-args :results verbatim
 
 
-* Install custom Yas Snippets: [[https://github.com/joaotavora/yasnippet][Github:yasnippet]]
+* TODO Install custom Yas Snippets: [[https://github.com/joaotavora/yasnippet][Github:yasnippet]]
   :PROPERTIES:
   :ID:       CCAB00C9-127E-42C6-807D-C997D29F5F2E
   :END:
 
-  1. Emacs will look for Yas Snippets in:
+  Use only paths relative to:
+
+  #+begin_src elisp
+    user-emacs-directory
+  #+end_src
+
+  #+RESULTS:
+  : "~/.emacs.d/"
+
+
+  1. [ ] Emacs will look for Yas Snippets in:
      #+begin_src emacs-lisp
        (print yas-snippet-dirs)
      #+end_src
@@ -14,7 +24,7 @@
      #+RESULTS:
      : ("/Users/pgpb.padilla/dotfiles/emacs/yasnippet/snippets")
 
-  2. Noop. There's nothing to install. If you have this repo, then
+  2. [ ] Noop. There's nothing to install. If you have this repo, then
      Emacs will load the snippets correctly.
 
      #+begin_src bash
