@@ -2,6 +2,13 @@
 
 * Weak pinky or pinky finger pain
 
+
+** TODO Checkout =key-translation-map=: [[https://emacs.stackexchange.com/questions/12923/how-to-preserve-emacs-key-bindings-when-changing-keyboard-layout][se]]
+
+   Can I use it to map n/p in all contexts?
+
+   
+
 ** DONE Motions
    CLOSED: [2024-01-10 Mi 20:06]
    :LOGBOOK:
