@@ -253,8 +253,8 @@
   ;; Fix magit word coloring, I need more contrast in the changed words
   ;; Changing the the background color to make the diffs easier to read
   ;; search: magit-diff-color
-  (diff-refine-added ((t (:inherit diff-refine-changed :background "White"))))
-  (diff-refine-removed ((t (:inherit diff-refine-changed :background "White"))))
+  (diff-refine-added ((t (:inherit diff-refine-changed :background "Yellow"))))
+  (diff-refine-removed ((t (:inherit diff-refine-changed :background "Yellow"))))
   )
 
 
