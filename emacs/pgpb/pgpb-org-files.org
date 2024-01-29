@@ -57,45 +57,45 @@
     1. [ ] remove references to global variables
 
     #+begin_src elisp
-      (defun pgpb-org-agenda-files ()
-        (directory-files-recursively my-org-agenda-dir pgpb-org-file-regex))
+      (defun pgpb-agenda-files ()
+        (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
 
-      (defun pgpb-org-journal-files ()
-        (directory-files-recursively my-org-journal-dir pgpb-org-file-regex))
+      (defun pgpb-journal-files ()
+        (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
 
-      (defun pgpb-org-archive-files ()
-        (directory-files-recursively my-org-archive-dir pgpb-org-file-regex))
+      (defun pgpb-archive-files ()
+        (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
 
-      (defun pgpb-org-refile-targets ()
+      (defun pgpb-refile-targets ()
         (setq org-refile-targets
               '(
                 (nil :maxlevel . 3)
                 (org-agenda-files :maxlevel . 3)
-                (pgpb-org-journal-files :maxlevel . 3)
-                (pgpb-org-archive-files :maxlevel . 3)
+                (pgpb-journal-files :maxlevel . 3)
+                (pgpb-archive-files :maxlevel . 3)
                 )
               ))
 
 
-      (defun pgpb-org-extra-files ()
+      (defun pgpb-extra-files ()
         (append
-         (pgpb-org-journal-files)
-         (pgpb-org-archive-files))
+         (pgpb-journal-files)
+         (pgpb-archive-files))
         )
 
       (defun pgpb-org-refile ()
              ;;; Define refile targets
-        (pgpb-org-refile-targets)
+        (pgpb-refile-targets)
 
         ;; (setq org-refile-use-outline-path 'file)
         (setq org-outline-path-complete-in-steps nil)
         (setq org-refile-allow-creating-parent-nodes 'confirm))
 
-      (defun pgpb-org-refresh-files () 
+      (defun pgpb-org-refresh () 
         "Reload agenda files, usually to include newly created files."
         (interactive)
-        (setq org-agenda-files (pgpb-org-agenda-files))
-        (pgpb-org-refile-targets)
+        (setq org-agenda-files (pgpb-agenda-files))
+        (pgpb-refile-targets)
         (message "All Org agenda files have been reloaded."))
 
     #+end_src
