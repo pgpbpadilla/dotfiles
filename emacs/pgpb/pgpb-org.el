@@ -8,8 +8,6 @@
 (require 'pgpb-latex)
 (require 'pgpb-org-zsa)
 
-(defvar pgpb-org-file-regex "\\.org.gpg$")
-
 (pgpb-org-install-packages)
 (pgpb-org-encrypt)
 (pgpb-org-custom-vars)

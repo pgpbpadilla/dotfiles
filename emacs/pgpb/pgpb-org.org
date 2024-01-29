@@ -24,17 +24,6 @@
    #+end_src
 
    
-** TODO Duplicate: Constants
-   :PROPERTIES:
-   :CUSTOM_ID: org-constants
-   :ID:       A1D2E676-8A47-45C8-85A2-8E1D6B37F651
-   :END:
-
-   Related to [[file:pgpb-org-files.org::#org-gpg-files][Duplicate: Encrypted file extension]]. Need to deduplicate.
-
-   #+begin_src elisp
-     (defvar pgpb-org-file-regex "\\.org.gpg$")
-   #+end_src
 
 
 ** Configure Org mode

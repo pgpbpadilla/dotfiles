@@ -6,7 +6,7 @@
 
 (require 'pgpb-org-files)
 
-(pgpb-org-refresh-files)
+(pgpb-refresh-org)
 
 (setq org-agenda-span 'day)
 

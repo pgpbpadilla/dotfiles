@@ -2,6 +2,12 @@
 ;; Instead edit the Org file and regenerate this
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
+(defvar pgpb-org-file-extension ".org.gpg"
+  "File extension for encrypted Org files.")
+
+(defvar pgpb-org-file-regex (concat "\\" pgpb-org-file-extension "$")
+  "Regex to search entrypted Org files.")
+
 (defun pgpb-agenda-files ()
   (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
 
@@ -11,7 +17,7 @@
 (defun pgpb-archive-files ()
   (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
 
-(defun pgpb-refile-targets ()
+(defun pgpb-refresh-refile-targets ()
   (setq org-refile-targets
         '(
           (nil :maxlevel . 3)
@@ -21,6 +27,10 @@
           )
         ))
 
+(defun pgpb-org-refile ()
+  ;; (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-allow-creating-parent-nodes 'confirm))
 
 (defun pgpb-extra-files ()
   (append
@@ -28,19 +38,11 @@
    (pgpb-archive-files))
   )
 
-(defun pgpb-org-refile ()
-       ;;; Define refile targets
-  (pgpb-refile-targets)
-
-  ;; (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps nil)
-  (setq org-refile-allow-creating-parent-nodes 'confirm))
-
-(defun pgpb-org-refresh () 
+(defun pgpb-refresh-org () 
   "Reload agenda files, usually to include newly created files."
   (interactive)
   (setq org-agenda-files (pgpb-agenda-files))
-  (pgpb-refile-targets)
+  (pgpb-refresh-refile-targets)
   (message "All Org agenda files have been reloaded."))
 
 (defun my-org-dirs ()
@@ -58,9 +60,6 @@
   gpg-header (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" my-gpg-key)
   "Emacs header to define local GPG encryption key."
  )
-
-(defvar extension ".org.gpg"
-  "The extension to use for all encrypted Org files.")
 
 (defun out-dir-options ()
   "Return a list of options from a list of symbols"
@@ -95,7 +94,7 @@
 
   (setq new-file (concat
                   (format "%s/%s" out-dir (random-name))
-                  extension))
+                  pgpb-org-file-extension))
 
   ;; fix: get rid of the EPA key selection dialog
   ;; https://superuser.com/a/1446730/148349

@@ -28,45 +28,74 @@
    : nil
    
 
-** Org file categories: Agenda, Journal and Archive
+** Org file categories
 
-   I have three categories of files:
+   I have three categories of files: Agenda, Journal and Archive.
+   
 
-   1. Agenda: files that should be used when building the
-      agenda view(s)
+*** Files are encrypted using Gnupg
 
-   2. Journal: files that I use to write entries that I will
+     #+begin_src elisp
+       (defvar pgpb-org-file-extension ".org.gpg"
+         "File extension for encrypted Org files.")
+     #+end_src
+
+
+     In order find them all dynamically we use a regex:
+     
+     #+begin_src elisp
+       (defvar pgpb-org-file-regex (concat "\\" pgpb-org-file-extension "$")
+         "Regex to search entrypted Org files.")
+     #+end_src
+
+
+*** Agenda files
+
+      files that should be used when building the
+      agenda view(s):
+
+      #+begin_src elisp
+        (defun pgpb-agenda-files ()
+          (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
+      #+end_src
+      
+
+*** Journal files
+      files that I use to write entries that I will
       eventually want to query, e.g., any note that is not a task but
       that I might come back to but there's no action to take
 
       - these files are not used to build the agenda
 
       - it is possible to refile to these files
+
+
+      #+begin_src elisp
+        (defun pgpb-journal-files ()
+          (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
+      #+end_src
       
-   3. Archive: files that I mostly keep out of [[https://en.wikipedia.org/wiki/Fear_of_missing_out][FOMO]].
+
+*** Archive files
+      files that I mostly keep out of [[https://en.wikipedia.org/wiki/Fear_of_missing_out][FOMO]].
       I purposely don't tag entries in these files with Org's keyword
       =:ARCHIVE:= since they are already in a fully separate location.
 
       - these files are not used to build the agenda
 
       - it is possible to refile to these files
-   
-   
-*** TODO Helper functions to collect Org files for special categories
 
-    1. [ ] remove references to global variables
+
+      #+begin_src elisp
+        (defun pgpb-archive-files ()
+          (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
+      #+end_src
+   
+   
+*** DONE Updating file collections
 
     #+begin_src elisp
-      (defun pgpb-agenda-files ()
-        (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
-
-      (defun pgpb-journal-files ()
-        (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
-
-      (defun pgpb-archive-files ()
-        (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
-
-      (defun pgpb-refile-targets ()
+      (defun pgpb-refresh-refile-targets ()
         (setq org-refile-targets
               '(
                 (nil :maxlevel . 3)
@@ -76,6 +105,10 @@
                 )
               ))
 
+      (defun pgpb-org-refile ()
+        ;; (setq org-refile-use-outline-path 'file)
+        (setq org-outline-path-complete-in-steps nil)
+        (setq org-refile-allow-creating-parent-nodes 'confirm))
 
       (defun pgpb-extra-files ()
         (append
@@ -83,19 +116,11 @@
          (pgpb-archive-files))
         )
 
-      (defun pgpb-org-refile ()
-             ;;; Define refile targets
-        (pgpb-refile-targets)
-
-        ;; (setq org-refile-use-outline-path 'file)
-        (setq org-outline-path-complete-in-steps nil)
-        (setq org-refile-allow-creating-parent-nodes 'confirm))
-
-      (defun pgpb-org-refresh () 
+      (defun pgpb-refresh-org () 
         "Reload agenda files, usually to include newly created files."
         (interactive)
         (setq org-agenda-files (pgpb-agenda-files))
-        (pgpb-refile-targets)
+        (pgpb-refresh-refile-targets)
         (message "All Org agenda files have been reloaded."))
 
     #+end_src
@@ -188,19 +213,6 @@
      #+end_src
 
    
-**** TODO Duplicate: Encrypted file extension
-     :PROPERTIES:
-     :CUSTOM_ID: org-gpg-files
-     :ID:       A628F271-60A5-4117-B530-7305C5128528
-     :END:
-
-     There's another variable: [[file:pgpb-org.org::#org-constants][Constants]] that's pretty much the same
-     as this one.
-
-     #+begin_src elisp
-       (defvar extension ".org.gpg"
-         "The extension to use for all encrypted Org files.")
-     #+end_src
 
 
 *** TODO Output directory
@@ -266,7 +278,7 @@
 
         (setq new-file (concat
                         (format "%s/%s" out-dir (random-name))
-                        extension))
+                        pgpb-org-file-extension))
 
         ;; fix: get rid of the EPA key selection dialog
         ;; https://superuser.com/a/1446730/148349

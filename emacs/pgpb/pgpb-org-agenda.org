@@ -31,7 +31,7 @@
 ** Configure the Org agenda
 
    #+begin_src elisp
-     (pgpb-org-refresh-files)
+     (pgpb-refresh-org)
 
      (setq org-agenda-span 'day)
 
