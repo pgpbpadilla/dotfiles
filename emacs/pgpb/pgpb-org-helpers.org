@@ -179,7 +179,9 @@
        ;; To show images use: =C-c C-x C-v=
 
        ;; Requires cloning: https://github.com/TobiasZawada/org-yt
-       (load-relative "./org-yt/org-yt.el")
+       (dolist (i (list (concat user-emacs-directory "org-yt")))
+         ;; Add all at end of `load-path' to avoid conflicts.
+         (add-to-list 'load-path (file-name-as-directory i) t))
        (defun org-image-link (protocol link _description)
          "Interpret LINK as base64-encoded image data."
          (cl-assert (string-match "\\`img" protocol) nil
