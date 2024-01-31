@@ -30,15 +30,4 @@
 (fset 't-range
       (kmacro-lambda-form [?\C-u ?\C-c ?. return ?- ?- ?\C-u ?\C-c ?. return] 0 "%d"))
 
-(defun pgpb-org-main (gpg-keys org-dirs)
-  "Configure environment Org"
-  (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
-  (let ((agenda-files (nth 0 org-dirs))
-        (journal-files (nth 1 org-dirs))
-        (archive-files (nth 2 org-dirs)))
-    (message "
-agenda: %s
-journal: %s
-archive: %s" agenda-files journal-files archive-files)))
-
 (provide 'pgpb-org)

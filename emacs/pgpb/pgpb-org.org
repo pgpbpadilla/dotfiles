@@ -52,49 +52,6 @@
            (kmacro-lambda-form [?\C-u ?\C-c ?. return ?- ?- ?\C-u ?\C-c ?. return] 0 "%d"))
    #+end_src
 
-** TODO Entrypoint: Inputs for Org environment
-
-   The goal is to have a single entrypoint that collects all required
-   arguments so that we can configure an Org environment in different
-   machines by providing different values.
-
-   #+name: org-main
-   #+begin_src elisp
-     (defun pgpb-org-main (gpg-keys org-dirs)
-       "Configure environment Org"
-       (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
-       (let ((agenda-files (nth 0 org-dirs))
-             (journal-files (nth 1 org-dirs))
-             (archive-files (nth 2 org-dirs)))
-         (message "
-     agenda: %s
-     journal: %s
-     archive: %s" agenda-files journal-files archive-files)))
-   #+end_src
-
-   #+RESULTS:
-   : pgpb-org-main
-
-   
-*** Example call: Configure Org mode
-    :PROPERTIES:
-    :ID:       93425A2C-AB14-417D-AC1D-9733C155DD31
-    :END:
-
-    #+begin_src elisp :tangle no :results output
-      (pgpb-org-main (list "key1" "key2")
-                     (list "/path/to/agenda/files"
-                           "/path/to/journal/files"
-                           "/path/to/archive/files"))
-    #+end_src
-
-    #+RESULTS:
-    : "
-    : \"gpg-keys: (key1 key2); org-dirs: (/path/to/agenda/files /path/to/journal/files /path/to/archive/files)\"
-    : "
-     
-
-
 
 ** Announce package
 
