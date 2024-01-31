@@ -3,6 +3,7 @@
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
 (require 'pgpb-packages)
+
 (require 'pgpb-helpers)
 
 (pgpb-install-packages)
@@ -38,9 +39,6 @@
 
 ;;; Org Mode
 (require 'pgpb-org)
-(pgpb-org-main pgpb-gpg-keys
-               pgpb-org-dirs)
-
 
 (require 'pgpb-docker)
 

@@ -82,9 +82,6 @@
 
      ;;; Org Mode
      (require 'pgpb-org)
-     (pgpb-org-main pgpb-gpg-keys
-                    pgpb-org-dirs)
-
 
      (require 'pgpb-docker)
 
