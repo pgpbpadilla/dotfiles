@@ -2,4 +2,4 @@
 # name: Timestamp regex: ^mm:ss$
 # key: .ts.ms
 # --
-^[[:digit:]][[:digit:]]:[[:digit:]][[:digit:]]$
+^[[:digit:]]\{1,2\}:[[:digit:]][[:digit:]]$
