@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Timestamp regex: ^mm:ss$
+# key: .ts.ms
+# --
+^[[:digit:]]\{1,2\}:[[:digit:]][[:digit:]]$
