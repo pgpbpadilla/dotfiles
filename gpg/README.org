@@ -1,105 +1,111 @@
 #+PROPERTY: header-args:bash :results verbatim
 
-* GPG
+* GnuPG: [[https://www.gnupg.org/][site]]
 
-** Installation
+** Install private GPG keys
 
-   GPG keys are in my 1Password account.
-
-   Download and install them with GPG
+   1. Download keys from password manager
+   2. Use GPG import:
 
    #+begin_example bash
-   gpg --import --help
+   gpg --import path/to/private/key.gpg
    #+end_example
 
 
-*** Linux
+** Enable pinentry in Emacs minibuffer: [[https://emacs.stackexchange.com/a/68304/11978][stackoverflow]]
+   :PROPERTIES:
+   :CUSTOM_ID: macos-gpg-config
+   :END:
 
-    #+begin_src bash
-    echo "Intalling config for Linux ..."
-    ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
-    #+end_src
+   I want to provide GnuPG passphrases directly in the Emacs
+   minibuffer, so we need to tell GnuPG which program to use to ask
+   for them.
+   
 
+*** Backup your current GPG config
 
-
-*** MacOS
-    :PROPERTIES:
-    :CUSTOM_ID: macos-gpg-config
-    :END:
-
-**** Review current GPG Agent config
-
-     <<review-current>>
+    Ensure you're not overwriting useful changes:
     
-     #+begin_src bash
-       tree ~/.gnupg | grep ".conf"
-     #+end_src
+    #+begin_src bash :dir ~/.gnupg
+      tree . | egrep ".conf$"
+    #+end_src
    
-       #+RESULTS:
-       : ├── gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
-       : ├── gpg-agent.conf~
-       : ├── gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
+    #+RESULTS:
+    : ├── gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
+    : ├── gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
 
-     and ensure you're not overwriting useful changes:
+    
+*** Generate [[https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html][gpg-agent.conf]] for your processor architecture
 
-     #+begin_src bash
-       cat ~/.gnupg/*.conf
-     #+end_src
+    Generate a config file for our system:
+    
+    #+begin_src bash :dir macos :results output file
+      cat <<EOF > gpg-agent.conf
+      allow-emacs-pinentry
+      pinentry-program $(brew --prefix)/bin/pinentry-mac
+      EOF
 
-       #+RESULTS:
-       : # https://emacs.stackexchange.com/a/68304/11978
-       : allow-emacs-pinentry
-       : pinentry-program /usr/local/bin/pinentry-mac
-       : #ignore-invalid-option personal-aead-preferences
-       : personal-aead-preferences none
-   
-
-**** Install: Not Apple Sillicon
-   
-     #+begin_src bash
-       echo "Intalling config for MacOS ..."
-       ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
-     #+end_src
-
-     #+RESULTS:
-     : Intalling config for MacOS ...
-     : /Users/pgpb.padilla/.gnupg/gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
-     : /Users/pgpb.padilla/.gnupg/gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
-
-
-**** Install: Apple Sillicon:
-
-       #+begin_src bash
-         echo "Intalling config for MacOS with Apple Sillicon ..."
-         ln -svf $(pwd)/macos/apple-sillicon/*.conf ${HOME}/.gnupg
-       #+end_src
-   
-       #+RESULTS:
-       : Intalling config for MacOS ...
-       : /Users/pablo.padillabeltran/.gnupg//gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
-   
-
-**** Verify
-
-     Only config compatible with this OS are installed, see:
-     [[review-current]].
-
-   
-
-*** WSL2
-
-    *WARN*: The current configuration is only valid for Ubuntu under
-    WSL2. 
-
-    Solution found: https://unix.stackexchange.com/a/655819/55912
-
-    #+begin_src bash :results verbatim
-      echo "Installing config for Linux!! ..."
-      ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg/
+      echo gpg-agent.conf | tr -d "\n"
     #+end_src
 
     #+RESULTS:
-    : Installing config for Linux!! ...
-    : /Users/pablo.padillabeltran/.gnupg//gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/linux/gpg-agent.conf
-    : /Users/pablo.padillabeltran/.gnupg//gpg.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/linux/gpg.conf
+    [[file:macos/gpg-agent.conf]]
 
+    
+**** WARN: Homebrew install path depends on system architecture
+
+     The Homebrew install path changes for different processor
+     architectures. To get the correct path use:
+
+     #+begin_src bash
+       brew --prefix
+     #+end_src
+
+     #+RESULTS:
+     : /usr/local
+     
+
+
+*** Install all GnuPG config files
+
+**** MacOS
+     
+     #+begin_src bash
+       ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
+     #+end_src
+   
+      #+RESULTS:
+      : /Users/pgpb.padilla/.gnupg/gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg-agent.conf
+      : /Users/pgpb.padilla/.gnupg/gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
+   
+
+**** Linux
+
+     #+begin_src bash
+     echo "Intalling config for Linux ..."
+     ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
+     #+end_src
+
+
+**** Linux: via WSL2: [[https://unix.stackexchange.com/a/655819/55912][stackexchange]]
+
+     *WARN*: The current configuration is only valid for Ubuntu under
+     WSL2. 
+
+     #+begin_src bash :results verbatim
+       ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg/
+     #+end_src
+
+
+*** Verify pinentry prompts in minibuffer
+
+    1. restart Emacs
+    2. create/open a new encrypted Org file
+    3. make some changes
+    4. when saving, Emacs should prompt you for the GPG passphrase in
+       the minibuffer
+    
+
+   
+
+    
