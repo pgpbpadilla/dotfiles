@@ -1,4 +1,5 @@
-#+PROPERTY: header-args :results verbatim :tangle pgpb-org-helpers.el :session org-helpers :cache no
+#+PROPERTY: header-args:elisp :results verbatim :tangle pgpb-org-helpers.el :session org-helpers :cache no
+#+property: header-args:bash :session bash :tangle no :results verbatim
 
 * pgpb-org-helpers.el
 
@@ -15,14 +16,6 @@
 ** All helpers
 
    #+begin_src elisp
-     (defun pgpb-org-encrypt ()
-       ;; Encryption for Org-files
-       (require 'epa-file)
-       (epa-file-enable)
-       (require 'epg)
-       (setq epg-gpg-program "gpg"
-             epg-pinentry-mode 'loopback))
-
      (defun pgpb-org-custom-vars ()
        ;; Adapt indentation to heading level
        ;; https://orgmode.org/manual/Org-Indent-Mode.html
@@ -235,6 +228,34 @@
        ;; Auto-insert new lines for long lines
        (add-hook 'org-mode-hook 'turn-on-auto-fill))
    #+end_src
+
+
+** Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][org:tutorial]]
+
+   My [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] config expects =gpg= binary to be installed and also be
+   in the system =PATH=.
+
+   #+begin_src elisp
+     (defun pgpb-org-easypg ()
+       (require 'epa-file)
+       (epa-file-enable)
+       (require 'epg)
+       (setq epg-gpg-program "gpg"
+             epg-pinentry-mode 'loopback))
+   #+end_src
+
+
+   If something does not work, check if the GnuPG binary is available
+   in the system's path:
+
+   #+begin_src bash 
+   type -P gpg
+   #+end_src
+
+   #+RESULTS:
+   : /usr/local/bin/gpg
+
+   
 
 ** Announce package
 

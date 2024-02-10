@@ -2,14 +2,6 @@
 ;; Instead edit the Org file and regenerate this
 ;; elisp script using: org-babel-tangle (C-c C-v t)
 
-(defun pgpb-org-encrypt ()
-  ;; Encryption for Org-files
-  (require 'epa-file)
-  (epa-file-enable)
-  (require 'epg)
-  (setq epg-gpg-program "gpg"
-        epg-pinentry-mode 'loopback))
-
 (defun pgpb-org-custom-vars ()
   ;; Adapt indentation to heading level
   ;; https://orgmode.org/manual/Org-Indent-Mode.html
@@ -221,5 +213,12 @@
 (defun pgpb-autofill ()
   ;; Auto-insert new lines for long lines
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
+
+(defun pgpb-org-easypg ()
+  (require 'epa-file)
+  (epa-file-enable)
+  (require 'epg)
+  (setq epg-gpg-program "gpg"
+        epg-pinentry-mode 'loopback))
 
 (provide 'pgpb-org-helpers)

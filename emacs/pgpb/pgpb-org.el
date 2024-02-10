@@ -9,7 +9,7 @@
 (require 'pgpb-org-zsa)
 
 (pgpb-org-install-packages)
-(pgpb-org-encrypt)
+(pgpb-org-easypg)
 (pgpb-org-custom-vars)
 (pgpb-org-mobile)
 (pgpb-org-states)
