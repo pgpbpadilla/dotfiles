@@ -2,13 +2,67 @@
 
 * Emacs configuration
 
+  Given that Emacs is already installed, then you can proceed to apply
+  the customisations described in this section.
+  
+
 ** System requirements
 
-   Most Emacs packages are installed during the initial load of the
-   init file. However, there are dependencies to system binaries:
+   All Emacs packages are installed during the initial load of the
+   init file.
+
+   However, there are a few steps required to ensure that Emacs works
+   as expected.
+   
+
+*** Encrypting Org files with GnuPG - [[https://gnupg.org/][gnupg.org]]
+
+    Required to [en|de]crypt Org files as described in
+    [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][Org tutorial: Encrypting files]].
+
+    
+**** Install GnuPG
 
 
+***** MacOS: Install with [[file:~/dotfiles/homebrew/README.org][Brewfile]]
+
+      For MacOS, GnuPG can be installed using [[id:8BD78C5A-802B-4E9E-8484-D2E5E259574B][Homebrew]]:
+     
+      #+begin_src bash
+        ack gnupg ../homebrew
+      #+end_src
+
+      #+RESULTS:
+      : ../homebrew/Brewfile.core:14:brew "gnupg@2.2.41"
+
+     
+***** Debian: Install via system package manager
+
+      For debian there's nothing special, simply use the system's
+      package manager.
+
+      I found something akin to Homebrew bundle for Debian: [[https://packages.debian.org/en/sid/apt-clone][apt-clone]],
+      check it out next time you're working on a Debian system.
+
+
+**** Configure GnuPG
+     
+     *WARN*: Additional configuration needs to be installed, see:
+     [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
+
+      
 *** Initialize git submodules
+
+    My customisations make use of some git submodules:
+
+    #+begin_src bash
+      git submodule
+    #+end_src
+
+    #+RESULTS:
+    :  40cc1ac76d741055cbefa13860d9f070a7ade001 org-yt (40cc1ac)
+
+    You should initialise so that everything works fine:
 
     #+begin_src bash 
       git submodule update --init
@@ -17,79 +71,44 @@
     #+RESULTS:
 
     
-*** GnuPG: Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
+** Install Emacs customisations
 
-    The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpg= binary to be installed
-    and also be in the system =PATH=.
+   You can download this repository anywhere in your computer, so long
+   as you tell Emacs to use the correct user directory. The correct
+   directory is the one containing the file you are currently reading.
 
-    This is because the Emacs configuration explicitly uses the =gpg=
-    binary instead of its absolute path:
-    
-    #+begin_src bash
-      ack -C 1 gpg-program *.el
-    #+end_src
+   Current working directory:
 
-    #+RESULTS:
-    : pgpb-org.el-8-(require 'epg)
-    : pgpb-org.el:9:(setq epg-gpg-program "gpg"
-    : pgpb-org.el-10-      epg-pinentry-mode 'loopback)
+   #+begin_src elisp
+     default-directory
+   #+end_src
+
+   #+RESULTS:
+   : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/
 
 
-**** Installing GnuPG - [[https://gnupg.org/][gnupg.org]]
-     
-***** MacOS - [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]
-     
-      =gpg= can be installed via [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]:
+   Emacs User directory:
+   
+   #+begin_src elisp
+     user-emacs-directory
+   #+end_src
 
-      #+begin_src bash
-        grep gnupg ../homebrew/Brewfile.core
+   #+RESULTS:
+   : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/
+
+
+** Related links
+
+   1. You can read more about the Emacs user directory using the help
+      function: =C-h v emacs-user-directory=:
+      
+      #+begin_src elisp :results output
+        (describe-variable 'user-emacs-directory)
       #+end_src
 
       #+RESULTS:
-      : brew "gnupg@2.2"
-
-      *WARN*: Additional configuration needs to be installed, see:
-      [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
-
       
-***** Debian
-
-      checkout [[https://packages.debian.org/en/sid/apt-clone][apt-clone]]
-
-
-
-** Installation
-
-*** Backup config
-    :LOGBOOK:
-    CLOCK: [2024-01-31 Mi 20:56]--[2024-01-31 Mi 21:21] =>  0:25
-    :END:
-
-    Review current init scripts and backup any important information. 
-
-    Are those files symlinks?
-    
-    #+begin_src bash :dir ~/
-      tree -a -L 1 . | grep emacs
-    #+end_src
-
-    #+RESULTS:
-    : ├── .emacs.d
-    : ├── .emacs.keyfreq
-
-
-    Related:
-
-    1. Location of the Emacs init files.
-       It might differ, depending on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
+   2. Location of the Emacs init files.
+      It might differ, depending on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
   
   
-*** Install emacs directory
-
-    #+begin_src bash :dir ~/
-      rm -rf ~/.emacs.d
-      ln -sfv  ~/dotfiles/emacs/ ~/.emacs.d
-    #+end_src
-
-    #+RESULTS:
-    : /Users/pgpb.padilla/.emacs.d -> /Users/pgpb.padilla/dotfiles/emacs/

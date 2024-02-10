@@ -6,7 +6,7 @@
   "GPG recipient to use for encrypting Org files.")
 
 (defvar pgpb-agenda-dir "~/org/31e520d4df"
-  "Directory for files that will be used to build the Org agenda.")
+  "Directory for files that are used to build the Org agenda.")
 (defvar pgpb-journal-dir "~/org/0f6de25076"
   "Directory for my Journal files. Not used to build the agenda.")
 (defvar pgpb-archive-dir "~/org/2204c36fc7"
