@@ -1,31 +1,51 @@
 #+PROPERTY: header-args:bash :results verbatim
 
-* Dotfiles
+* dotfiles
 
-  User configuration files for various programs.
+  Configuration files for my personal setup.
   
 
-** Configure a computer from scratch
+** System requirements
+   
+*** MacOS - [[file:homebrew/README.org][file:homebrew/README.org]]
 
-*** Core applications
-**** MacOS - [[file:homebrew/README.org][file:homebrew/README.org]]
-**** Debian - [[id:4990c70f-908a-4f33-adcd-c8c815aacf73][Debian from scratch]]
-*** Emacs - [[file:emacs/README.org]]
-*** Bash customizations - [[file:bash/README.org][file:bash/README.org]]
+    I work mostly on a MacOS system, so this is the system with the
+    most customisations.
+    
+*** Debian - [[id:4990c70f-908a-4f33-adcd-c8c815aacf73][Debian from scratch]]
+
+    I used to work a lot in Debian but not I find it hard to justify
+    maintaining two systems, so this is here mostly for those cases
+    where I need to setup a Debian/Linux system in case my main system
+    is not usable.
+
+    
+** Configure Emacs [[file:emacs/README.org]]
+
+   Emacs is my main editor, so a fundamental part of the setup.
+   
+
+** Configure Bash: [[file:bash/README.org][file:bash/README.org]]
+
+   I use Bash as my default shell.
 
 
 ** Program-specific instructions
+
+   I have collected various configuration files for different
+   programs, however, they are not as fundamental as the ones
+   highlighted above:
    
    #+begin_src bash :exports results :results output table
      for d in $(find . -not -name ".*" -type d -maxdepth 1 | sort);
      do
-         readme="${d}/README.org"
-         if [ ! -f ${readme} ]; then
-            echo "${readme} [MISSING]"
+         README="${d}/README.org"
+         if [ ! -f ${README} ]; then
+            echo "${README} [MISSING]"
             continue
          fi
 
-        echo "[[${readme}][${readme}]]"
+        echo "[[${README}][${README}]]"
      done
    #+end_src
 
