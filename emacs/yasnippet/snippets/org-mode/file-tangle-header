@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: File-level: org-tangle headers
+# key: .tangle.h
+# --
+#+PROPERTY: header-args :results verbatim :tangle $1 :session $2 :cache no

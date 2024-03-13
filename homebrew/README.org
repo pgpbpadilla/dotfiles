@@ -2,6 +2,9 @@
 #+property: header-args :results verbatim
 
 * Brewfile - [[https://github.com/Homebrew/homebrew-bundle][homebrew-bundle]]
+  :PROPERTIES:
+  :ID:       8BD78C5A-802B-4E9E-8484-D2E5E259574B
+  :END:
   
 ** Core packages - [[https://brew.sh/][brew.sh]]
    :PROPERTIES:

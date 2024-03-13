@@ -1,133 +1,114 @@
 #+PROPERTY: header-args:bash :results verbatim
 
 * Emacs configuration
+
+  Given that Emacs is already installed, then you can proceed to apply
+  the customisations described in this section.
+  
+
 ** System requirements
 
-   Most Emacs packages are installed during the initial load of the
-   init file. However, there are dependencies to system binaries:
+   All Emacs packages are installed during the initial load of the
+   init file.
 
-*** [[id:CCAB00C9-127E-42C6-807D-C997D29F5F2E][Yas Snippets]]
+   However, there are a few steps required to ensure that Emacs works
+   as expected.
+   
 
-    My config files: [[file:yasnippet/][yasnipet]]
+*** Encrypting Org files with GnuPG - [[https://gnupg.org/][gnupg.org]]
+
+    Required to [en|de]crypt Org files as described in
+    [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][Org tutorial: Encrypting files]].
+
     
+**** Install GnuPG
 
-*** Encrypting Org files - [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][orgmode.org]]
 
-    The [[https://www.emacswiki.org/emacs/EasyPG][EasyPG]] Emacs package requires the =gpb= binary to be installed
-    and also be in the system =PATH=.
+***** MacOS: Install with [[file:~/dotfiles/homebrew/README.org][Brewfile]]
 
-    This is because the Emacs configuration explicitly uses the =gpg=
-    binary instead of its absolute path:
-    
+      For MacOS, GnuPG can be installed using [[id:8BD78C5A-802B-4E9E-8484-D2E5E259574B][Homebrew]]:
+     
+      #+begin_src bash
+        ack gnupg ../homebrew
+      #+end_src
+
+      #+RESULTS:
+      : ../homebrew/Brewfile.core:14:brew "gnupg@2.2.41"
+
+     
+***** Debian: Install via system package manager
+
+      For debian there's nothing special, simply use the system's
+      package manager.
+
+      I found something akin to Homebrew bundle for Debian: [[https://packages.debian.org/en/sid/apt-clone][apt-clone]],
+      check it out next time you're working on a Debian system.
+
+
+**** Configure GnuPG
+     
+     *WARN*: Additional configuration needs to be installed, see:
+     [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
+
+      
+*** Initialize git submodules
+
+    My customisations make use of some git submodules:
+
     #+begin_src bash
-      grep -C 1 gpg-program *.el
+      git submodule
     #+end_src
 
     #+RESULTS:
-    : init.el-(require 'epg)
-    : init.el:(setq epg-gpg-program "gpg"
-    : init.el-      epg-pinentry-mode 'loopback)
+    :  40cc1ac76d741055cbefa13860d9f070a7ade001 org-yt (40cc1ac)
+
+    You should initialise so that everything works fine:
+
+    #+begin_src bash 
+      git submodule update --init
+    #+end_src
+
+    #+RESULTS:
+
+    
+** Install Emacs customisations
+
+   You can download this repository anywhere in your computer, so long
+   as you tell Emacs to use the correct user directory. The correct
+   directory is the one containing the file you are currently reading.
+
+   Current working directory:
+
+   #+begin_src elisp
+     default-directory
+   #+end_src
+
+   #+RESULTS:
+   : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/
 
 
-**** Installing GnuPG - [[https://gnupg.org/][gnupg.org]]
-     
-***** MacOS - [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]
-     
-      =gpg= can be installed via [[file:~/dotfiles/homebrew/README.org::#brewfile-core][Homebrew (core)]]:
+   Emacs User directory:
+   
+   #+begin_src elisp
+     user-emacs-directory
+   #+end_src
 
-      #+begin_src bash
-        grep gnupg ../homebrew/Brewfile.core
-      #+end_src
+   #+RESULTS:
+   : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/
 
-      #+RESULTS:
-      : brew "gnupg@2.2"
 
-      *WARN*: Additional configuration needs to be installed, see:
-      [[file:~/dotfiles/gpg/README.org::#macos-gpg-config][file:~/dotfiles/gpg/README.org::#macos-gpg-config]]
+** Related links
 
+   1. You can read more about the Emacs user directory using the help
+      function: =C-h v emacs-user-directory=:
       
-***** Debian
-
-      checkout [[https://packages.debian.org/en/sid/apt-clone][apt-clone]]
-
-** Installation
-
-   1. Load my personal [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html][custom-file]]:
-
-      #+begin_src bash :var file="emacs-custom.el"
-        ls ~/.config/${file}
-        ack -B 2 -A 2 "emacs-custom" ./init.el
+      #+begin_src elisp :results output
+        (describe-variable 'user-emacs-directory)
       #+end_src
 
       #+RESULTS:
-      : /Users/pgpb.padilla/.config/emacs-custom.el
-      : ;; Set location for customizations file
-      : ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-      : (setq custom-file "~/.config/emacs-custom.el")
-      : ;; Purposely ignore all variables written to the =custom-file=
-      : ;; (load custom-file)
-
-   2. Ignore the default =custom-file= (commented out):
       
-      #+begin_src bash
-        ack -B 2  "load custom-file" ./init.el
-      #+end_src
-
-      #+RESULTS:
-      : (setq custom-file "~/.config/emacs-custom.el")
-      : ;; Purposely ignore all variables written to the =custom-file=
-      : ;; (load custom-file)
-
-      This is because I want my settings to always be loaded from my
-      =~/dotfiles= repo. 
-
-   3. Review current Emacs [[file:~/.emacs.d/init.el][~/.emacs.d/init.el]] file, and backup any
-      configs that you want to keep:
-
-      #+begin_src bash
-        tree -L 1 ~/.emacs.d | grep init.el
-      #+end_src
-
-      #+RESULTS:
-      : ├── init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
-      : ├── init.el~
-
-      - *GOTCHA*: The location of the Emacs init might differ, depending
-      	on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
-      	
-      	The following snippet should help you find it:
-      	
-      	#+begin_src bash
-      	  tree -a -L 1 ${HOME} | grep emacs
-      	#+end_src
-      	
-      	#+RESULTS:
-        : ├── .emacs.d
-        : ├── .emacs.keyfreq
-
-   4. Install [[file:bootstrap.el]]
-
-      *WARN*: /this will overwrite (=-f=) the target file if it exists/
-
-      #+begin_src bash
-        echo "Init file before installation:"
-        ls ~/.emacs.d/init.el
-        echo "The new init file:"
-        ln -svf $(pwd)/bootstrap.el ${HOME}/.emacs.d/init.el
-      #+end_src
-
-      #+RESULTS:
-      : Init file before installation:
-      : /Users/pgpb.padilla/.emacs.d/init.el
-      : The new init file:
-      : /Users/pgpb.padilla/.emacs.d/init.el -> /Users/pgpb.padilla/dotfiles/emacs/bootstrap.el
-
-      The bootstrap script loads the my init file:
-
-      #+begin_src bash
-        ack load ./bootstrap.el
-      #+end_src
-
-      #+RESULTS:
-      : ;; set directory to use for loading agenda files
-      : (load "~/dotfiles/emacs/init.el")
+   2. Location of the Emacs init files.
+      It might differ, depending on the base system. See: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Init.html][Find Init]].
+  
+  

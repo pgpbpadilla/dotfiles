@@ -1,4 +1,4 @@
 (use-package dockerfile-mode
   :ensure t)
 
-(provide 'init-docker)
+(provide 'pgpb-docker)
