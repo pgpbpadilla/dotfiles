@@ -47,4 +47,8 @@
 ;;; Use-package
 (eval-when-compile (require 'use-package))
 
+
+(use-package gnuplot-mode
+  :ensure t)
+
 (provide 'pgpb-packages)
