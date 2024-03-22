@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+### WARN: THIS FILE IS AUTO-GENERATED FROM AN Org FILE VIA org-babel-tangle
+### DO NOT MODIFY BY HAND
+
 CONF_DIR="$(pwd)/macos/$(uname -m)"
 if ! mkdir -p $CONF_DIR;
 then

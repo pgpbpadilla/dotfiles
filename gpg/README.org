@@ -40,6 +40,11 @@
     :header-args:bash: :session macos-install :shebang #!/usr/bin/env bash :tangle macos/gnupg.sh :results verbatim
     :END:
 
+    #+begin_src bash
+      ### WARN: THIS FILE IS AUTO-GENERATED FROM AN Org FILE VIA org-babel-tangle
+      ### DO NOT MODIFY BY HAND
+    #+end_src
+    
 **** Tangle and Run
 
      1. Tangle: =C-c C-v t= or:
@@ -89,7 +94,7 @@
 
      #+begin_src bash
        CONF_DIR="$(pwd)/macos/$(uname -m)"
-       if ! mkdir -pv $CONF_DIR;
+       if ! mkdir -p $CONF_DIR;
        then
            echo "Failed to create $CONF_DIR"
            exit -1
