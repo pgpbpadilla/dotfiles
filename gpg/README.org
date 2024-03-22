@@ -2,6 +2,7 @@
 
 * GnuPG: [[https://www.gnupg.org/][site]]
 
+
 ** Install private GPG keys
 
    1. Download keys from password manager
@@ -13,130 +14,171 @@
 
 
 ** Enable pinentry in Emacs minibuffer: [[https://emacs.stackexchange.com/a/68304/11978][stackoverflow]]
-   :PROPERTIES:
-   :CUSTOM_ID: macos-gpg-config
-   :END:
+
 
    I want to provide GnuPG passphrases directly in the Emacs
    minibuffer, so we need to tell GnuPG which program to use to ask
    for them.
-   
 
+   
 *** Backup your current GPG config
 
     Ensure you're not overwriting useful changes:
     
-    #+begin_src bash :dir ~/.gnupg
+    #+begin_src bash :dir ~/.gnupg :tangle no
       tree . | egrep ".conf$"
     #+end_src
    
     #+RESULTS:
-    : ├── gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf
-    : ├── gpg.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg.conf
+    : ├── gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64/gpg-agent.conf
+    : ├── gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
+   
 
-    
-*** Generate [[https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html][gpg-agent.conf]] for your processor architecture
+*** Installing on macOS
+    :PROPERTIES:
+    :CUSTOM_ID: macos-gpg-config
+    :header-args:bash: :session macos-install :shebang #!/usr/bin/env bash :tangle macos/gnupg.sh :results verbatim
+    :END:
 
-    Generate a config file for our system:
-    
-    #+begin_src bash :dir macos :results output file
-      GPG_AGENT_CONF="$(pwd)/gpg-agent.conf.$(uname -m)"
+**** Tangle and Run
+
+     1. Tangle: =C-c C-v t= or:
+        
+        #+begin_src elisp :results verbatim :tangle no
+          (org-babel-tangle)
+        #+end_src
+
+        #+RESULTS:
+        : ("macos/gnupg.sh")
+   
+     2. Run:
+        
+        #+begin_src bash :session run-macos :tangle no
+          ./macos/gnupg.sh
+        #+end_src
       
-      cat <<EOF > $GPG_AGENT_CONF
-      allow-emacs-pinentry
-      pinentry-program $(brew --prefix)/bin/pinentry-mac
-      EOF
+        #+RESULTS:
+        #+begin_example
+        Location for configuration: /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64
+        Created config file /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64/gpg-agent.conf
+        /Users/pgpb.padilla/.gnupg/gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
+        /Users/pgpb.padilla/.gnupg/gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64/gpg-agent.conf
+        Reloading gpg-agent ...
+        gpg:OpenPGP:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpg
+        gpgsm:S/MIME:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpgsm
+        gpg-agent:Geheime Schlüssel:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpg-agent
+        scdaemon:Smartcard:/usr/local/Cellar/gnupg@2.2.41/2.2.41/libexec/scdaemon
+        dirmngr:Netz:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/dirmngr
+        pinentry:Passwort Eingabe:/usr/local/opt/pinentry/bin/pinentry
+        #+end_example
+   
 
-      echo $GPG_AGENT_CONF | tr -d "\n"
-    #+end_src
+**** Generate [[https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html][gpg-agent.conf]] for your processor architecture
 
-    #+RESULTS:
-    [[file:macos/gpg-agent.conf.arm64]]
+     The system architecture can be found out with:
 
-    
-**** INFO WARN: Homebrew install path depends on system architecture: [[https://docs.brew.sh/Installation][doc]]
-
-     #+begin_quote
-     The script installs Homebrew to its default, supported, best
-     prefix (*/opt/homebrew* for Apple Silicon, */usr/local* for macOS
-     Intel and /home/linuxbrew/.linuxbrew for Linux) so that you don’t
-     need sudo after Homebrew’s initial installation when you brew
-     install. 
-     #+end_quote
-
-     The Homebrew install path changes for different processor
-     architectures. To get the correct path use:
-
-     #+begin_src bash
-       brew --prefix
+     #+begin_src bash :tangle no
+       uname -m
      #+end_src
 
      #+RESULTS:
-     : /opt/homebrew
+     : x86_64
+
+     The resulting file will be located under the folder for the
+     corresponding architecture:
+
+     #+begin_src bash
+       CONF_DIR="$(pwd)/macos/$(uname -m)"
+       if ! mkdir -pv $CONF_DIR;
+       then
+           echo "Failed to create $CONF_DIR"
+           exit -1
+       fi
+       echo "Location for configuration: $CONF_DIR"
+     #+end_src
+
+     
+     #+RESULTS:
+     : Location for configuration: /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64
+
+
+     To generate the file we use the following template:
+     
+     #+begin_src bash :results verbatim
+       GPG_AGENT_CONF=$CONF_DIR/gpg-agent.conf
+
+       cat <<EOF > $GPG_AGENT_CONF
+       allow-emacs-pinentry
+       pinentry-program $(brew --prefix)/bin/pinentry-mac
+       EOF
+
+       echo "Created config file $GPG_AGENT_CONF"
+     #+end_src
+
+     #+RESULTS:
+     : Created config file /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64/gpg-agent.conf
+
+    
+***** INFO WARN: Homebrew install path depends on system architecture: [[https://docs.brew.sh/Installation][doc]]
+
+      #+begin_quote
+      The script installs Homebrew to its default, supported, best
+      prefix (*/opt/homebrew* for Apple Silicon, */usr/local* for macOS
+      Intel and /home/linuxbrew/.linuxbrew for Linux) so that you don’t
+      need sudo after Homebrew’s initial installation when you brew
+      install. 
+      #+end_quote
+
+      The Homebrew install path changes for different processor
+      architectures. To get the correct path use:
+
+      #+begin_src bash :tangle no
+        brew --prefix
+      #+end_src
+
+      #+RESULTS:
+      : /opt/homebrew
      
 
 
-*** Install all GnuPG config files
+**** Install architecture-agnostic config
 
-**** MacOS
+     #+begin_src bash
+       ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
+     #+end_src
 
-     1. install architecture-agnostic config:
-        #+begin_src bash
-          ln -svf $(pwd)/macos/*.conf ${HOME}/.gnupg
-        #+end_src
+     #+RESULTS:
+     : /Users/pgpb.padilla/.gnupg/gpg.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/gpg.conf
 
-        #+RESULTS:
-        : /Users/pablo.padillabeltran/.gnupg/gpg.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg.conf
+     
+**** Install architecture-specific config:
 
-     2. install architecture-specific config:
-        #+begin_src bash
-          ARCH=$(uname -m)
-          CONFIG_FILES=$(find $(pwd)/macos -name "*.conf.$ARCH")
-          for file in $CONFIG_FILES;
-          do
-              LINK_NAME=$(basename $file ".$ARCH")
-              ln -svf $file ${HOME}/.gnupg/$LINK_NAME
-          done
-        #+end_src
+     #+begin_src bash
+       ln -svf $(pwd)/macos/$(uname -m)/*.conf ${HOME}/.gnupg
+     #+end_src
 
-        #+RESULTS:
-        : /Users/pablo.padillabeltran/.gnupg/gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf.arm64
+     #+RESULTS:
+     : /Users/pgpb.padilla/.gnupg/gpg-agent.conf -> /Users/pgpb.padilla/dotfiles/gpg/macos/x86_64/gpg-agent.conf
 
-     3. reload gpg-agent
-        #+begin_src bash
-          gpgconf --kill gpg-agent
-          gpgconf --list-components
-        #+end_src
 
-        #+RESULTS:
-        : gpg:OpenPGP:/opt/homebrew/Cellar/gnupg@2.2.41/2.2.41/bin/gpg
-        : gpgsm:S/MIME:/opt/homebrew/Cellar/gnupg@2.2.41/2.2.41/bin/gpgsm
-        : gpg-agent:Geheime Schlüssel:/opt/homebrew/Cellar/gnupg@2.2.41/2.2.41/bin/gpg-agent
-        : scdaemon:Smartcard:/opt/homebrew/Cellar/gnupg@2.2.41/2.2.41/libexec/scdaemon
-        : dirmngr:Netz:/opt/homebrew/Cellar/gnupg@2.2.41/2.2.41/bin/dirmngr
-        : pinentry:Passwort Eingabe:/opt/homebrew/opt/pinentry/bin/pinentry
+**** Reload gpg-agent
+     
+    #+begin_src bash
+      echo "Reloading gpg-agent ..."
+      gpgconf --kill gpg-agent
+      gpgconf --list-components
+    #+end_src
+
+    #+RESULTS:
+    : gpg:OpenPGP:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpg
+    : gpgsm:S/MIME:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpgsm
+    : gpg-agent:Geheime Schlüssel:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/gpg-agent
+    : scdaemon:Smartcard:/usr/local/Cellar/gnupg@2.2.41/2.2.41/libexec/scdaemon
+    : dirmngr:Netz:/usr/local/Cellar/gnupg@2.2.41/2.2.41/bin/dirmngr
+    : pinentry:Passwort Eingabe:/usr/local/opt/pinentry/bin/pinentry
         
       
    
-
-**** Linux
-
-     #+begin_src bash
-     echo "Intalling config for Linux ..."
-     ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
-     #+end_src
-
-
-**** Linux: via WSL2: [[https://unix.stackexchange.com/a/655819/55912][stackexchange]]
-
-     *WARN*: The current configuration is only valid for Ubuntu under
-     WSL2. 
-
-     #+begin_src bash :results verbatim
-       ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg/
-     #+end_src
-
-
 *** Verify pinentry prompts in minibuffer
 
     1. restart Emacs
@@ -149,3 +191,28 @@
    
 
     
+
+** Linux
+   :PROPERTIES:
+   :header-args:bash: :tangle no
+   :END:
+
+   #+begin_src bash
+   echo "Intalling config for Linux ..."
+   ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg
+   #+end_src
+
+
+** Linux: via WSL2: [[https://unix.stackexchange.com/a/655819/55912][stackexchange]]
+   :PROPERTIES:
+   :header-args:bash: :tangle no
+   :END:
+
+   *WARN*: The current configuration is only valid for Ubuntu under
+   WSL2. 
+
+   #+begin_src bash :results verbatim
+     ln -svf $(pwd)/linux/*.conf ${HOME}/.gnupg/
+   #+end_src
+
+   
