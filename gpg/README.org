@@ -40,10 +40,8 @@
     Generate a config file for our system:
     
     #+begin_src bash :dir macos :results output file
-      CONF_DIR="$(pwd)$(brew --prefix)"
-      mkdir -p $CONF_DIR
-
-      GPG_AGENT_CONF="$CONF_DIR/gpg-agent.conf"
+      GPG_AGENT_CONF="$(pwd)/gpg-agent.conf.$(uname -m)"
+      
       cat <<EOF > $GPG_AGENT_CONF
       allow-emacs-pinentry
       pinentry-program $(brew --prefix)/bin/pinentry-mac
@@ -53,7 +51,7 @@
     #+end_src
 
     #+RESULTS:
-    [[file:macos/opt/homebrew/gpg-agent.conf]]
+    [[file:macos/gpg-agent.conf.arm64]]
 
     
 **** INFO WARN: Homebrew install path depends on system architecture: [[https://docs.brew.sh/Installation][doc]]
@@ -92,11 +90,17 @@
 
      2. install architecture-specific config:
         #+begin_src bash
-          ln -svf $(pwd)/macos$(brew --prefix)/*.conf ${HOME}/.gnupg
+          ARCH=$(uname -m)
+          CONFIG_FILES=$(find $(pwd)/macos -name "*.conf.$ARCH")
+          for file in $CONFIG_FILES;
+          do
+              LINK_NAME=$(basename $file ".$ARCH")
+              ln -svf $file ${HOME}/.gnupg/$LINK_NAME
+          done
         #+end_src
 
         #+RESULTS:
-        : /Users/pablo.padillabeltran/.gnupg/gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/opt/homebrew/gpg-agent.conf
+        : /Users/pablo.padillabeltran/.gnupg/gpg-agent.conf -> /Users/pablo.padillabeltran/dotfiles/gpg/macos/gpg-agent.conf.arm64
 
      3. reload gpg-agent
         #+begin_src bash
