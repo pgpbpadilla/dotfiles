@@ -44,41 +44,41 @@
 
         ("p" "Public tasks (public)"
          ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
-	       )
+         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
+         )
 
         ("j" "All meetings"
-	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+termin" "-template")))
-	       )
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+termin" "-template")))
+         )
 
 
         ("F" . "Find/Search")
         ("Fj" "Journal search" search ""
-         ((org-agenda-files (my/org-journal-files))))
+         ((org-agenda-files (pgpb-journal-files))))
         ("Fa" "Archive search" search ""
-         ((org-agenda-files (my/org-archive-files))))
+         ((org-agenda-files (pgpb-archive-files))))
         ("Fe" "Search everywhere" search ""
-         ((org-agenda-text-search-extra-files (my/org-extra-files))))
-        
+         ((org-agenda-text-search-extra-files (pgpb-extra-files))))
+
 
         ;;; Project stuff
         ("P" . "Project tasks")
         ("Pm" "My tasks (public)"
          ((agenda ""))
          ;; Remove those for which I'm not responsible
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template" "-I" "-C")))
-	       )
+         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template" "-I" "-C")))
+         )
         ("Pp" "Private tasks"
          ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+private")))
-	       )
+         ((org-agenda-tag-filter-preset '("+private")))
+         )
         ("Pa" "All tasks"
          ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
-	       )
+         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
+         )
 
-        
+
         ;;; Goals stuff
         ;; See Org etry: =C-c h goals task action=
         ;; file:~/org/cdc3c97dd4.org.gpg::#goal-task-action
@@ -93,7 +93,7 @@
         ("Gg" "Goals" tags (concat "+goal-task-action" hidden))
         ("Gt" "Tasks" tags (concat "+task-action" hidden))
         ("Ga" "Actions" tags (concat "+action" hidden))
-        
+
         ;;; Goals without a Project can be called Dreams cause they'll
         ;; remain unaccomplished unless some work is done.
         ("Gd" "Dreams" tags "+dream")
@@ -114,33 +114,33 @@
         ("Rd" "Daily reminders"
          ((agenda ""))
          ((org-agenda-tag-filter-preset daily-tags))
-	       )
+         )
         ("Ra" "All Reminders"
-	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+reminder" "-template")))
-	       )
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+reminder" "-template")))
+         )
         ("Ro" "Other Reminders"
-	       ((agenda ""))
-	       ((org-agenda-tag-filter-preset '("+reminder" "-template" "-daily")))
-	       )
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("+reminder" "-template" "-daily")))
+         )
 
 
         ("O" . "Out of Office")
         ("Om" "Monthly view"
          ((agenda ""))
-	       ((org-agenda-span 'month)
+         ((org-agenda-span 'month)
           (org-agenda-tag-filter-preset '("+ooo")))
          )
         ("Oa" "All events" tags "+ooo/-INFO")
 
-        
+
         ("I" . "Improvements")
         ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
         ("Iw" "work in progress"
          ((agenda ""))
          ((org-agenda-tag-filter-preset '("+improve")))
          )        
-	      )
+        )
       )
 
 (provide 'pgpb-org-agenda-commands)
