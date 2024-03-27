@@ -61,19 +61,20 @@
       
 
 *** Journal files
-      files that I use to write entries that I will
-      eventually want to query, e.g., any note that is not a task but
-      that I might come back to but there's no action to take
 
-      - these files are not used to build the agenda
+    Files that I use to write entries that I will eventually want to
+    query, e.g., any note that is not a task but that I might come
+    back to but there's no action to take:
 
-      - it is possible to refile to these files
+    - these files are not used to build the agenda
+
+    - it is possible to refile to these files
 
 
-      #+begin_src elisp
-        (defun pgpb-journal-files ()
-          (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
-      #+end_src
+    #+begin_src elisp
+      (defun pgpb-journal-files ()
+        (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
+    #+end_src
       
 
 *** Archive files
