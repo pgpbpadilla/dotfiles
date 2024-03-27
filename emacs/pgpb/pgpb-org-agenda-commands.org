@@ -1,6 +1,19 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb-org-agenda-commands.el :session agenda-commands :cache no
 
-* pgpb-org-agenda-commands.el: [[file:pgpb-org-agenda-commands.el][file]]
+* TODO pgpb-org-agenda-commands.el: [[file:pgpb-org-agenda-commands.el][file]]
+  
+** TODO warn auto generated file
+
+** TODO describe global options/variables
+
+** TODO describe each section of the commands
+
+** TODO export package
+
+
+* TODO Original code
+
+  Split into the sections avobe and then delete this section
   
 #+begin_src elisp
   ;;; Custom Agenda commands
