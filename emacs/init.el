@@ -291,4 +291,6 @@
 
 (require 'weak-pinky)
 
+(require 'pgpb-extras)
+
 ;;; Init.el ends here
