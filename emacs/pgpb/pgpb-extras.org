@@ -1,0 +1,39 @@
+#+property: header-args :tangle pgpb-extras.el :eval no :results output
+#+auto_tangle: t
+
+* pgpb-extras.el
+
+  Temporary file to collect changes to my startup configuration in a
+  way that is simpler to integrate with the ongoing refactoring.
+
+  #+begin_comment
+  *HINT*: org-id-goto is faster than Org link:
+  
+  The following snippet using the =org-id-goto= function loads the
+  target location faster than using the Org link to the same Org ID.
+  
+  [[id:975CF590-B6CE-47C1-B13E-CDDE42A99FB0][Fix: Interactive create Org file [/]​]]
+  #+end_comment
+
+  Jump to heading: 
+  #+begin_src elisp :tangle no
+    (org-id-goto "975CF590-B6CE-47C1-B13E-CDDE42A99FB0")
+  #+end_src
+
+  #+RESULTS:
+
+  
+** Auto-tangle code blocks on file save
+
+   The following snippet makes sure that the package is installed and
+   that everytime the code blocks are automatically tangled when I
+   have the Org file.
+   
+   #+begin_src elisp
+     (use-package org-auto-tangle
+       :ensure t
+       :defer t
+       :hook (org-mode . org-auto-tangle-mode))
+
+     (provide 'pgpb-extras)
+   #+end_src

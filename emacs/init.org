@@ -1,7 +1,8 @@
 #+PROPERTY: header-args :results verbatim :tangle init.el :session init :cache no
+#+auto_tangle: t
 
 
-* init.el
+* init.el: [[file:init.el]]
 
   My init file.
 
@@ -31,6 +32,7 @@
    #+begin_src elisp
      (require 'pgpb)
      (require 'weak-pinky)
+     (require 'pgpb-extras)
    #+end_src
 
 
