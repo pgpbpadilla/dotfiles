@@ -5,8 +5,11 @@
  ns-command-modifier (quote meta)
  )
 
-;; hide toolbar
-(ns-toggle-toolbar)
+;;; hide toolbar
+;;; It seems that this call is not necessary when we setup
+;;; Focus mode as in:
+;;; (org-id-goto "45184FF6-2699-41FF-BD47-2665701D466A")
+;; (ns-toggle-toolbar)
 
 
 ;; Set transparency

@@ -63,6 +63,18 @@
    #+end_src
 
 
+** Focus mode
+   :PROPERTIES:
+   :ID:       45184FF6-2699-41FF-BD47-2665701D466A
+   :END:
+
+   #+begin_src elisp
+     (scroll-bar-mode -1)
+     (tool-bar-mode -1)
+     (menu-bar-mode -1)
+   #+end_src
+
+   
 ** TODO The rest of the helpers
 
    
@@ -253,13 +265,7 @@
         (require 'keyfreq)
         (keyfreq-mode 1)
         (keyfreq-autosave-mode 1)
-
-
-        ;; Focus mode
-        (scroll-bar-mode -1)
-        (tool-bar-mode -1)
-        (menu-bar-mode -1)
-
+        
         ;;; Yasnippet
         (yas-global-mode 1)
         (setq yas-snippet-dirs
@@ -330,8 +336,8 @@
     #+end_src
 
 
-* Announce package
+** Announce package
 
-  #+begin_src elisp
-    (provide 'pgpb-helpers)
-  #+end_src
+   #+begin_src elisp
+     (provide 'pgpb-helpers)
+   #+end_src
