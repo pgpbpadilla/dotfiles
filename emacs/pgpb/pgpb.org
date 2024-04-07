@@ -1,6 +1,8 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb.el :session pgpb :cache no
+#+auto_tangle: t
 
-* Emacs package: pgpb.el
+
+* Emacs package: pgpb
 
   Defines a package namespace that configures my Emacs environment the
   way I like it.
@@ -34,21 +36,10 @@
    #+end_src
 
 
-** TODO Extract package: pgpb-darwin
-
-
-** TODO Extract package: pgpb-linux
-
-
-** TODO Extract package: pgpb-win
-
-
 ** TODO Configure Emacs via helper functions
 
    The main work is done by calling helper functions to configure
    specific aspects of Emacs.
-
-*** TODO replace load-relative with require statements
 
    #+begin_src elisp
      (pgpb-install-packages)
@@ -61,21 +52,7 @@
      (pgpb-flyspell)
      (pgpb-magit)
      (pgpb-customize-appearance)
-     (pgpb-linux-hacks)
      (pgpb-global-keys)
-
-     ;;; Load Windows customizations
-     (when (eq system-type 'windows-nt)
-       (load-relative "./win10.el")
-       (load-relative "./wsl.el")
-       (message "Ok: windows hacks loaded.")
-       )
-
-     ;;; Darwin (MacOS) customizations
-     (when (eq system-type 'darwin)
-       (load-relative "./darwin.el")
-       (message "Ok: macos hacks loaded.")
-       )
 
      (load-relative "./abbrev.el")
 
@@ -88,6 +65,62 @@
      (require 'pgpb-docker)
 
      (provide 'pgpb)
+   #+end_src
+
+
+*** TODO replace load-relative with require statements
+
+    #+begin_src bash :session none :tangle no
+      find . -name "*.org" | ack --files-from=- "load-relative" 
+    #+end_src
+
+    #+RESULTS:
+    : ./pgpb.org:57:     (load-relative "./abbrev.el")
+    : ./pgpb.org:70:*** TODO replace load-relative with require statements
+    : ./pgpb.org:73:      ack "load-relative" "*\.org"
+    : ./pgpb.org:83:       (load-relative "./darwin.el")
+    : ./pgpb.org:112:       (load-relative "./win10.el")
+    : ./pgpb.org:113:       (load-relative "./wsl.el")
+
+
+** Darwin (macOS)-specific customisations
+
+   #+begin_src elisp
+     (when (eq system-type 'darwin)
+       (load-relative "./darwin.el")
+       (message "Ok: macos hacks loaded.")
+       )
+   #+end_src
+
+
+** Linux-specific customisations!
+
+   #+begin_src elisp
+     (when (eq system-type 'gnu/linux)
+       (message "Inside a Linux system")
+       (use-package pinentry
+         :ensure t
+         :config
+         (pinentry-start)
+         )
+
+       ;;; My system uses =lp= instead of =lpr=
+       ;; https://stackoverflow.com/questions/28765952/emacs-printing-error-unknown-option-j
+       (setq lpr-command "lp"
+             lpr-add-switches nil)
+       (message "Linux-specific options set"))
+   #+end_src
+
+
+** Windows-specific customisations
+
+   #+begin_src elisp
+     (when (eq system-type 'windows-nt)
+       (load-relative "./win10.el")
+       (load-relative "./wsl.el")
+       (message "Ok: windows hacks loaded.")
+       )
+
    #+end_src
 
 

@@ -7,6 +7,12 @@
   ;; (load custom-file)
   )
 
+(defun pgpb-focus-mode ()
+  "Disable all tool/menu bars"
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1))
+
 (defun pgpb-customize-appearance ()
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
@@ -28,7 +34,8 @@
 
   ;; Background colors
   ;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
-  (add-to-list 'default-frame-alist '(background-color . "#fffcf2")))
+  (add-to-list 'default-frame-alist '(background-color . "#fffcf2"))
+  (pgpb-focus-mode))
 
 (defun pgpb-global-keys ()
   ;; Global Shortcuts
@@ -67,22 +74,6 @@
   ;; https://emacs.stackexchange.com/a/52921/11978
   ;; https://magit.vc/manual/magit/Diff-Options.html
   (setq magit-diff-refine-hunk (quote all)))
-
-(defun pgpb-linux-hacks ()
-  (when (eq system-type 'gnu/linux)
-    (message "Inside a Linux system")
-    (use-package pinentry
-      :ensure t
-      :config
-      (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
-      (pinentry-start)
-      )
-    ;;; My system uses =lp= instead of =lpr=
-    ;; https://stackoverflow.com/questions/28765952/emacs-printing-error-unknown-option-j
-    (setq lpr-command "lp"
-          lpr-add-switches nil)
-    (message "Linux-specific options set")
-    ))
 
 (defun pgpb-flyspell ()
   ;;; Flyspell
@@ -186,12 +177,6 @@
   (require 'keyfreq)
   (keyfreq-mode 1)
   (keyfreq-autosave-mode 1)
-
-
-  ;; Focus mode
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
 
   ;;; Yasnippet
   (yas-global-mode 1)

@@ -16,21 +16,7 @@
 (pgpb-flyspell)
 (pgpb-magit)
 (pgpb-customize-appearance)
-(pgpb-linux-hacks)
 (pgpb-global-keys)
-
-;;; Load Windows customizations
-(when (eq system-type 'windows-nt)
-  (load-relative "./win10.el")
-  (load-relative "./wsl.el")
-  (message "Ok: windows hacks loaded.")
-  )
-
-;;; Darwin (MacOS) customizations
-(when (eq system-type 'darwin)
-  (load-relative "./darwin.el")
-  (message "Ok: macos hacks loaded.")
-  )
 
 (load-relative "./abbrev.el")
 
@@ -43,3 +29,28 @@
 (require 'pgpb-docker)
 
 (provide 'pgpb)
+
+(when (eq system-type 'darwin)
+  (load-relative "./darwin.el")
+  (message "Ok: macos hacks loaded.")
+  )
+
+(when (eq system-type 'gnu/linux)
+  (message "Inside a Linux system")
+  (use-package pinentry
+    :ensure t
+    :config
+    (pinentry-start)
+    )
+
+  ;;; My system uses =lp= instead of =lpr=
+  ;; https://stackoverflow.com/questions/28765952/emacs-printing-error-unknown-option-j
+  (setq lpr-command "lp"
+        lpr-add-switches nil)
+  (message "Linux-specific options set"))
+
+(when (eq system-type 'windows-nt)
+  (load-relative "./win10.el")
+  (load-relative "./wsl.el")
+  (message "Ok: windows hacks loaded.")
+  )

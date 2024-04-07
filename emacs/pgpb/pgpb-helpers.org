@@ -1,4 +1,6 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb-helpers.el :session helpers :cache no
+#+auto_tangle: t
+
 
 * pgpb-helpers.el
 
@@ -35,6 +37,20 @@
    : /Users/pgpb.padilla/.config/emacs-custom.el
   
 
+** Focus mode
+   :PROPERTIES:
+   :ID:       45184FF6-2699-41FF-BD47-2665701D466A
+   :END:
+
+   #+begin_src elisp
+     (defun pgpb-focus-mode ()
+       "Disable all tool/menu bars"
+       (scroll-bar-mode -1)
+       (tool-bar-mode -1)
+       (menu-bar-mode -1))
+   #+end_src
+
+   
 ** Customize appearance
 
    #+begin_src elisp
@@ -59,22 +75,11 @@
 
        ;; Background colors
        ;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
-       (add-to-list 'default-frame-alist '(background-color . "#fffcf2")))
+       (add-to-list 'default-frame-alist '(background-color . "#fffcf2"))
+       (pgpb-focus-mode))
    #+end_src
 
 
-** Focus mode
-   :PROPERTIES:
-   :ID:       45184FF6-2699-41FF-BD47-2665701D466A
-   :END:
-
-   #+begin_src elisp
-     (scroll-bar-mode -1)
-     (tool-bar-mode -1)
-     (menu-bar-mode -1)
-   #+end_src
-
-   
 ** TODO The rest of the helpers
 
    
@@ -146,22 +151,6 @@
         ;; https://emacs.stackexchange.com/a/52921/11978
         ;; https://magit.vc/manual/magit/Diff-Options.html
         (setq magit-diff-refine-hunk (quote all)))
-
-      (defun pgpb-linux-hacks ()
-        (when (eq system-type 'gnu/linux)
-          (message "Inside a Linux system")
-          (use-package pinentry
-            :ensure t
-            :config
-            (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
-            (pinentry-start)
-            )
-          ;;; My system uses =lp= instead of =lpr=
-          ;; https://stackoverflow.com/questions/28765952/emacs-printing-error-unknown-option-j
-          (setq lpr-command "lp"
-                lpr-add-switches nil)
-          (message "Linux-specific options set")
-          ))
 
       (defun pgpb-flyspell ()
         ;;; Flyspell
