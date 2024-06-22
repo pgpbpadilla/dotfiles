@@ -34,6 +34,19 @@
        :ensure t
        :defer t
        :hook (org-mode . org-auto-tangle-mode))
+   #+end_src
 
+
+** Auto-configure tree-sitter modes
+
+   #+begin_src elisp
+     (require 'pgpb-ts)
+   #+end_src
+
+
+   
+** Provide extras module
+
+   #+begin_src elisp
      (provide 'pgpb-extras)
    #+end_src
