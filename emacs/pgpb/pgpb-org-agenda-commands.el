@@ -107,7 +107,9 @@
         ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
 
         ;; Dangling/Zombie items
-        ("Gz" "Dangling/Zombie items" tags (concat "-goal" hidden))
+        ;; Items that are not associated to any goal/hobby
+        ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
+        ("Gz" "Dangling/Zombie items" tags (concat "-pom-fit-cn-de-blog-meta-job" hidden))
 
 
         ("R" . "Reminders")

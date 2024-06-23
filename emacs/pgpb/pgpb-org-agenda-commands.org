@@ -1,4 +1,5 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb-org-agenda-commands.el :session agenda-commands :cache no
+#+auto_tangle: t
 
 * TODO pgpb-org-agenda-commands.el: [[file:pgpb-org-agenda-commands.el][file]]
   
@@ -78,7 +79,7 @@
            ((org-agenda-files (pgpb-archive-files))))
           ("Fe" "Search everywhere" search ""
            ((org-agenda-text-search-extra-files (pgpb-extra-files))))
-        
+
 
           ;;; Project stuff
           ("P" . "Project tasks")
@@ -96,7 +97,7 @@
            ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
            )
 
-        
+
           ;;; Goals stuff
           ;; See Org etry: =C-c h goals task action=
           ;; file:~/org/cdc3c97dd4.org.gpg::#goal-task-action
@@ -111,7 +112,7 @@
           ("Gg" "Goals" tags (concat "+goal-task-action" hidden))
           ("Gt" "Tasks" tags (concat "+task-action" hidden))
           ("Ga" "Actions" tags (concat "+action" hidden))
-        
+
           ;;; Goals without a Project can be called Dreams cause they'll
           ;; remain unaccomplished unless some work is done.
           ("Gd" "Dreams" tags "+dream")
@@ -125,7 +126,9 @@
           ("Gr" "Results" tags "+goal-task-action-info/+DONE-INFO")
 
           ;; Dangling/Zombie items
-          ("Gz" "Dangling/Zombie items" tags (concat "-goal" hidden))
+          ;; Items that are not associated to any goal/hobby
+          ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
+          ("Gz" "Dangling/Zombie items" tags (concat "-pom-fit-cn-de-blog-meta-job" hidden))
 
 
           ("R" . "Reminders")
@@ -151,7 +154,7 @@
            )
           ("Oa" "All events" tags "+ooo/-INFO")
 
-        
+
           ("I" . "Improvements")
           ("Ib" "Backlog" tags "+improve-info/-DONE-INFO-WONTDO")
           ("Iw" "work in progress"
