@@ -1,0 +1,50 @@
+#+PROPERTY: header-args :results verbatim :tangle pgpb-macos.el :session pgpb :cache no
+#+auto_tangle: t
+
+
+*  MacOS-specific options
+
+**  Makes Apple key the Meta key: =M-x=
+   #+begin_src elisp
+     (setq ns-command-modifier (quote meta))
+   #+end_src
+
+   
+** Hide toolbar
+   
+  It seems that this call is not necessary when we setup
+  Focus mode as in: [[id:45184FF6-2699-41FF-BD47-2665701D466A][Focus mode]]
+
+  #+begin_src elisp :tangle no
+    (ns-toggle-toolbar)
+  #+end_src
+
+** Set transparency
+
+   #+begin_src elisp
+     (set-frame-parameter (selected-frame) 'alpha '(100 100))
+   #+end_src
+
+
+
+** Fix font size
+
+   #+begin_src elisp
+     (set-face-attribute 'default nil :height 140)
+   #+end_src
+
+
+** All MacOS options loaded
+
+   #+begin_src elisp
+     (message "Darwin options applied.")
+   #+end_src
+
+
+
+** Announce package
+
+   #+begin_src elisp
+     (provide 'pgpb-macos)
+   #+end_src
+   

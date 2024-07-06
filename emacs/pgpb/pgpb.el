@@ -31,8 +31,7 @@
 (provide 'pgpb)
 
 (when (eq system-type 'darwin)
-  (load-relative "./darwin.el")
-  (message "Ok: macos hacks loaded.")
+  (require 'pgpb-macos)
   )
 
 (when (eq system-type 'gnu/linux)

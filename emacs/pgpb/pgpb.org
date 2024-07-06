@@ -75,9 +75,8 @@
     #+end_src
 
     #+RESULTS:
-    : ./pgpb.el:34:  (load-relative "./darwin.el")
-    : ./pgpb.el:53:  (load-relative "./win10.el")
-    : ./pgpb.el:54:  (load-relative "./wsl.el")
+    : ./pgpb.el:52:  (load-relative "./win10.el")
+    : ./pgpb.el:53:  (load-relative "./wsl.el")
     : ./pgpb-packages.el:27:                      load-relative
 
 
@@ -85,8 +84,7 @@
 
    #+begin_src elisp
      (when (eq system-type 'darwin)
-       (load-relative "./darwin.el")
-       (message "Ok: macos hacks loaded.")
+       (require 'pgpb-macos)
        )
    #+end_src
 
