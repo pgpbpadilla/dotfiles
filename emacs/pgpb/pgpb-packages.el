@@ -24,7 +24,6 @@
                       org-projectile
                       org-bullets
                       magit
-                      load-relative
                       imenu-anywhere
                       helm-projectile
                       helm-org

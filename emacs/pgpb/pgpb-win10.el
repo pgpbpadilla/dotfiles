@@ -16,3 +16,7 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Files.html
 ;; avoid extra system calls to determine file attribute accurately on Windows
 (setq w32-get-true-file-attributes nil)
+
+(message "Win10 options loaded.")
+
+(provide 'pgpb-win10)

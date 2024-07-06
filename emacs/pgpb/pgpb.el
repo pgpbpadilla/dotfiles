@@ -49,9 +49,8 @@
   (message "Linux-specific options set"))
 
 (when (eq system-type 'windows-nt)
-  (load-relative "./win10.el")
-  (load-relative "./wsl.el")
-  (message "Ok: windows hacks loaded.")
+  (require 'pgpb-win10)
+  (require 'pgpb-wsl)
   )
 
 (require 'pgpb-abbrev)

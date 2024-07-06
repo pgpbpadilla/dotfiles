@@ -7,3 +7,7 @@
       (progn (message "ignoring wsl acls") "")
     (apply orig-fun args)))
 (advice-add 'file-acl :around 'fp/ignore-wsl-acls)
+
+(message "Windows Subsystem for Linux options loaded.")
+
+(provide 'pgpb-wsl)

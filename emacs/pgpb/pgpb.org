@@ -68,20 +68,22 @@
    #+end_src
 
 
-*** TODO replace load-relative with require statements
+*** DONE Replace load-relative with require statements
+    CLOSED: [2024-07-06 Sa 21:09]
+    :LOGBOOK:
+    - Note taken on [2024-07-06 Sa 21:09] \\
+      load-relative is no more
+    - CLOSING NOTE [2024-07-06 Sa 21:09]
+    :END:
 
     #+begin_src bash :session none :tangle no
       find . -name "*.el" | ack --files-from=- "load-relative" 
     #+end_src
 
     #+RESULTS:
-    : ./pgpb.el:52:  (load-relative "./win10.el")
-    : ./pgpb.el:53:  (load-relative "./wsl.el")
-    : ./pgpb-packages.el:27:                      load-relative
 
 
-** Darwin (macOS)-specific customisations
-
+** Darwin[macos] customisations
    #+begin_src elisp
      (when (eq system-type 'darwin)
        (require 'pgpb-macos)
@@ -90,7 +92,6 @@
 
 
 ** Linux-specific customisations!
-
    #+begin_src elisp
      (when (eq system-type 'gnu/linux)
        (message "Inside a Linux system")
@@ -112,9 +113,8 @@
 
    #+begin_src elisp
      (when (eq system-type 'windows-nt)
-       (load-relative "./win10.el")
-       (load-relative "./wsl.el")
-       (message "Ok: windows hacks loaded.")
+       (require 'pgpb-win10)
+       (require 'pgpb-wsl)
        )
 
    #+end_src
