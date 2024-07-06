@@ -85,10 +85,12 @@
    
 *** TODO Move package install helpers to [[file:pgpb-packages.el]]
     
-    1. [ ] replace referendces to ~/dotfiles/* with dynamic variable
+    1. [X] replace referendces to ~/dotfiles/* with dynamic variable
        for the emacs user directory
-       - [ ] yasnippet
-    2. [ ] magit: use-package
+       - [X] yasnippet
+    2. [ ] magit: use-package: move to it's own file
+       I have lots of customisations for magit, and it I expect this
+       will be file that I will be modifying on a regular basis.
 
        #+begin_example elisp
          (use-package magit
@@ -258,7 +260,7 @@
         ;;; Yasnippet
         (yas-global-mode 1)
         (setq yas-snippet-dirs
-              (list (expand-file-name "~/dotfiles/emacs/yasnippet/snippets")))
+              (list (expand-file-name (concat user-emacs-directory "yasnippet/snippets"))))
         )
 
       (defun pgpb-auto-dim-buffers ()
@@ -270,7 +272,7 @@
           (auto-dim-other-buffers-mode t)
           ))
 
-      ;; todo: move to package: pgpb-packages
+      ;; TODO: move to package: pgpb-packages
       (defun pgpb-install-packages ()
         (use-package markdown-mode
           :ensure t

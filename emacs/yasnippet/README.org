@@ -1,41 +1,37 @@
 #+PROPERTY: header-args :results verbatim
 
 
-* TODO Install custom Yas Snippets: [[https://github.com/joaotavora/yasnippet][Github:yasnippet]]
+* TODO My Yas Snippets: [[https://github.com/joaotavora/yasnippet][Github:yasnippet]]
   :PROPERTIES:
   :ID:       CCAB00C9-127E-42C6-807D-C997D29F5F2E
   :END:
 
-  Use only paths relative to:
+  1. Contains my custom Yas-snippets.
+  2. The snippets directory is configured in my Emacs init files:
 
-  #+begin_src elisp
-    user-emacs-directory
-  #+end_src
-
-  #+RESULTS:
-  : "~/.emacs.d/"
-
-
-  1. [ ] Emacs will look for Yas Snippets in:
-     #+begin_src emacs-lisp
-       (print yas-snippet-dirs)
-     #+end_src
+     * Emacs Init files for this session:
+       #+name: usr_dir
+       #+begin_src elisp
+         user-emacs-directory
+       #+end_src
+   
+       #+RESULTS: usr_dir
+       : "/Users/pgpb.padilla/code/dotfiles-experimental/emacs/"
+       
+     * yassnippets directory is set as follows:
      
-     #+RESULTS:
-     : ("/Users/pgpb.padilla/dotfiles/emacs/yasnippet/snippets")
+       #+begin_src bash :var usr_dir=usr_dir
+         set -x
+         DIR=${usr_dir//\"/}
+         ack -B 2 -A 2 --group --type-add org=.org --org yas-snippet-dirs ${DIR}pgpb
+       #+end_src
 
-  2. [ ] Noop. There's nothing to install. If you have this repo, then
-     Emacs will load the snippets correctly.
-
-     #+begin_src bash
-       ack -B 2 -A 2 yas-snippet-dirs ~/dotfiles/emacs/init.el
-     #+end_src
-
-     #+RESULTS:
-     : ;;; Yasnippet
-     : (yas-global-mode 1)
-     : (setq yas-snippet-dirs (list (expand-file-name "~/dotfiles/emacs/yasnippet/snippets")))
-     : 
-     : 
+       #+RESULTS:
+       : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/pgpb/pgpb-helpers.org
+       : 258-        ;;; Yasnippet
+       : 259-        (yas-global-mode 1)
+       : 260:        (setq yas-snippet-dirs
+       : 261-              (list (expand-file-name (concat user-emacs-directory "yasnippet/snippets"))))
+       : 262-        )
    
 

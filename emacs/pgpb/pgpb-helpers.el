@@ -181,7 +181,7 @@
   ;;; Yasnippet
   (yas-global-mode 1)
   (setq yas-snippet-dirs
-        (list (expand-file-name "~/dotfiles/emacs/yasnippet/snippets")))
+        (list (expand-file-name (concat user-emacs-directory "yasnippet/snippets"))))
   )
 
 (defun pgpb-auto-dim-buffers ()
@@ -193,7 +193,7 @@
     (auto-dim-other-buffers-mode t)
     ))
 
-;; todo: move to package: pgpb-packages
+;; TODO: move to package: pgpb-packages
 (defun pgpb-install-packages ()
   (use-package markdown-mode
     :ensure t
