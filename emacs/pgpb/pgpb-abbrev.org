@@ -1,0 +1,48 @@
+#+PROPERTY: header-args :results verbatim :tangle pgpb-abbrev.el :session pgpb :cache no
+#+auto_tangle: t
+
+
+* Abbreviations for Emacs: [[file:pgpb-abbrev.el][pgpb-abbrev.el]]
+
+  Documentation: [[https://www.emacswiki.org/emacs/AbbrevMode][AbbrevMode]]
+
+  
+** Define abbreviations file: [[file:abbrev_defs.el][abbrev_defs.el]]
+   #+begin_src elisp
+     (setq abbrev-file-name (concat user-emacs-directory "/abbrev_defs.el"))
+     (setq save-abbrevs 'silent)
+     (setq-default abbrev-mode t)
+   #+end_src
+
+  
+*** DONE Make paths relative to user-emacs-directory
+    CLOSED: [2024-07-06 Sa 20:29]
+    :LOGBOOK:
+    - CLOSING NOTE [2024-07-06 Sa 20:29]
+    :END:
+
+    Avoid referencing hard-coded paths, e.g., the user emacs
+    directory: 
+
+    #+begin_src elisp :tangle no
+      user-emacs-directory
+    #+end_src
+
+    #+RESULTS:
+    : /Users/pgpb.padilla/code/dotfiles-experimental/emacs/
+    
+    
+
+** Make abbreviations case-sensitive
+   #+begin_src elisp
+     (dolist (table abbrev-table-name-list)
+       (abbrev-table-put (symbol-value table) :case-fixed t))
+   #+end_src
+
+
+** Define Emacs package
+
+   #+begin_src elips
+     (provides 'pgpb-abbrev)
+   #+end_src
+

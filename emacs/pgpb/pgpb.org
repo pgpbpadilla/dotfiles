@@ -54,7 +54,7 @@
      (pgpb-customize-appearance)
      (pgpb-global-keys)
 
-     (load-relative "./abbrev.el")
+
 
      ;;; Helm stuff
      (require 'init-helm-projectile)
@@ -71,16 +71,14 @@
 *** TODO replace load-relative with require statements
 
     #+begin_src bash :session none :tangle no
-      find . -name "*.org" | ack --files-from=- "load-relative" 
+      find . -name "*.el" | ack --files-from=- "load-relative" 
     #+end_src
 
     #+RESULTS:
-    : ./pgpb.org:57:     (load-relative "./abbrev.el")
-    : ./pgpb.org:70:*** TODO replace load-relative with require statements
-    : ./pgpb.org:73:      ack "load-relative" "*\.org"
-    : ./pgpb.org:83:       (load-relative "./darwin.el")
-    : ./pgpb.org:112:       (load-relative "./win10.el")
-    : ./pgpb.org:113:       (load-relative "./wsl.el")
+    : ./pgpb.el:34:  (load-relative "./darwin.el")
+    : ./pgpb.el:53:  (load-relative "./win10.el")
+    : ./pgpb.el:54:  (load-relative "./wsl.el")
+    : ./pgpb-packages.el:27:                      load-relative
 
 
 ** Darwin (macOS)-specific customisations
@@ -123,4 +121,11 @@
 
    #+end_src
 
+
+** Load abbreviations
+
+   #+begin_src elisp
+     (require 'pgpb-abbrev)
+   #+end_src
+   
 

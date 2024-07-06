@@ -18,7 +18,7 @@
 (pgpb-customize-appearance)
 (pgpb-global-keys)
 
-(load-relative "./abbrev.el")
+
 
 ;;; Helm stuff
 (require 'init-helm-projectile)
@@ -54,3 +54,5 @@
   (load-relative "./wsl.el")
   (message "Ok: windows hacks loaded.")
   )
+
+(require 'pgpb-abbrev)
