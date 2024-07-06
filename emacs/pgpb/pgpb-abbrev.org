@@ -43,6 +43,6 @@
 ** Define Emacs package
 
    #+begin_src elips
-     (provides 'pgpb-abbrev)
+     (provide 'pgpb-abbrev)
    #+end_src
 

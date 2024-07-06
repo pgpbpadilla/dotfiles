@@ -5,4 +5,4 @@
 (dolist (table abbrev-table-name-list)
   (abbrev-table-put (symbol-value table) :case-fixed t))
 
-(provides 'pgpb-abbrev)
+(provide 'pgpb-abbrev)
