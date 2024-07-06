@@ -26,61 +26,56 @@
    #+end_src
    
 
-** Require helper functions: [[file:pgpb-helpers.org]]
+** TODO Base configuration: [[file:pgpb-helpers.org][pgpb-helpers.org]]
 
-   Load the necessary functions to continue the configuration of
-   Emacs:
+   At the moment all helper functions are in a single file, the
+   goal is to rearrange them, so that the base configuration contains
+   only the minimal set up.
+
+   Non-critical settings should be moved to the bottom.
    
    #+begin_src elisp
      (require 'pgpb-helpers)
    #+end_src
 
 
-** TODO Configure Emacs via helper functions
+*** TODO Configure Emacs via helper functions
 
-   The main work is done by calling helper functions to configure
-   specific aspects of Emacs.
+    The main work is done by calling helper functions to configure
+    specific aspects of Emacs.
+
+    #+begin_src elisp
+      (pgpb-install-packages)
+      (pgpb-ignore-custom-file)
+      (pgpb-auto-dim-buffers)
+      (pgpb-customize-vars)
+      (pgpb-javascript)
+      (pgpb-latex-opts)
+      (pgpb-autosave)
+      (pgpb-flyspell)
+      (pgpb-magit)
+      (pgpb-customize-appearance)
+      (pgpb-global-keys)
+    #+end_src
+
+
+** Load Helm+Projectile stuff
 
    #+begin_src elisp
-     (pgpb-install-packages)
-     (pgpb-ignore-custom-file)
-     (pgpb-auto-dim-buffers)
-     (pgpb-customize-vars)
-     (pgpb-javascript)
-     (pgpb-latex-opts)
-     (pgpb-autosave)
-     (pgpb-flyspell)
-     (pgpb-magit)
-     (pgpb-customize-appearance)
-     (pgpb-global-keys)
-
-
-
-     ;;; Helm stuff
      (require 'init-helm-projectile)
-
-     ;;; Org Mode
-     (require 'pgpb-org)
-
-     (require 'pgpb-docker)
-
-     (provide 'pgpb)
    #+end_src
 
 
-*** DONE Replace load-relative with require statements
-    CLOSED: [2024-07-06 Sa 21:09]
-    :LOGBOOK:
-    - Note taken on [2024-07-06 Sa 21:09] \\
-      load-relative is no more
-    - CLOSING NOTE [2024-07-06 Sa 21:09]
-    :END:
+** Load Org Mode
+   #+begin_src elisp
+     (require 'pgpb-org)
+   #+end_src
 
-    #+begin_src bash :session none :tangle no
-      find . -name "*.el" | ack --files-from=- "load-relative" 
-    #+end_src
 
-    #+RESULTS:
+** Docker
+   #+begin_src elisp
+     (require 'pgpb-docker)
+   #+end_src
 
 
 ** Darwin[macos] customisations
@@ -126,4 +121,9 @@
      (require 'pgpb-abbrev)
    #+end_src
    
+
+** Announce package
+   #+begin_src elisp
+     (provide 'pgpb)
+   #+end_src
 

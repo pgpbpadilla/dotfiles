@@ -18,17 +18,11 @@
 (pgpb-customize-appearance)
 (pgpb-global-keys)
 
-
-
-;;; Helm stuff
 (require 'init-helm-projectile)
 
-;;; Org Mode
 (require 'pgpb-org)
 
 (require 'pgpb-docker)
-
-(provide 'pgpb)
 
 (when (eq system-type 'darwin)
   (require 'pgpb-macos)
@@ -54,3 +48,5 @@
   )
 
 (require 'pgpb-abbrev)
+
+(provide 'pgpb)
