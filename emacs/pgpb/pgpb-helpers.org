@@ -2,7 +2,7 @@
 #+auto_tangle: t
 
 
-* pgpb-helpers.el
+* Helper functions: [[file:pgpb-helpers.el][pgpb-helpers.el]]
 
   A set of helper functions to configure my package: [[file:pgpb.org]]
 
@@ -326,6 +326,25 @@
         )
     #+end_src
 
+
+** TODO Assert a file exists
+
+   #+begin_src elisp
+     (require 'cl-lib)
+     (defun assert-file-exists (file-path)
+       "Ensure that FILE-PATH exists. Log an error if it does not."
+       (cl-assert (file-exists-p file-path) nil
+               "Error: File not found - %s" file-path))
+   #+end_src
+
+   #+RESULTS:
+   : assert-file-exists
+
+   Example usage:
+
+   #+begin_src elisp :tangle no
+     (assert-file-exists "/path/to/your/file.txt")
+   #+end_src
 
 ** Announce package
 

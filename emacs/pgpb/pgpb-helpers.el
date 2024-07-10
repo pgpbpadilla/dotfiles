@@ -246,4 +246,10 @@
 
   )
 
+(require 'cl-lib)
+(defun assert-file-exists (file-path)
+  "Ensure that FILE-PATH exists. Log an error if it does not."
+  (cl-assert (file-exists-p file-path) nil
+          "Error: File not found - %s" file-path))
+
 (provide 'pgpb-helpers)
