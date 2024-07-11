@@ -47,7 +47,10 @@
 (eval-when-compile (require 'use-package))
 
 
+;; https://github.com/emacs-gnuplot/gnuplot
 (use-package gnuplot-mode
-  :ensure t)
+  :ensure t
+  :init
+  (add-to-list 'load-path "/usr/local/bin/gnuplot"))
 
 (provide 'pgpb-packages)
