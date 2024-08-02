@@ -165,7 +165,7 @@
   (setq title "* %?\t:termin:mom:\n  %T\n\n"
         people "** People \n\n   1. xyz\n\n"
         minutes "** Minutes of meeting\n\n"
-        actions "** Action Items [/]\n\n*** TODO xyz\n\n")
+        actions "** Action Items [/]\n\n*** TODO [#A] Collect tasks\n SCHEDULED: %t\n\n")
   ;; return the template as a string
   (concat title people minutes actions))
 
