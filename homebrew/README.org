@@ -16,6 +16,7 @@
 
    To see the list of packages take a look at [[file+emacs:Brewfile.core][./Brewfile.core]]
 
+
 ** Homebrew extras
 
    Non-essential packages can be installed with:
@@ -23,6 +24,7 @@
    #+begin_example bash
    brew bundle install --quiet --file=./homebrew/Brewfile.extras
    #+end_example
+
 
 ** Docker Desktop
 
@@ -35,6 +37,16 @@
    #+RESULTS:
    : docker
    : docker-completion
+
+
+** Cloud tools
+
+   Cloud development tools.
+
+   #+begin_example bash
+   brew bundle install --quiet --file=./homebrew/Brewfile.cloud
+   #+end_example
+
 
 ** Homebrew-related topics
 
