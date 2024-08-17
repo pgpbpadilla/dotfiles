@@ -47,6 +47,8 @@
   (require 'pgpb-wsl)
   )
 
+(require 'pgpb-blog)
+
 (require 'pgpb-abbrev)
 
 (provide 'pgpb)

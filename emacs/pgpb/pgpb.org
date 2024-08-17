@@ -115,6 +115,13 @@
    #+end_src
 
 
+** Blogging utilities: [[file:pgpg-blog.org]]
+
+   #+begin_src elisp
+     (require 'pgpb-blog)
+   #+end_src
+   
+
 ** Load abbreviations
 
    #+begin_src elisp

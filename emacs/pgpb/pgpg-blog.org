@@ -1,0 +1,10 @@
+#+PROPERTY: header-args :results verbatim :tangle pgpb-blog.el :session pgpb :cache no
+#+auto_tangle: t
+
+#+begin_src elisp
+  (global-set-key (kbd "C-c p")
+                  (lambda () (interactive) (org-publish "site")))
+#+end_src
+
+#+RESULTS:
+: (lambda nil (interactive) (org-publish "site"))
