@@ -8,20 +8,28 @@
 (defvar pgpb-org-file-regex (concat "\\" pgpb-org-file-extension "$")
   "Regex to search entrypted Org files.")
 
-(defun pgpb-agenda-files ()
-  (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
+(defun pgpb-org-agenda-files ()
+  (directory-files-recursively pgpb-org-agenda-dir pgpb-org-file-regex))
 
-(defun pgpb-journal-files ()
-  (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
+(defun pgpb-org-journal-files ()
+  (directory-files-recursively pgpb-org-journal-dir pgpb-org-file-regex))
 
-(defun pgpb-archive-files ()
-  (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
+(defun pgpb-org-archive-files ()
+  (directory-files-recursively pgpb-org-archive-dir pgpb-org-file-regex))
+
+(defun reload-emacs-configuration ()
+  "Reload the Emacs configuration."
+  (interactive)
+  (load-file user-init-file))
+
+;; Bind the function to a key (optional)
+(global-set-key (kbd "C-c r") 'reload-emacs-configuration)
 
 (defun pgpb-org-new ()
   "Create new Org file. Use my GPG keys for encryption."
   (interactive)
 
-  (let options (pgpb-org-new-outdirs))
+  (let options (pgpb-org-new-options))
   (let selected (completing-read "Choose dir: " options nil t))
   (let out-dir (cdr (assoc selected options)))
   (let random-filename (format "%s/%s" out-dir (random-name)))
@@ -34,7 +42,7 @@
   (find-file-other-window new-file)
   (message new-file))
 
-(defun out-dir-options ()
+(defun pgpb-org-new-options ()
   "Return a list of options from a list of symbols"
   (interactive)
 
@@ -43,7 +51,7 @@
              (symbol-name symbol)
              (symbol-value symbol))
             )
-          (my-org-dirs))
+          (pgpb-org-dirs))
   )
 
 (defun random-name ()
@@ -67,11 +75,11 @@
 gpg -k pgpb.padilla
 
 (defun pgpb-org-dirs ()
-  "List special Org directories."
+  "Directories for placing new Org files."
   (interactive)
   (cl-loop for symbol being the symbols
            when (and (boundp symbol)
-                     (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+                     (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
            collect symbol))
 
 (defun pgpb-refresh-org () 

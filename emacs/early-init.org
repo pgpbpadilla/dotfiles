@@ -1,4 +1,5 @@
-#+PROPERTY: header-args :results verbatim :tangle early-init.el :session early-init :cache no
+#+PROPERTY: header-args :results verbatim :tangle early-init.el :session pgpb :cache no
+#+auto_tangle: yes
 
 * early-init.el
 
@@ -19,16 +20,6 @@
 
 
    
-** Set GPG recipient to use for encryption
-
-   Use my personal GPG key to encrypt my Org files:
-   
-   #+begin_src elisp
-     (defvar pgpb-gpg-keys (list "pgpb.padilla@gmail.com")
-       "GPG recipient to use for encrypting Org files.")
-   #+end_src
-
-   
 ** Set special Org directories
    :PROPERTIES:
    :ID:       B588E4F2-7E78-4204-98F1-E0106538FB21
@@ -38,10 +29,10 @@
    defined:
    
    #+begin_src elisp
-     (defvar pgpb-agenda-dir "~/org/31e520d4df"
+     (defvar pgpb-org-agenda-dir "~/org/31e520d4df"
        "Directory for files that are used to build the Org agenda.")
-     (defvar pgpb-journal-dir "~/org/0f6de25076"
+     (defvar pgpb-org-journal-dir "~/org/0f6de25076"
        "Directory for my Journal files. Not used to build the agenda.")
-     (defvar pgpb-archive-dir "~/org/2204c36fc7"
+     (defvar pgpb-org-archive-dir "~/org/2204c36fc7"
        "Directory for Archived files. Not used to build the agenda.")
    #+end_src

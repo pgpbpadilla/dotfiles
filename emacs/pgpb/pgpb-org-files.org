@@ -55,9 +55,12 @@
     Files that should be used when building the agenda view(s):
 
     #+begin_src elisp
-      (defun pgpb-agenda-files ()
-        (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
+      (defun pgpb-org-agenda-files ()
+        (directory-files-recursively pgpb-org-agenda-dir pgpb-org-file-regex))
     #+end_src
+
+    #+RESULTS:
+    : pgpb-org-agenda-files
       
 
 *** Journal files
@@ -71,8 +74,8 @@
 
 
     #+begin_src elisp
-      (defun pgpb-journal-files ()
-        (directory-files-recursively pgpb-journal-dir pgpb-org-file-regex))
+      (defun pgpb-org-journal-files ()
+        (directory-files-recursively pgpb-org-journal-dir pgpb-org-file-regex))
     #+end_src
       
 
@@ -88,9 +91,12 @@
 
 
     #+begin_src elisp
-      (defun pgpb-archive-files ()
-        (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
+      (defun pgpb-org-archive-files ()
+        (directory-files-recursively pgpb-org-archive-dir pgpb-org-file-regex))
     #+end_src
+
+    #+RESULTS:
+    : pgpb-org-archive-files
    
    
 ** TODO =pgpb-org-new=: create new Org file 
@@ -100,11 +106,29 @@
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
 
+*** TODO Reload emacs init file
+
+    1. [ ] make this part of my emacs config
+    2. [ ] move to a better location
+
+    #+begin_src elisp :session none
+      (defun reload-emacs-configuration ()
+        "Reload the Emacs configuration."
+        (interactive)
+        (load-file user-init-file))
+
+      ;; Bind the function to a key (optional)
+      (global-set-key (kbd "C-c r") 'reload-emacs-configuration)
+    #+end_src
+
+    #+RESULTS:
+    : reload-emacs-configuration
+
+
 *** Usage example
 
     1. Call interactively: =M-x pgpb-org-new=
     2. Run with Babel: =C-c C-c=
-
        #+begin_src elisp :tangle no :results value file
          (pgpb-org-new)
        #+end_src
@@ -124,7 +148,7 @@
         "Create new Org file. Use my GPG keys for encryption."
         (interactive)
 
-        (let options (pgpb-org-new-outdirs))
+        (let options (pgpb-org-new-options))
         (let selected (completing-read "Choose dir: " options nil t))
         (let out-dir (cdr (assoc selected options)))
         (let random-filename (format "%s/%s" out-dir (random-name)))
@@ -142,12 +166,22 @@
     : my-org-file
    
 
-*** TODO Output directory
+*** TODO Interactive list of custom Org directories
 
-    1. [ ] no global vars 
+    Given the list of custom Org directories:
+
+    #+begin_src elisp :session none :tangle no
+      (pgpb-org-dirs)
+    #+end_src
+
+    #+RESULTS:
+    : nil
+
+    Create an interactive list of options to choose where to save new
+    Org files: 
 
     #+begin_src elisp
-      (defun out-dir-options ()
+      (defun pgpb-org-new-options ()
         "Return a list of options from a list of symbols"
         (interactive)
 
@@ -156,12 +190,12 @@
                    (symbol-name symbol)
                    (symbol-value symbol))
                   )
-                (my-org-dirs))
+                (pgpb-org-dirs))
         )
     #+end_src
 
     #+RESULTS:
-    : out-dir-options
+    : pgpb-org-new-options
     
 
 *** Output file name
@@ -199,13 +233,16 @@
     encrypting Org files as described in [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][Encrypting Org files]]. 
 
     #+begin_src elisp
-      (defvar pgpg-gpg-key "pgpb.padilla@gmail.com"
+      (defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
         "GPG key to use for encrypting Org files.")
 
       (defvar pgpb-org-header
         (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
         "Emacs header to configure GPG encryption.")
     #+end_src
+
+    #+RESULTS:
+    : pgpb-org-header
 
 
     
@@ -234,21 +271,20 @@
     1. [ ] should not use global variables
       
 
-    We want to list the directories that will be used as targets for
-    new Org files:
+    Directories that will be used as targets for new Org files:
    
     #+begin_src elisp
       (defun pgpb-org-dirs ()
-        "List special Org directories."
+        "Directories for placing new Org files."
         (interactive)
         (cl-loop for symbol being the symbols
                  when (and (boundp symbol)
-                           (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+                           (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
                  collect symbol))
     #+end_src
 
     #+RESULTS:
-    : my-org-dirs
+    : pgpb-org-dirs
 
    
 **** Example output
@@ -257,11 +293,11 @@
      directories: 
 
      #+begin_src elisp :tangle no
-       (my-org-dirs)
+       (pgpb-org-dirs)
      #+end_src
 
      #+RESULTS:
-     : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
+     : (pgpb-org-journal-dir pgpb-org-archive-dir pgpb-org-agenda-dir)
 
 
 
