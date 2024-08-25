@@ -1,4 +1,5 @@
-#+PROPERTY: header-args :results verbatim :tangle pgpb-org-files.el :session org-files :cache no
+#+PROPERTY: header-args :results verbatim :tangle pgpb-org-files.el :session pgpb :cache no
+#+auto_tangle: true
 
 * TODO pgpb-org-files.el
 
@@ -51,13 +52,12 @@
 
 *** Agenda files
 
-      files that should be used when building the
-      agenda view(s):
+    Files that should be used when building the agenda view(s):
 
-      #+begin_src elisp
-        (defun pgpb-agenda-files ()
-          (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
-      #+end_src
+    #+begin_src elisp
+      (defun pgpb-agenda-files ()
+        (directory-files-recursively pgpb-agenda-dir pgpb-org-file-regex))
+    #+end_src
       
 
 *** Journal files
@@ -66,9 +66,8 @@
     query, e.g., any note that is not a task but that I might come
     back to but there's no action to take:
 
-    - these files are not used to build the agenda
-
-    - it is possible to refile to these files
+    1) these files are not used to build the agenda
+    2) it is possible to refile to these files
 
 
     #+begin_src elisp
@@ -78,143 +77,70 @@
       
 
 *** Archive files
-      files that I mostly keep out of [[https://en.wikipedia.org/wiki/Fear_of_missing_out][FOMO]].
-      I purposely don't tag entries in these files with Org's keyword
-      =:ARCHIVE:= since they are already in a fully separate location.
-
-      - these files are not used to build the agenda
-
-      - it is possible to refile to these files
-
-
-      #+begin_src elisp
-        (defun pgpb-archive-files ()
-          (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
-      #+end_src
-   
-   
-*** DONE Updating file collections
-
-    #+begin_src elisp
-      (defun pgpb-refresh-refile-targets ()
-        (setq org-refile-targets
-              '(
-                (nil :maxlevel . 3)
-                (org-agenda-files :maxlevel . 3)
-                (pgpb-journal-files :maxlevel . 3)
-                (pgpb-archive-files :maxlevel . 3)
-                )
-              ))
-
-      (defun pgpb-org-refile ()
-        ;; (setq org-refile-use-outline-path 'file)
-        (setq org-outline-path-complete-in-steps nil)
-        (setq org-refile-allow-creating-parent-nodes 'confirm))
-
-      (defun pgpb-extra-files ()
-        (append
-         (pgpb-journal-files)
-         (pgpb-archive-files))
-        )
-
-      (defun pgpb-refresh-org () 
-        "Reload agenda files, usually to include newly created files."
-        (interactive)
-        (setq org-agenda-files (pgpb-agenda-files))
-        (pgpb-refresh-refile-targets)
-        (message "All Org agenda files have been reloaded."))
-
-    #+end_src
-
-
-*** TODO Listing special Org directories
-
-    1. [ ] should not use global variables
-      
-
-    We want to list the directories that will be used as targets for
-    new Org files:
-   
-    #+begin_src elisp
-      (defun my-org-dirs ()
-        "List special Org directories."
-        (interactive)
-        (cl-loop for symbol being the symbols
-                 when (and (boundp symbol)
-                           (string-match-p "my-org-.*-dir" (symbol-name symbol)))
-                 collect symbol))
-    #+end_src
-
-    #+RESULTS:
-    : my-org-dirs
-
-   
-**** Example output
     
-     The function should return the list of all my special Org
-     directories: 
+    Files that I mostly keep out of [[https://en.wikipedia.org/wiki/Fear_of_missing_out][FOMO]].
+    
+    I purposely don't tag entries in these files with Org's keyword
+    =:ARCHIVE:= since they are already in a fully separate location.
 
-     #+begin_src elisp :tangle no
-       (my-org-dirs)
-     #+end_src
-
-     #+RESULTS:
-     : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
+    1) these files are not used to build the agenda
+    2) it is possible to refile to these files
 
 
-** TODO Create new encrypted Org file interactively
+    #+begin_src elisp
+      (defun pgpb-archive-files ()
+        (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
+    #+end_src
+   
+   
+** TODO =pgpb-org-new=: create new Org file 
 
    1. [ ] no global vars
 
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
+
+*** Usage example
+
+    1. Call interactively: =M-x pgpb-org-new=
+    2. Run with Babel: =C-c C-c=
+
+       #+begin_src elisp :tangle no :results value file
+         (pgpb-org-new)
+       #+end_src
    
-*** TODO Constants
-
-**** TODO Encryption header
-
-     1. [ ] The GPG keys should NOT be read from a global variable.
-        Values are provided in [[file:bootstrap.org]] and then injected in
-        [[id:93425A2C-AB14-417D-AC1D-9733C155DD31][Example call]]:
-
-        #+begin_src bash :session none :tangle no :results verbatim
-          ack -A 5 pgpb-org-main pgpb.el
-        #+end_src
-
-        #+RESULTS:
-        #+begin_example
-        (defun pgpb-org-main (gpg-keys org-dirs)
-          "Configure environment Org"
-          (print (format "gpg-keys: %s; org-dirs: %s" gpg-keys org-dirs))
-          (let ((agenda-files (nth 0 org-dirs))
-                (journal-files (nth 1 org-dirs))
-                (archive-files (nth 2 org-dirs)))
-        --
-        (pgpb-org-main pgpb-gpg-keys
-                       pgpb-org-dirs)
-
-
-        (require 'pgpb-docker)
-
-        #+end_example
-
-      
-
-     Every file needs to specify the local GPG key that will be used for
-     encryption: 
-
-     #+begin_src elisp
-       (defvar my-gpg-key "pgpb.padilla@gmail.com"
-         "The local GPG key to use for encryption.")
-
-       (defvar
-         gpg-header (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" my-gpg-key)
-         "Emacs header to define local GPG encryption key."
-        )
-     #+end_src
-
+       #+RESULTS:
+       [[file:~/org/0f6de25076/28e170260e.org.gpg]]
    
 
+*** TODO Create and open file in a new window
+
+    1. [ ] no globals
+    2. [ ] should also work with a list of gpg key ids
+
+       
+    #+begin_src elisp
+      (defun pgpb-org-new ()
+        "Create new Org file. Use my GPG keys for encryption."
+        (interactive)
+
+        (let options (pgpb-org-new-outdirs))
+        (let selected (completing-read "Choose dir: " options nil t))
+        (let out-dir (cdr (assoc selected options)))
+        (let random-filename (format "%s/%s" out-dir (random-name)))
+        (let new-file (concat random-filename pgpb-org-file-extension))
+
+        ;; fix: get rid of the EPA key selection dialog
+        ;; https://superuser.com/a/1446730/148349
+        (setq-local epa-file-encrypt-to my-gpg-key)
+        (write-region gpg-header nil new-file)
+        (find-file-other-window new-file)
+        (message new-file))
+    #+end_src
+
+    #+RESULTS:
+    : my-org-file
+   
 
 *** TODO Output directory
 
@@ -263,48 +189,118 @@
     : random-name
 
     
-*** TODO Create and open file in a new window
+*** DONE Define GPG keys for encrypting Org files
+    CLOSED: [2024-08-25 So 18:35]
+    :LOGBOOK:
+    - CLOSING NOTE [2024-08-25 So 18:35]
+    :END:
 
-    1. [ ] should also work with a list of gpg keys
-    2. [ ] no globals
+    Every file needs to specify my local GPG key. It will be used for
+    encrypting Org files as described in [[https://orgmode.org/worg/org-tutorials/encrypting-files.html][Encrypting Org files]]. 
 
     #+begin_src elisp
-      (defun my-org-file ()
-        "Create new Org file."
-        (interactive)
+      (defvar pgpg-gpg-key "pgpb.padilla@gmail.com"
+        "GPG key to use for encrypting Org files.")
 
-        (setq options (out-dir-options))
-        (setq selected (completing-read "Choose dir: " options nil t))
-        (setq out-dir (cdr (assoc selected options)))
-
-        (setq new-file (concat
-                        (format "%s/%s" out-dir (random-name))
-                        pgpb-org-file-extension))
-
-        ;; fix: get rid of the EPA key selection dialog
-        ;; https://superuser.com/a/1446730/148349
-        (setq-local epa-file-encrypt-to my-gpg-key)
-        (write-region gpg-header nil new-file)
-        (find-file-other-window new-file)
-        (message new-file))
+      (defvar pgpb-org-header
+        (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
+        "Emacs header to configure GPG encryption.")
     #+end_src
 
-    #+RESULTS:
-    : my-org-file
+
+    
+**** Listing GPG keys available in this system
+
+     List (public) keys (=-k=):
+     
+     #+begin_src bash :session none
+       gpg -k pgpb.padilla
+     #+end_src
+
+     #+RESULTS:
+     : pub   ed25519 2021-08-29 [SC] [verfällt: 2025-08-21]
+     :       66BF0487843AB5B8F593F64124C50C592A8618EC
+     : uid        [ ultimativ ] Pablo Padilla <pgpb.padilla@gmail.com>
+     : sub   cv25519 2021-08-29 [E] [verfällt: 2025-08-21]
+     : sub   rsa4096 2022-02-16 [E] [verfällt: 2025-08-21]
+     :
+
+
+     For listing private keys use =-K=.
+
+
+*** TODO Listing special Org directories
+
+    1. [ ] should not use global variables
+      
+
+    We want to list the directories that will be used as targets for
+    new Org files:
    
-
-*** Usage example
-
-    The function can be called interactively: =M-x my-org-file=l
-
-    You can also run it with the following snippet:
-
-    #+begin_src elisp :tangle no :results value file
-      (my-org-file)
+    #+begin_src elisp
+      (defun pgpb-org-dirs ()
+        "List special Org directories."
+        (interactive)
+        (cl-loop for symbol being the symbols
+                 when (and (boundp symbol)
+                           (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+                 collect symbol))
     #+end_src
 
     #+RESULTS:
-    [[file:~/org/0f6de25076/28e170260e.org.gpg]]
+    : my-org-dirs
+
+   
+**** Example output
+    
+     The function should return the list of all my special Org
+     directories: 
+
+     #+begin_src elisp :tangle no
+       (my-org-dirs)
+     #+end_src
+
+     #+RESULTS:
+     : (my-org-agenda-dir my-org-archive-dir my-org-journal-dir)
+
+
+
+
+** DONE Updating file collections
+
+   After adding creating new Org files, they will not be automatically
+   considered to build the agenda view. Therefore we need to refresh
+   the list of agenda files.
+   
+   #+begin_src elisp
+     (defun pgpb-refresh-org () 
+       "Reload agenda files, usually to include newly created files."
+       (interactive)
+       (setq org-agenda-files (pgpb-agenda-files))
+       (pgpb-refresh-refile-targets)
+       (message "All Org agenda files have been reloaded."))
+
+     (defun pgpb-refresh-refile-targets ()
+       (setq org-refile-targets
+             '(
+               (nil :maxlevel . 3)
+               (org-agenda-files :maxlevel . 3)
+               (pgpb-journal-files :maxlevel . 3)
+               (pgpb-archive-files :maxlevel . 3)
+               )
+             ))
+
+     (defun pgpb-org-refile ()
+       ;; (setq org-refile-use-outline-path 'file)
+       (setq org-outline-path-complete-in-steps nil)
+       (setq org-refile-allow-creating-parent-nodes 'confirm))
+
+     (defun pgpb-extra-files ()
+       (append
+        (pgpb-journal-files)
+        (pgpb-archive-files))
+       )
+   #+end_src
 
 
 ** Announce package

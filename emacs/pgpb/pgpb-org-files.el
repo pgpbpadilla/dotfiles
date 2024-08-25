@@ -17,49 +17,22 @@
 (defun pgpb-archive-files ()
   (directory-files-recursively pgpb-archive-dir pgpb-org-file-regex))
 
-(defun pgpb-refresh-refile-targets ()
-  (setq org-refile-targets
-        '(
-          (nil :maxlevel . 3)
-          (org-agenda-files :maxlevel . 3)
-          (pgpb-journal-files :maxlevel . 3)
-          (pgpb-archive-files :maxlevel . 3)
-          )
-        ))
-
-(defun pgpb-org-refile ()
-  ;; (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps nil)
-  (setq org-refile-allow-creating-parent-nodes 'confirm))
-
-(defun pgpb-extra-files ()
-  (append
-   (pgpb-journal-files)
-   (pgpb-archive-files))
-  )
-
-(defun pgpb-refresh-org () 
-  "Reload agenda files, usually to include newly created files."
+(defun pgpb-org-new ()
+  "Create new Org file. Use my GPG keys for encryption."
   (interactive)
-  (setq org-agenda-files (pgpb-agenda-files))
-  (pgpb-refresh-refile-targets)
-  (message "All Org agenda files have been reloaded."))
 
-(defun my-org-dirs ()
-  "List special Org directories."
-  (interactive)
-  (cl-loop for symbol being the symbols
-           when (and (boundp symbol)
-                     (string-match-p "my-org-.*-dir" (symbol-name symbol)))
-           collect symbol))
+  (let options (pgpb-org-new-outdirs))
+  (let selected (completing-read "Choose dir: " options nil t))
+  (let out-dir (cdr (assoc selected options)))
+  (let random-filename (format "%s/%s" out-dir (random-name)))
+  (let new-file (concat random-filename pgpb-org-file-extension))
 
-(defvar my-gpg-key "pgpb.padilla@gmail.com"
-  "The local GPG key to use for encryption.")
-
-(defvar
-  gpg-header (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" my-gpg-key)
-  "Emacs header to define local GPG encryption key."
- )
+  ;; fix: get rid of the EPA key selection dialog
+  ;; https://superuser.com/a/1446730/148349
+  (setq-local epa-file-encrypt-to my-gpg-key)
+  (write-region gpg-header nil new-file)
+  (find-file-other-window new-file)
+  (message new-file))
 
 (defun out-dir-options ()
   "Return a list of options from a list of symbols"
@@ -84,23 +57,49 @@
          (shell-command-to-string
           "echo $(openssl rand -hex 5)"))))
 
-(defun my-org-file ()
-  "Create new Org file."
+(defvar pgpg-gpg-key "pgpb.padilla@gmail.com"
+  "GPG key to use for encrypting Org files.")
+
+(defvar pgpb-org-header
+  (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
+  "Emacs header to configure GPG encryption.")
+
+gpg -k pgpb.padilla
+
+(defun pgpb-org-dirs ()
+  "List special Org directories."
   (interactive)
+  (cl-loop for symbol being the symbols
+           when (and (boundp symbol)
+                     (string-match-p "my-org-.*-dir" (symbol-name symbol)))
+           collect symbol))
 
-  (setq options (out-dir-options))
-  (setq selected (completing-read "Choose dir: " options nil t))
-  (setq out-dir (cdr (assoc selected options)))
+(defun pgpb-refresh-org () 
+  "Reload agenda files, usually to include newly created files."
+  (interactive)
+  (setq org-agenda-files (pgpb-agenda-files))
+  (pgpb-refresh-refile-targets)
+  (message "All Org agenda files have been reloaded."))
 
-  (setq new-file (concat
-                  (format "%s/%s" out-dir (random-name))
-                  pgpb-org-file-extension))
+(defun pgpb-refresh-refile-targets ()
+  (setq org-refile-targets
+        '(
+          (nil :maxlevel . 3)
+          (org-agenda-files :maxlevel . 3)
+          (pgpb-journal-files :maxlevel . 3)
+          (pgpb-archive-files :maxlevel . 3)
+          )
+        ))
 
-  ;; fix: get rid of the EPA key selection dialog
-  ;; https://superuser.com/a/1446730/148349
-  (setq-local epa-file-encrypt-to my-gpg-key)
-  (write-region gpg-header nil new-file)
-  (find-file-other-window new-file)
-  (message new-file))
+(defun pgpb-org-refile ()
+  ;; (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-allow-creating-parent-nodes 'confirm))
+
+(defun pgpb-extra-files ()
+  (append
+   (pgpb-journal-files)
+   (pgpb-archive-files))
+  )
 
 (provide 'pgpb-org-files)

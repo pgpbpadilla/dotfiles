@@ -30,6 +30,9 @@
 
    
 ** Set special Org directories
+   :PROPERTIES:
+   :ID:       B588E4F2-7E78-4204-98F1-E0106538FB21
+   :END:
 
    My Org configuration expects a few special directories to have been
    defined:
