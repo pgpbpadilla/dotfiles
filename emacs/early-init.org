@@ -36,3 +36,8 @@
      (defvar pgpb-org-archive-dir "~/org/2204c36fc7"
        "Directory for Archived files. Not used to build the agenda.")
    #+end_src
+
+   #+RESULTS:
+   : pgpb-org-archive-dir
+
+

@@ -47,12 +47,24 @@
   )
 
 (defun pgpb-org-dirs ()
-  "Directories for placing new Org files."
   (interactive)
-  (cl-loop for symbol being the symbols
-           when (and (boundp symbol)
-                     (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
-           collect symbol))
+
+  (let ((org-dirs
+         (cl-loop for symbol being the symbols
+                  when (and (boundp symbol)
+                            (string-match-p "^pgpb-org-.*-dir$" (symbol-name symbol)))
+                  collect symbol)))
+
+    (if (called-interactively-p 'any)
+        (if org-dirs
+            (with-output-to-temp-buffer "*pgpb-org-dirs*"
+              (dolist (var org-dirs)
+                (princ (format "%s\n" var))))
+          (message "No variables found that match the pattern")
+          )
+      org-dirs)
+    )
+  )
 
 (defun random-name ()
   "Return a random file name."
@@ -72,8 +84,6 @@
   (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
   "Emacs header to configure GPG encryption.")
 
-gpg -k pgpb.padilla
-
 (defun reload-emacs-configuration ()
   "Reload the Emacs configuration."
   (interactive)
@@ -85,7 +95,7 @@ gpg -k pgpb.padilla
 (defun pgpb-refresh-org () 
   "Reload agenda files, usually to include newly created files."
   (interactive)
-  (setq org-agenda-files (pgpb-agenda-files))
+  (setq org-agenda-files (pgpb-org-agenda-files))
   (pgpb-refresh-refile-targets)
   (message "All Org agenda files have been reloaded."))
 
@@ -94,8 +104,8 @@ gpg -k pgpb.padilla
         '(
           (nil :maxlevel . 3)
           (org-agenda-files :maxlevel . 3)
-          (pgpb-journal-files :maxlevel . 3)
-          (pgpb-archive-files :maxlevel . 3)
+          (pgpb-org-journal-files :maxlevel . 3)
+          (pgpb-org-archive-files :maxlevel . 3)
           )
         ))
 

@@ -169,7 +169,7 @@
      : pgpb-org-new
    
 
-*** Map of Org directory vars to their location
+*** TODO Map of Org directory vars to their location
 
     The following function creates a list of options from the list of
     possible output directories:
@@ -190,37 +190,56 @@
 
     #+RESULTS:
     : pgpb-org-new-options
-    
+
 
 *** TODO Directories that contain Org files
 
-    Directories that will be used as targets for new Org files:
-   
+    Directories that will contain Org files are defined in global
+    variables: [[id:B588E4F2-7E78-4204-98F1-E0106538FB21][Special Org directories]].
+
+    To dynamically collect all of them we iterate over the list of
+    known symbols with =cl-loop= using the [[https://www.gnu.org/software/emacs/manual/html_node/cl/For-Clauses.html][clause]] of the form:
+
+    =for var being the symbols [of obarray]=
+
+    and keep only those symbols matching the predefined pattern:
+    
     #+begin_src elisp
       (defun pgpb-org-dirs ()
-        "Directories for placing new Org files."
         (interactive)
-        (cl-loop for symbol being the symbols
-                 when (and (boundp symbol)
-                           (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
-                 collect symbol))
+        
+        (let ((org-dirs
+               (cl-loop for symbol being the symbols
+                        when (and (boundp symbol)
+                                  (string-match-p "^pgpb-org-.*-dir$" (symbol-name symbol)))
+                        collect symbol)))
+
+          (if (called-interactively-p 'any)
+              (if org-dirs
+                  (with-output-to-temp-buffer "*pgpb-org-dirs*"
+                    (dolist (var org-dirs)
+                      (princ (format "%s\n" var))))
+                (message "No variables found that match the pattern")
+                )
+            org-dirs)
+          )
+        )
     #+end_src
 
     #+RESULTS:
     : pgpb-org-dirs
-
    
-**** Example output
+
+**** Example usage
     
-     The function should return the list of all my special Org
-     directories: 
+     The function returns the list of all my special Org directories:
 
      #+begin_src elisp :tangle no
        (pgpb-org-dirs)
      #+end_src
 
      #+RESULTS:
-     : nil
+     : (pgpb-org-journal-dir pgpb-org-archive-dir pgpb-org-agenda-dir)
 
 
 
@@ -277,7 +296,7 @@
 
      List (public) keys (=-k=):
      
-     #+begin_src bash :session none
+     #+begin_src bash :session none :tangle no
        gpg -k pgpb.padilla
      #+end_src
 
@@ -322,7 +341,7 @@
      (defun pgpb-refresh-org () 
        "Reload agenda files, usually to include newly created files."
        (interactive)
-       (setq org-agenda-files (pgpb-agenda-files))
+       (setq org-agenda-files (pgpb-org-agenda-files))
        (pgpb-refresh-refile-targets)
        (message "All Org agenda files have been reloaded."))
 
@@ -331,8 +350,8 @@
              '(
                (nil :maxlevel . 3)
                (org-agenda-files :maxlevel . 3)
-               (pgpb-journal-files :maxlevel . 3)
-               (pgpb-archive-files :maxlevel . 3)
+               (pgpb-org-journal-files :maxlevel . 3)
+               (pgpb-org-archive-files :maxlevel . 3)
                )
              ))
 

@@ -127,7 +127,16 @@
    #+begin_src elisp
      (require 'pgpb-abbrev)
    #+end_src
-   
+
+
+** Testing Utilities
+
+   #+begin_src elisp
+     (require 'pgpb-test)
+   #+end_src
+
+   #+RESULTS:
+   : pgpb-test
 
 ** Announce package
    #+begin_src elisp
