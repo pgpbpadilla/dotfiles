@@ -17,30 +17,22 @@
 (defun pgpb-org-archive-files ()
   (directory-files-recursively pgpb-org-archive-dir pgpb-org-file-regex))
 
-(defun reload-emacs-configuration ()
-  "Reload the Emacs configuration."
-  (interactive)
-  (load-file user-init-file))
-
-;; Bind the function to a key (optional)
-(global-set-key (kbd "C-c r") 'reload-emacs-configuration)
-
 (defun pgpb-org-new ()
   "Create new Org file. Use my GPG keys for encryption."
   (interactive)
 
-  (let options (pgpb-org-new-options))
-  (let selected (completing-read "Choose dir: " options nil t))
-  (let out-dir (cdr (assoc selected options)))
-  (let random-filename (format "%s/%s" out-dir (random-name)))
-  (let new-file (concat random-filename pgpb-org-file-extension))
+(let options (pgpb-org-new-options))
+(let selected (completing-read "Choose dir: " options nil t))
+(let out-dir (cdr (assoc selected options)))
+(let random-filename (format "%s/%s" out-dir (random-name)))
+(let new-file (concat random-filename pgpb-org-file-extension))
 
-  ;; fix: get rid of the EPA key selection dialog
-  ;; https://superuser.com/a/1446730/148349
-  (setq-local epa-file-encrypt-to my-gpg-key)
-  (write-region gpg-header nil new-file)
-  (find-file-other-window new-file)
-  (message new-file))
+;; fix: get rid of the EPA key selection dialog
+;; https://superuser.com/a/1446730/148349
+(setq-local epa-file-encrypt-to my-gpg-key)
+(write-region gpg-header nil new-file)
+(find-file-other-window new-file)
+(message new-file))
 
 (defun pgpb-org-new-options ()
   "Return a list of options from a list of symbols"
@@ -54,6 +46,14 @@
           (pgpb-org-dirs))
   )
 
+(defun pgpb-org-dirs ()
+  "Directories for placing new Org files."
+  (interactive)
+  (cl-loop for symbol being the symbols
+           when (and (boundp symbol)
+                     (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
+           collect symbol))
+
 (defun random-name ()
   "Return a random file name."
   (interactive)
@@ -65,7 +65,7 @@
          (shell-command-to-string
           "echo $(openssl rand -hex 5)"))))
 
-(defvar pgpg-gpg-key "pgpb.padilla@gmail.com"
+(defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
   "GPG key to use for encrypting Org files.")
 
 (defvar pgpb-org-header
@@ -74,13 +74,13 @@
 
 gpg -k pgpb.padilla
 
-(defun pgpb-org-dirs ()
-  "Directories for placing new Org files."
+(defun reload-emacs-configuration ()
+  "Reload the Emacs configuration."
   (interactive)
-  (cl-loop for symbol being the symbols
-           when (and (boundp symbol)
-                     (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
-           collect symbol))
+  (load-file user-init-file))
+
+;; Bind the function to a key (optional)
+(global-set-key (kbd "C-c r") 'reload-emacs-configuration)
 
 (defun pgpb-refresh-org () 
   "Reload agenda files, usually to include newly created files."

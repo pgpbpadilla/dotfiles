@@ -99,87 +99,81 @@
     : pgpb-org-archive-files
    
    
-** TODO =pgpb-org-new=: create new Org file 
-
-   1. [ ] no global vars
+** TODO Create new Org file with encryption enabled
 
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
-
-*** TODO Reload emacs init file
-
-    1. [ ] make this part of my emacs config
-    2. [ ] move to a better location
-
-    #+begin_src elisp :session none
-      (defun reload-emacs-configuration ()
-        "Reload the Emacs configuration."
-        (interactive)
-        (load-file user-init-file))
-
-      ;; Bind the function to a key (optional)
-      (global-set-key (kbd "C-c r") 'reload-emacs-configuration)
-    #+end_src
-
-    #+RESULTS:
-    : reload-emacs-configuration
-
-
-*** Usage example
-
-    1. Call interactively: =M-x pgpb-org-new=
-    2. Run with Babel: =C-c C-c=
-       #+begin_src elisp :tangle no :results value file
-         (pgpb-org-new)
-       #+end_src
+   TODO:
    
-       #+RESULTS:
-       [[file:~/org/0f6de25076/28e170260e.org.gpg]]
+   1. [ ] no global vars
+
+
+   A new file can be created using one of the following methods:
    
+   1. Call interactively: =M-x pgpb-org-new=
+   2. Run with Babel: =C-c C-c=
+      #+begin_src elisp :tangle no :results value file
+        (pgpb-org-new)
+      #+end_src
 
-*** TODO Create and open file in a new window
+      #+RESULTS:
+      [[file:~/org/0f6de25076/28e170260e.org.gpg]]
 
-    1. [ ] no globals
-    2. [ ] should also work with a list of gpg key ids
 
-       
+*** Define function: =pgpb-org-new=
+
+    
     #+begin_src elisp
       (defun pgpb-org-new ()
         "Create new Org file. Use my GPG keys for encryption."
         (interactive)
-
-        (let options (pgpb-org-new-options))
-        (let selected (completing-read "Choose dir: " options nil t))
-        (let out-dir (cdr (assoc selected options)))
-        (let random-filename (format "%s/%s" out-dir (random-name)))
-        (let new-file (concat random-filename pgpb-org-file-extension))
-
-        ;; fix: get rid of the EPA key selection dialog
-        ;; https://superuser.com/a/1446730/148349
-        (setq-local epa-file-encrypt-to my-gpg-key)
-        (write-region gpg-header nil new-file)
-        (find-file-other-window new-file)
-        (message new-file))
     #+end_src
 
-    #+RESULTS:
-    : my-org-file
+    
+**** TODO Output directories for new Org files
+
+     The newly created Org files can be saved to the locations
+     defined by:
+
+     1. [ ] fix this code block
+
+     #+begin_src elisp :tangle no :session none
+       (pgpb-org-new-options)
+     #+end_src
+
+     
+
+**** TODO Create and open file in a new window
+
+     1. [ ] no globals
+     2. [ ] should also work with a list of gpg key ids
+
+       
+     #+begin_src elisp
+
+         (let options (pgpb-org-new-options))
+         (let selected (completing-read "Choose dir: " options nil t))
+         (let out-dir (cdr (assoc selected options)))
+         (let random-filename (format "%s/%s" out-dir (random-name)))
+         (let new-file (concat random-filename pgpb-org-file-extension))
+
+         ;; fix: get rid of the EPA key selection dialog
+         ;; https://superuser.com/a/1446730/148349
+         (setq-local epa-file-encrypt-to my-gpg-key)
+         (write-region gpg-header nil new-file)
+         (find-file-other-window new-file)
+         (message new-file))
+     #+end_src
+
+     #+RESULTS:
+     : pgpb-org-new
    
 
-*** TODO Interactive list of custom Org directories
+*** Map of Org directory vars to their location
 
-    Given the list of custom Org directories:
-
-    #+begin_src elisp :session none :tangle no
-      (pgpb-org-dirs)
-    #+end_src
-
-    #+RESULTS:
-    : nil
-
-    Create an interactive list of options to choose where to save new
-    Org files: 
-
+    The following function creates a list of options from the list of
+    possible output directories:
+    
     #+begin_src elisp
       (defun pgpb-org-new-options ()
         "Return a list of options from a list of symbols"
@@ -197,6 +191,39 @@
     #+RESULTS:
     : pgpb-org-new-options
     
+
+*** TODO Directories that contain Org files
+
+    Directories that will be used as targets for new Org files:
+   
+    #+begin_src elisp
+      (defun pgpb-org-dirs ()
+        "Directories for placing new Org files."
+        (interactive)
+        (cl-loop for symbol being the symbols
+                 when (and (boundp symbol)
+                           (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
+                 collect symbol))
+    #+end_src
+
+    #+RESULTS:
+    : pgpb-org-dirs
+
+   
+**** Example output
+    
+     The function should return the list of all my special Org
+     directories: 
+
+     #+begin_src elisp :tangle no
+       (pgpb-org-dirs)
+     #+end_src
+
+     #+RESULTS:
+     : nil
+
+
+
 
 *** Output file name
 
@@ -266,40 +293,23 @@
      For listing private keys use =-K=.
 
 
-*** TODO Listing special Org directories
+*** TODO Reload emacs init file
 
-    1. [ ] should not use global variables
-      
+    1. [ ] make this part of my emacs config
+    2. [ ] move to a better location
 
-    Directories that will be used as targets for new Org files:
-   
-    #+begin_src elisp
-      (defun pgpb-org-dirs ()
-        "Directories for placing new Org files."
+    #+begin_src elisp :session none
+      (defun reload-emacs-configuration ()
+        "Reload the Emacs configuration."
         (interactive)
-        (cl-loop for symbol being the symbols
-                 when (and (boundp symbol)
-                           (string-match-p "pgpb-org-.*-dir" (symbol-name symbol)))
-                 collect symbol))
+        (load-file user-init-file))
+
+      ;; Bind the function to a key (optional)
+      (global-set-key (kbd "C-c r") 'reload-emacs-configuration)
     #+end_src
 
     #+RESULTS:
-    : pgpb-org-dirs
-
-   
-**** Example output
-    
-     The function should return the list of all my special Org
-     directories: 
-
-     #+begin_src elisp :tangle no
-       (pgpb-org-dirs)
-     #+end_src
-
-     #+RESULTS:
-     : (pgpb-org-journal-dir pgpb-org-archive-dir pgpb-org-agenda-dir)
-
-
+    : reload-emacs-configuration
 
 
 ** DONE Updating file collections
