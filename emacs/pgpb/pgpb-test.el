@@ -1,3 +1,5 @@
+(require 'ert)
+
 (defun pgpb-test ()
   "Eval buffer and run ERT tests"
   (interactive)

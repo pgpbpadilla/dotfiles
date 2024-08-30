@@ -207,7 +207,7 @@
     #+begin_src elisp
       (defun pgpb-org-dirs ()
         (interactive)
-        
+
         (let ((org-dirs
                (cl-loop for symbol being the symbols
                         when (and (boundp symbol)
@@ -239,7 +239,7 @@
      #+end_src
 
      #+RESULTS:
-     : (pgpb-org-journal-dir pgpb-org-archive-dir pgpb-org-agenda-dir)
+     : nil
 
 
 

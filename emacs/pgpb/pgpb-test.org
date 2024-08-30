@@ -11,6 +11,8 @@
     In oder let ERT know about the test you must evaluate the buffer.
   
     #+begin_src elisp
+      (require 'ert)
+      
       (defun pgpb-test ()
         "Eval buffer and run ERT tests"
         (interactive)
