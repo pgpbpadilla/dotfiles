@@ -3,16 +3,7 @@
 
 * test-pgpb-org-files.el: [[file:test-pgpb-org-files.el][open]]
 
-  Run test in [[https://www.gnu.org/software/emacs/manual/html_mono/ert.html#Running-Tests-in-Batch-Mode][batch mode]]:
-
-  #+name: init-dir
-  #+begin_src elisp :tangle no 
-    (print user-emacs-directory)
-  #+end_src
-
-  #+RESULTS: init-dir
-  : "/Users/pgpb.padilla/code/dotfiles-experimental/emacs/"
-
+** Run test in [[https://www.gnu.org/software/emacs/manual/html_mono/ert.html#Running-Tests-in-Batch-Mode][batch mode]]
   
   #+begin_src bash :results verbatim :session none :tangle no :var init_dir=init-dir
     INIT_DIR="${init_dir//\"/}"
@@ -29,6 +20,17 @@
 
 
 
+** Define Emacs init directory
+
+   #+name: init-dir
+   #+begin_src elisp :tangle no 
+     (print user-emacs-directory)
+   #+end_src
+
+   #+RESULTS: init-dir
+   : "/Users/pgpb.padilla/code/dotfiles-experimental/emacs/"
+   
+
 ** Load test dependencies
 
    #+begin_src elisp
@@ -38,7 +40,7 @@
    #+end_src
 
    
-** Load expected gloabl variables
+** Load expected global variables
 
    Ensure global vars for my custom Org dirs are set:
    
