@@ -8,11 +8,14 @@
 
 * Backlog: $1                                                 :PROJECT:
 
+** Refile: $1  :refile:
+   SCHEDULED: <`(format-time-string "%Y-%m-%d %a")` .+3m> 
+   :PROPERTIES:
+   :ID: `(org-id-new)`
+   :END:
+
 ** A task $0
 
 * Bookmarks: $1                                                        :bookmark:
 
-* Recurring: $1                                                        :recurring:
-
-* Journal: $1                                                           :journal:
 
