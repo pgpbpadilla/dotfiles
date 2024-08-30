@@ -1,0 +1,59 @@
+#+PROPERTY: header-args :results verbatim :tangle test-pgpb-org-files.el :session test-pgpb :cache no
+#+auto_tangle: yes
+
+* test-pgpb-org-files.el: [[file:test-pgpb-org-files.el][open]]
+
+  Run test in [[https://www.gnu.org/software/emacs/manual/html_mono/ert.html#Running-Tests-in-Batch-Mode][batch mode]]:
+
+  #+name: init-dir
+  #+begin_src elisp :tangle no 
+    (print user-emacs-directory)
+  #+end_src
+
+  #+RESULTS: init-dir
+  : "/Users/pgpb.padilla/code/dotfiles-experimental/emacs/"
+
+  
+  #+begin_src bash :results verbatim :session none :tangle no :var init_dir=init-dir
+    INIT_DIR="${init_dir//\"/}"
+    TEST_FILE="${INIT_DIR}test-pgpb/test-pgpb-org-files.el"
+
+    emacs --init-directory $INIT_DIR \
+          -batch \
+          -l ert \
+          -l $TEST_FILE \
+          -f ert-run-tests-batch-and-exit
+  #+end_src
+
+  #+RESULTS:
+
+
+
+** Load test dependencies
+
+   #+begin_src elisp
+     (mapc (lambda (file)
+             (load (expand-file-name (concat "pgpb/" file) user-emacs-directory)))
+           '("pgpb-test.el" "pgpb-org-files.el"))
+   #+end_src
+
+   
+** Load expected gloabl variables
+
+   Ensure global vars for my custom Org dirs are set:
+   
+   #+begin_src elisp
+     (load (concat user-emacs-directory "early-init.el"))
+   #+end_src
+
+
+** List my Org directories
+
+   #+begin_src elisp
+     (ert-deftest pgpb-test-org-dirs ()
+       "should return a list of my Org directories"
+       (let ((expected '(pgpb-org-journal-dir
+                         pgpb-org-archive-dir
+                         pgpb-org-agenda-dir)))
+         (should (equal (pgpb-org-dirs) expected))))
+   #+end_src
