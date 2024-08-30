@@ -21,18 +21,15 @@
   "Create new Org file. Use my GPG keys for encryption."
   (interactive)
 
-(let options (pgpb-org-new-options))
-(let selected (completing-read "Choose dir: " options nil t))
-(let out-dir (cdr (assoc selected options)))
-(let random-filename (format "%s/%s" out-dir (random-name)))
-(let new-file (concat random-filename pgpb-org-file-extension))
-
-;; fix: get rid of the EPA key selection dialog
-;; https://superuser.com/a/1446730/148349
-(setq-local epa-file-encrypt-to my-gpg-key)
-(write-region gpg-header nil new-file)
-(find-file-other-window new-file)
-(message new-file))
+  (let ((options (pgpb-org-new-options)))
+    (let ((selected (completing-read "Choose dir: " options nil t)))
+      (let ((out-dir (cdr (assoc selected options))))
+        (let ((filename (format "%s/%s" out-dir (pgpb-random-name))))
+          (let ((new-file (concat filename pgpb-org-file-extension)))
+            (setq-local epa-file-encrypt-to pgpb-gpg-key)
+            (write-region pgpb-org-header nil new-file)
+            (find-file-other-window new-file)
+            (message new-file)))))))
 
 (defun pgpb-org-new-options ()
   "Return a list of options from a list of symbols"
@@ -66,7 +63,7 @@
     )
   )
 
-(defun random-name ()
+(defun pgpb-random-name ()
   "Return a random file name."
   (interactive)
 

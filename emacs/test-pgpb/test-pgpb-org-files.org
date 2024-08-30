@@ -4,7 +4,6 @@
 * test-pgpb-org-files.el: [[file:test-pgpb-org-files.el][open]]
 
 ** Run test in [[https://www.gnu.org/software/emacs/manual/html_mono/ert.html#Running-Tests-in-Batch-Mode][batch mode]]
-  
   #+begin_src bash :results verbatim :session none :tangle no :var init_dir=init-dir
     INIT_DIR="${init_dir//\"/}"
     TEST_FILE="${INIT_DIR}test-pgpb/test-pgpb-org-files.el"
@@ -52,10 +51,54 @@
 ** List my Org directories
 
    #+begin_src elisp
-     (ert-deftest pgpb-test-org-dirs ()
+     (ert-deftest test-pgpb-org-dirs ()
        "should return a list of my Org directories"
        (let ((expected '(pgpb-org-journal-dir
                          pgpb-org-archive-dir
                          pgpb-org-agenda-dir)))
          (should (equal (pgpb-org-dirs) expected))))
+   #+end_src
+
+
+
+** Create options from list of Org directories
+
+   #+begin_src elisp
+     (ert-deftest test-pgpb-org-new-options ()
+       "should return the list of Org dirs as options"
+       (should-not (null (pgpb-org-new-options))))
+   #+end_src
+
+   
+** WONTDO Create new Org file
+   CLOSED: [2024-08-31 Sa 00:22]
+   :LOGBOOK:
+   - CLOSING NOTE [2024-08-31 Sa 00:22]
+   :END:
+
+   Testing this type of interactive function requires a lot of set up,
+   but it's very tricky so I will not even try for now.
+
+   1. Interactive mode, needs to be deactivated
+   2. User inputs need to be simulated
+   3. Opening files in a new buffer breaks the non-interactivity of
+      the test
+
+
+   I think I can rewrite this function into smaller, not interactive
+   parts, each of which can be tested much more easily.
+   
+   #+begin_src elisp
+     (ert-deftest test-pgpb-org-new ()
+       "should not return nil"
+       :expected-result :failed
+       (let ((noninteractive t)
+             (inhibit-message t)
+             (completing-read-response pgpb-journal-dir))
+         (flet ((completing-read (prompt choices &optional
+                                         predicate require-match
+                                         initial-input hist
+                                         def inherit-input-method)
+                                 completing-read-response))
+           (should-not (null (pgpb-org-new))))))
    #+end_src

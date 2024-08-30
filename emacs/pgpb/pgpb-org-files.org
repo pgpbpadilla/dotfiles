@@ -103,11 +103,6 @@
 
    Adapted from: [[id:062FBE2C-2267-4F81-9C15-0BC0A3DC84E8][General case: new empty Org file]]
 
-   TODO:
-   
-   1. [ ] no global vars
-
-
    A new file can be created using one of the following methods:
    
    1. Call interactively: =M-x pgpb-org-new=
@@ -117,56 +112,42 @@
       #+end_src
 
       #+RESULTS:
-      [[file:~/org/0f6de25076/28e170260e.org.gpg]]
+      [[file:~/org/31e520d4df/9beb1205f9.org.gpg]]
 
 
-*** Define function: =pgpb-org-new=
+   The interactive function will ask the user to select the target
+   directory for the new Org file and will create an empty Org file
+   with a random name.
 
-    
-    #+begin_src elisp
-      (defun pgpb-org-new ()
-        "Create new Org file. Use my GPG keys for encryption."
-        (interactive)
-    #+end_src
+   #+begin_src elisp
+     (defun pgpb-org-new ()
+       "Create new Org file. Use my GPG keys for encryption."
+       (interactive)
 
-    
-**** TODO Output directories for new Org files
+       (let ((options (pgpb-org-new-options)))
+         (let ((selected (completing-read "Choose dir: " options nil t)))
+           (let ((out-dir (cdr (assoc selected options))))
+             (let ((filename (format "%s/%s" out-dir (pgpb-random-name))))
+               (let ((new-file (concat filename pgpb-org-file-extension)))
+                 (setq-local epa-file-encrypt-to pgpb-gpg-key)
+                 (write-region pgpb-org-header nil new-file)
+                 (find-file-other-window new-file)
+                 (message new-file)))))))
+   #+end_src
 
-     The newly created Org files can be saved to the locations
-     defined by:
+   #+RESULTS:
+   : pgpb-org-new
+   
+   
+   The file will be encrypted with the GPG key defined by the
+   variable: 
 
-     1. [ ] fix this code block
+   #+begin_src elisp :session none :tangle no
+     pgpb-gpg-key
+   #+end_src
 
-     #+begin_src elisp :tangle no :session none
-       (pgpb-org-new-options)
-     #+end_src
-
-     
-
-**** TODO Create and open file in a new window
-
-     1. [ ] no globals
-     2. [ ] should also work with a list of gpg key ids
-
-       
-     #+begin_src elisp
-
-         (let options (pgpb-org-new-options))
-         (let selected (completing-read "Choose dir: " options nil t))
-         (let out-dir (cdr (assoc selected options)))
-         (let random-filename (format "%s/%s" out-dir (random-name)))
-         (let new-file (concat random-filename pgpb-org-file-extension))
-
-         ;; fix: get rid of the EPA key selection dialog
-         ;; https://superuser.com/a/1446730/148349
-         (setq-local epa-file-encrypt-to my-gpg-key)
-         (write-region gpg-header nil new-file)
-         (find-file-other-window new-file)
-         (message new-file))
-     #+end_src
-
-     #+RESULTS:
-     : pgpb-org-new
+   #+RESULTS:
+   : "pgpb.padilla@gmail.com"
    
 
 *** TODO Map of Org directory vars to their location
@@ -253,7 +234,7 @@
 
        
     #+begin_src elisp
-      (defun random-name ()
+      (defun pgpb-random-name ()
         "Return a random file name."
         (interactive)
 
