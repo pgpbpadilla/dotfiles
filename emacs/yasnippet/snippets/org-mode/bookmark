@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Org Bookmarks
+# key: .org.bookmark
+# --
+#+TITLE: Bookmarks: ${1:topic}
+#+CATEGORY: ${2:category}
+#+FILETAGS: :bookmark:$2:
+
+* Bookmarks: $1                                                 
+  :PROPERTIES:
+  :ID: `(org-id-new)`
+  :END:
+
+
+
