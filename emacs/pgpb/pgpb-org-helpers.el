@@ -25,7 +25,7 @@
   (setq org-id-link-to-org-use-id t)
 
   ;; Additional places to use for indexing Org IDs
-  (setq org-id-extra-files (pgpb-extra-files))
+  (setq org-id-extra-files (pgpb-org-extra-files))
 
 
   ;; All Notes captured will go to this file
