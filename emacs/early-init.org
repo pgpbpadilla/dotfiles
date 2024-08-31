@@ -20,6 +20,37 @@
 
 
    
+** GPG encryption key
+   :PROPERTIES:
+   :ID:       ABDF6552-C523-45A5-8127-5A64DB17DACD
+   :END:
+
+   #+begin_src elisp
+     (defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
+       "GPG key to use for encrypting Org files.")
+   #+end_src
+   
+
+*** Listing GPG keys available in this system
+
+    List (public) keys (=-k=):
+     
+    #+begin_src bash :session none :tangle no
+      gpg -k pgpb.padilla
+    #+end_src
+
+    #+RESULTS:
+    : pub   ed25519 2021-08-29 [SC] [verfällt: 2025-08-21]
+    :       66BF0487843AB5B8F593F64124C50C592A8618EC
+    : uid        [ ultimativ ] Pablo Padilla <pgpb.padilla@gmail.com>
+    : sub   cv25519 2021-08-29 [E] [verfällt: 2025-08-21]
+    : sub   rsa4096 2022-02-16 [E] [verfällt: 2025-08-21]
+    : 
+
+
+    For listing private keys use =-K=.
+   
+
 ** Set special Org directories
    :PROPERTIES:
    :ID:       B588E4F2-7E78-4204-98F1-E0106538FB21

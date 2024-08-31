@@ -18,7 +18,7 @@
   (directory-files-recursively pgpb-org-archive-dir pgpb-org-file-regex))
 
 (defun pgpb-org-new ()
-  "Create new Org file. Use my GPG keys for encryption."
+  "Create new Org file with encryption enabled."
   (interactive)
 
   ;; =let*= binds variables sequentially
@@ -35,7 +35,7 @@
             (message new-file)))
 
 (defun pgpb-org-new-options ()
-  "Return a list of options from a list of symbols"
+  "Create map of Org dir symbols to their values"
   (interactive)
 
   (mapcar (lambda (symbol)
@@ -43,8 +43,7 @@
              (symbol-name symbol)
              (symbol-value symbol))
             )
-          (pgpb-org-dirs))
-  )
+          (pgpb-org-dirs)))
 
 (defun pgpb-org-dirs ()
   (interactive)
@@ -77,20 +76,9 @@
          (shell-command-to-string
           "echo $(openssl rand -hex 5)"))))
 
-(defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
-  "GPG key to use for encrypting Org files.")
-
 (defvar pgpb-org-header
   (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
   "Emacs header to configure GPG encryption.")
-
-(defun reload-emacs-configuration ()
-  "Reload the Emacs configuration."
-  (interactive)
-  (load-file user-init-file))
-
-;; Bind the function to a key (optional)
-(global-set-key (kbd "C-c r") 'reload-emacs-configuration)
 
 (defun pgpb-org-refresh () 
   "Reload agenda files, usually to include newly created files."
