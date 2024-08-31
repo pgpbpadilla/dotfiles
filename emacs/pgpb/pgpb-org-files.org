@@ -124,15 +124,18 @@
        "Create new Org file. Use my GPG keys for encryption."
        (interactive)
 
-       (let ((options (pgpb-org-new-options)))
-         (let ((selected (completing-read "Choose dir: " options nil t)))
-           (let ((out-dir (cdr (assoc selected options))))
-             (let ((filename (format "%s/%s" out-dir (pgpb-random-name))))
-               (let ((new-file (concat filename pgpb-org-file-extension)))
-                 (setq-local epa-file-encrypt-to pgpb-gpg-key)
+       ;; =let*= binds variables sequentially
+       ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Local-Variables.html#index-let_002a
+       (let* ((options (pgpb-org-new-options))
+              (selected (completing-read "Choose dir: " options nil t))
+              (out-dir (cdr (assoc selected options)))
+              (filename (format "%s/%s" out-dir (pgpb-random-name)))
+              (new-file (concat filename pgpb-org-file-extension)))
+
+         (setq-local epa-file-encrypt-to pgpb-gpg-key)
                  (write-region pgpb-org-header nil new-file)
                  (find-file-other-window new-file)
-                 (message new-file)))))))
+                 (message new-file)))
    #+end_src
 
    #+RESULTS:
@@ -150,7 +153,10 @@
    : "pgpb.padilla@gmail.com"
    
 
-*** TODO Map of Org directory vars to their location
+*** Map of Org directory vars to their location
+    :LOGBOOK:
+    - CLOSING NOTE [2024-08-31 Sa 22:09]
+    :END:
 
     The following function creates a list of options from the list of
     possible output directories:
@@ -181,7 +187,9 @@
     To dynamically collect all of them we iterate over the list of
     known symbols with =cl-loop= using the [[https://www.gnu.org/software/emacs/manual/html_node/cl/For-Clauses.html][clause]] of the form:
 
-    =for var being the symbols [of obarray]=
+    #+begin_example elisp
+    for var being the symbols [of obarray]
+    #+end_example
 
     and keep only those symbols matching the predefined pattern:
     
@@ -220,7 +228,7 @@
      #+end_src
 
      #+RESULTS:
-     : nil
+     : (pgpb-org-journal-dir pgpb-org-archive-dir pgpb-org-agenda-dir)
 
 
 

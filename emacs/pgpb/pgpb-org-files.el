@@ -21,15 +21,18 @@
   "Create new Org file. Use my GPG keys for encryption."
   (interactive)
 
-  (let ((options (pgpb-org-new-options)))
-    (let ((selected (completing-read "Choose dir: " options nil t)))
-      (let ((out-dir (cdr (assoc selected options))))
-        (let ((filename (format "%s/%s" out-dir (pgpb-random-name))))
-          (let ((new-file (concat filename pgpb-org-file-extension)))
-            (setq-local epa-file-encrypt-to pgpb-gpg-key)
+  ;; =let*= binds variables sequentially
+  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Local-Variables.html#index-let_002a
+  (let* ((options (pgpb-org-new-options))
+         (selected (completing-read "Choose dir: " options nil t))
+         (out-dir (cdr (assoc selected options)))
+         (filename (format "%s/%s" out-dir (pgpb-random-name)))
+         (new-file (concat filename pgpb-org-file-extension)))
+
+    (setq-local epa-file-encrypt-to pgpb-gpg-key)
             (write-region pgpb-org-header nil new-file)
             (find-file-other-window new-file)
-            (message new-file)))))))
+            (message new-file)))
 
 (defun pgpb-org-new-options ()
   "Return a list of options from a list of symbols"
@@ -89,7 +92,7 @@
 ;; Bind the function to a key (optional)
 (global-set-key (kbd "C-c r") 'reload-emacs-configuration)
 
-(defun pgpb-refresh-org () 
+(defun pgpb-org-refresh () 
   "Reload agenda files, usually to include newly created files."
   (interactive)
   (setq org-agenda-files (pgpb-org-agenda-files))
@@ -111,7 +114,7 @@
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm))
 
-(defun pgpb-extra-files ()
+(defun pgpb-org-extra-files ()
   (append
    (pgpb-org-journal-files)
    (pgpb-org-archive-files))
