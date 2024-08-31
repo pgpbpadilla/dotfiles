@@ -113,8 +113,8 @@
 
 (defun pgpb-extra-files ()
   (append
-   (pgpb-journal-files)
-   (pgpb-archive-files))
+   (pgpb-org-journal-files)
+   (pgpb-org-archive-files))
   )
 
 (provide 'pgpb-org-files)

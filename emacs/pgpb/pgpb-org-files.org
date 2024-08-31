@@ -319,7 +319,7 @@
    the list of agenda files.
    
    #+begin_src elisp
-     (defun pgpb-refresh-org () 
+     (defun pgpb-org-refresh () 
        "Reload agenda files, usually to include newly created files."
        (interactive)
        (setq org-agenda-files (pgpb-org-agenda-files))
@@ -341,10 +341,10 @@
        (setq org-outline-path-complete-in-steps nil)
        (setq org-refile-allow-creating-parent-nodes 'confirm))
 
-     (defun pgpb-extra-files ()
+     (defun pgpb-org-extra-files ()
        (append
-        (pgpb-journal-files)
-        (pgpb-archive-files))
+        (pgpb-org-journal-files)
+        (pgpb-org-archive-files))
        )
    #+end_src
 

@@ -74,11 +74,11 @@
 
           ("F" . "Find/Search")
           ("Fj" "Journal search" search ""
-           ((org-agenda-files (pgpb-journal-files))))
+           ((org-agenda-files (pgpb-org-journal-files))))
           ("Fa" "Archive search" search ""
-           ((org-agenda-files (pgpb-archive-files))))
+           ((org-agenda-files (pgpb-org-archive-files))))
           ("Fe" "Search everywhere" search ""
-           ((org-agenda-text-search-extra-files (pgpb-extra-files))))
+           ((org-agenda-text-search-extra-files (pgpb-org-extra-files))))
 
 
           ;;; Project stuff
