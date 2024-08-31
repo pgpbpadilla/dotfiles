@@ -1,7 +1,7 @@
 #+PROPERTY: header-args :results verbatim :tangle pgpb-org-files.el :session pgpb :cache no
 #+auto_tangle: true
 
-* TODO pgpb-org-files.el
+* pgpb-org-files.el: [[file:pgpb-org-files.el][open]]
 
   Helper functions to deal with special categories of Org files,
   e.g. agenda, journal and archive files.
