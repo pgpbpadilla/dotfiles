@@ -51,4 +51,6 @@
 
 (require 'pgpb-abbrev)
 
+(require 'pgpb-test)
+
 (provide 'pgpb)

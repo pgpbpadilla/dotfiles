@@ -44,6 +44,22 @@
    #+end_src
 
 
+
+** Reload emacs init file
+
+   #+begin_src elisp 
+     (defun pgpb-reinit ()
+       "Reload the Emacs configuration."
+       (interactive)
+       (load-file user-init-file))
+
+     ;; Bind the function to a key (optional)
+     (global-set-key (kbd "C-c r") 'pgpb-reinit)
+   #+end_src
+
+   #+RESULTS:
+   : reload-emacs-configuration
+
    
 ** Provide extras module
 

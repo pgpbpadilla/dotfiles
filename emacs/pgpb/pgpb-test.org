@@ -1,0 +1,38 @@
+#+PROPERTY: header-args :results verbatim :tangle pgpb-test.el :session pgpb-test :cache no
+#+auto_tangle: t
+
+
+* Testing utilities
+
+** Keybindings
+
+*** Run tests: evaluate buffer and run tests
+
+    In oder let ERT know about the test you must evaluate the buffer.
+  
+    #+begin_src elisp
+      (require 'ert)
+
+      (defun pgpb-ert-run-all ()
+        "Eval buffer and run ERT tests"
+        (interactive)
+
+        (ert-delete-all-tests)
+        (eval-buffer)
+        (ert-run-tests-interactively t)
+        )
+
+      (global-set-key (kbd "C-c t") 'pgpb-ert-run-all)
+    #+end_src
+
+    #+RESULTS:
+    : pgpb-test
+
+
+** Provide Test module
+   
+   #+begin_src elisp
+     (provide 'pgpb-test)
+   #+end_src
+
+
