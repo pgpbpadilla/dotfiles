@@ -15,7 +15,7 @@
    #+end_src
 
 
-** Load custom agenda commands
+** Load custom agenda commands: [[file:pgpb-org-agenda-commands.org][org]]
 
    #+begin_src elisp
      (require 'pgpb-org-agenda-commands)

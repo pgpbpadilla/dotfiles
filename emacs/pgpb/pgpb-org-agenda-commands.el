@@ -3,7 +3,7 @@
 ;; 
 ;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
 ;; List all improvements that are not DONE.
-(setq not-project-tags '("-improve" "-private" "-template" "-I" "-C"))
+(setq not-project-tags '("-improve" "-private" "-template"))
 (setq daily-tags '("+daily" "-private" "-template"))
 
 ;;; Hide some tags in Agenda view so that there are no multi-line entries
@@ -28,23 +28,29 @@
 
 (setq org-agenda-custom-commands 
       '(
-        ("f" "Time tracking" tags (concat "+time+track" hidden))
+        ;;; Project stuff
+        ("k" "Public tasks"
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
+         )
+
+        ("l" "All tasks"
+         ((agenda ""))
+         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
+         )
 
         ("d" "Daily reminders"
          ((agenda ""))
          ((org-agenda-tag-filter-preset daily-tags))
          )
 
+        ("f" "Time tracking" tags (concat "+time+track" hidden))
+
         ;; Filter by priority
         ;; https://emacs-orgmode.gnu.narkive.com/bsur8gfw/orgmode-custom-agenda-view-filter-by-priority-and-scheduled-date
         ("n" "Now! a.k.a. Prio=A"
          ((agenda ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp "\\[#A\\]")))
-         )
-
-        ("p" "Public tasks (public)"
-         ((agenda ""))
-         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template")))
          )
 
         ("j" "All meetings"
@@ -60,23 +66,6 @@
          ((org-agenda-files (pgpb-org-archive-files))))
         ("Fe" "Search everywhere" search ""
          ((org-agenda-text-search-extra-files (pgpb-org-extra-files))))
-
-
-        ;;; Project stuff
-        ("P" . "Project tasks")
-        ("Pm" "My tasks (public)"
-         ((agenda ""))
-         ;; Remove those for which I'm not responsible
-         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-private" "-template" "-I" "-C")))
-         )
-        ("Pp" "Private tasks"
-         ((agenda ""))
-         ((org-agenda-tag-filter-preset '("+private")))
-         )
-        ("Pa" "All tasks"
-         ((agenda ""))
-         ((org-agenda-tag-filter-preset '("-daily" "-improve" "-template")))
-         )
 
 
         ;;; Goals stuff
