@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: .org.elisp
+# key: .org.elisp
+# --
+#+begin_src elisp
+$1$0
+#+end_src
