@@ -14,3 +14,5 @@ alias cddot='cd ~/dotfiles'
 alias cdorg='cd ~/org'
 alias org='nohup emacs --debug-init ~/org &'
 alias orgx='nohup emacs --debug-init --init-directory ~/code/dotfiles-experimental/emacs ~/org &'
+
+alias rand5='openssl rand -hex 5'
