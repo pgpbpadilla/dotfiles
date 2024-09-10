@@ -29,7 +29,15 @@
      (defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
        "GPG key to use for encrypting Org files.")
    #+end_src
-   
+
+**** TODO Allow multiple GPG keys by id
+     :PROPERTIES:
+     :ID:       135C94D0-CFDE-4F0A-8CBC-94BA1C07D4CF
+     :END:
+
+     1. [ ] this is required for my work setup since I have two key
+        ids in the Org header config
+        
 
 *** Listing GPG keys available in this system
 

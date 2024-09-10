@@ -79,9 +79,7 @@
         ("Gs" "Deustsche Sprache" tags (concat "+action+de+sprache" hidden))
 
         ;;; Unfiltered entries
-        ("Gg" "Goals" tags (concat "+goal-task-action" hidden))
-        ("Gt" "Tasks" tags (concat "+task-action" hidden))
-        ("Ga" "Actions" tags (concat "+action" hidden))
+        ("Gg" "Has tag: =goal=" tags (concat "+goal" hidden))
 
         ;;; Goals without a Project can be called Dreams cause they'll
         ;; remain unaccomplished unless some work is done.
@@ -98,7 +96,7 @@
         ;; Dangling/Zombie items
         ;; Items that are not associated to any goal/hobby
         ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
-        ("Gz" "Dangling/Zombie items" tags (concat "-pom-fit-cn-de-blog-meta-job" hidden))
+        ("Gz" "Dangling/Zombie items" tags (concat "-pom-fit-cn-de-blog-meta-job-hobby" hidden))
 
 
         ("R" . "Reminders")
