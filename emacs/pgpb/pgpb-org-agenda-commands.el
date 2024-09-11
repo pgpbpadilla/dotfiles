@@ -1,12 +1,5 @@
-;;; Custom Agenda commands
-;; Examples: https://orgmode.org/manual/Matching-tags-and-properties.html
-;; 
-;; ‘work/WAITING’ = means => ‘work+TODO​="WAITING"’.
-;; List all improvements that are not DONE.
-(setq not-project-tags '("-improve" "-private" "-template"))
 (setq daily-tags '("+daily" "-private" "-template"))
 
-;;; Hide some tags in Agenda view so that there are no multi-line entries
 (setq org-agenda-hide-tags-regexp
       (regexp-opt '("goal"
                     "task"
@@ -20,9 +13,7 @@
                     "journal"
                     "track"
                     "termin"
-                    "bookmark")
-                  )
-      )
+                    "bookmark")))
 
 (setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
