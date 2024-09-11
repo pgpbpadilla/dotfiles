@@ -20,19 +20,6 @@
 
 (setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
 
-(setq org-agenda-custom-commands 
-      (append (list
-               (pgpb-org-public-tasks)
-               (pgpb-org-all)
-               (pgpb-org-daily)
-               (pgpb-org-time)
-               (pgpb-org-now)
-               (pgpb-org-meetings))
-              (pgpb-org-find)
-              (pgpb-org-goals)
-              (pgpb-org-reminder)
-              (pgpb-org-ooo)))
-
 (defun pgpb-org-daily ()
   '("d" "Daily checklist"
     ((agenda ""))
@@ -81,8 +68,8 @@
   ;; See Org etry: =C-c h goals task action=
   ;; (org-id-goto "E5B8D3A5-66EF-45A2-BB21-BADDC147650A")
   '(("g" . "Goals, Hobbies and Dreams")
-    ("gg" "Goal definition" tags (concat "+goal+def" hidden))
-    ("gh" "Hobbies" tags (concat "+hobby+def" hidden))
+    ("gg" "Goal definition" tags (concat "+goal+def"))
+    ("gh" "Hobbies" tags (concat "+hobby+def"))
     ("gd" "Dreams" tags "+dream+def")
     ;; Items that are not associated to any goal/hobby
     ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
@@ -119,5 +106,18 @@
      ((agenda ""))
      ((org-agenda-tag-filter-preset '("+improve")))
      )))
+
+(setq org-agenda-custom-commands 
+      (append (list
+               (pgpb-org-public-tasks)
+               (pgpb-org-all)
+               (pgpb-org-daily)
+               (pgpb-org-time)
+               (pgpb-org-now)
+               (pgpb-org-meetings))
+              (pgpb-org-find)
+              (pgpb-org-goals)
+              (pgpb-org-reminder)
+              (pgpb-org-ooo)))
 
 (provide 'pgpb-org-agenda-commands)

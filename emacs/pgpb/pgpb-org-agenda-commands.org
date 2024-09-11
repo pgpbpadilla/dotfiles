@@ -59,27 +59,9 @@
     #+end_src
 
 
-** Define custom agenda commands
+** Agenda command definitions
 
-   Org reads custom agenda commands from a global variable:
-
-   #+begin_src elisp
-     (setq org-agenda-custom-commands 
-           (append (list
-                    (pgpb-org-public-tasks)
-                    (pgpb-org-all)
-                    (pgpb-org-daily)
-                    (pgpb-org-time)
-                    (pgpb-org-now)
-                    (pgpb-org-meetings))
-                   (pgpb-org-find)
-                   (pgpb-org-goals)
-                   (pgpb-org-reminder)
-                   (pgpb-org-ooo)))
-   #+end_src
-
-
-** Agenda view: daily checklist
+*** Agenda view: daily checklist
 
    Show my daily checklist:
    
@@ -92,7 +74,7 @@
    #+end_src
 
 
-** Agenda view: public tasks
+*** Agenda view: public tasks
 
    Removes all private tasks from the agenda view:
    
@@ -105,7 +87,7 @@
    #+end_src
 
 
-** Agenda view: time trackers
+*** Agenda view: time trackers
 
    Show all items that I typically use to track time.
    There are certain work items that do not merit their /TODO/ entry,
@@ -118,7 +100,7 @@
    #+end_src
 
 
-** Agenda view: do now!
+*** Agenda view: do now!
 
    This view shows only those items with priority /A/. It does so by
    removing from all entries that do not match the regex:
@@ -134,7 +116,7 @@
    #+end_src
 
 
-** Agenda view: all tasks
+*** Agenda view: all tasks
 
    Show all tasks, include private tasks:
    
@@ -148,7 +130,7 @@
 
 
 
-** Agenda view: meetings
+*** Agenda view: meetings
 
    Show all meetings: 
 
@@ -161,7 +143,7 @@
    #+end_src
 
    
-** Text search: Find/Search
+*** Text search: Find/Search
 
    Text search across different categories of files, e.g., journal or
    archive: 
@@ -178,7 +160,7 @@
    #+end_src
    
 
-** Tag search: goals
+*** Tag search: goals
 
    Various views to show goal-related tasks:
 
@@ -189,8 +171,8 @@
        ;; See Org etry: =C-c h goals task action=
        ;; (org-id-goto "E5B8D3A5-66EF-45A2-BB21-BADDC147650A")
        '(("g" . "Goals, Hobbies and Dreams")
-         ("gg" "Goal definition" tags (concat "+goal+def" hidden))
-         ("gh" "Hobbies" tags (concat "+hobby+def" hidden))
+         ("gg" "Goal definition" tags (concat "+goal+def"))
+         ("gh" "Hobbies" tags (concat "+hobby+def"))
          ("gd" "Dreams" tags "+dream+def")
          ;; Items that are not associated to any goal/hobby
          ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
@@ -198,7 +180,7 @@
    #+end_src
 
 
-** Agenda views: reminders
+*** Agenda views: reminders
 
    Find different kinds of reminders:
    
@@ -220,7 +202,7 @@
    #+end_src
 
 
-** Agenda view: Out of Office
+*** Agenda view: Out of Office
 
    Show the times where I will not be working:
    
@@ -236,7 +218,7 @@
    #+end_src
 
    
-** Agenda view: improvements
+*** Agenda view: improvements
 
    Show the list of improvements I want to make:
    
@@ -250,6 +232,26 @@
           )))
    #+end_src
   
+
+** Set custom agenda commands
+
+   Org reads custom agenda commands from a global variable:
+
+   #+begin_src elisp
+     (setq org-agenda-custom-commands 
+           (append (list
+                    (pgpb-org-public-tasks)
+                    (pgpb-org-all)
+                    (pgpb-org-daily)
+                    (pgpb-org-time)
+                    (pgpb-org-now)
+                    (pgpb-org-meetings))
+                   (pgpb-org-find)
+                   (pgpb-org-goals)
+                   (pgpb-org-reminder)
+                   (pgpb-org-ooo)))
+   #+end_src
+
 
 ** Export package
 
