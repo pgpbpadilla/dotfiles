@@ -18,7 +18,7 @@
                     "termin"
                     "bookmark")))
 
-(setq hidden "-info-journal-reminder-hobby-dream/-INFO-DONE-WONTDO-IGNORE")
+(setq hidden "-info-journal/-INFO-DONE-WONTDO-IGNORE")
 
 (defun pgpb-org-daily ()
   '("d" "Daily checklist"
@@ -73,7 +73,7 @@
     ("gd" "Dreams" tags "+dream+def")
     ;; Items that are not associated to any goal/hobby
     ;; (org-id-goto "A753CCF1-D6DF-47CF-BF16-067BD937E30A")
-    ("gz" "Dangling/Zombie items" tags (concat "-pom-fit-cn-de-blog-meta-job-hobby" hidden))))
+    ("gz" "Dangling/Zombie items" tags (concat "-pom-fit-de-blog-meta-job" "-hobby" hidden))))
 
 (defun pgpb-org-reminder ()
        '(("R" . "Reminders")
