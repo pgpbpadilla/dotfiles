@@ -53,4 +53,6 @@
 
 (require 'pgpb-test)
 
+(require 'pgpb-llm)
+
 (provide 'pgpb)

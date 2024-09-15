@@ -138,6 +138,14 @@
    #+RESULTS:
    : pgpb-test
 
+
+** ChatGPT
+
+   #+begin_src elisp
+     (require 'pgpb-llm)
+   #+end_src
+
+
 ** Announce package
    #+begin_src elisp
      (provide 'pgpb)

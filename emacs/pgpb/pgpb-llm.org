@@ -1,0 +1,16 @@
+#+property: header-args:elisp :session pbpb-llm :tangle pgpb-llm.el
+#+auto_tangle: t
+
+* Configure access to ChatGPT
+
+  #+begin_src elisp
+    (use-package gptel
+      :ensure t)
+  #+end_src
+
+** Publish package
+
+   #+begin_src elisp
+     (provide 'pgpb-llm)
+   #+end_src
+
