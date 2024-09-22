@@ -59,10 +59,13 @@
     #+end_src
 
 
-** Load Helm+Projectile stuff
+** Load navigation utils
+
+   Configuration files for finding/accessing locations in menues,
+   buffers, Org headings, etc:
 
    #+begin_src elisp
-     (require 'init-helm-projectile)
+     (require 'pgpb-nav)
    #+end_src
 
 

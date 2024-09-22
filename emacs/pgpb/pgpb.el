@@ -18,7 +18,7 @@
 (pgpb-customize-appearance)
 (pgpb-global-keys)
 
-(require 'init-helm-projectile)
+(require 'pgpb-nav)
 
 (require 'pgpb-org)
 

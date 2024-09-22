@@ -1,0 +1,66 @@
+#+PROPERTY: header-args :results verbatim :tangle pgpb-nav.el :session pgpb-nav :cache no
+#+auto_tangle: t
+
+
+* pgpb-nav: [[file:pgpb-nav.el]]
+
+  Efficient navigation for buffers, files, Org headings, etc.
+
+** Pre-requisities
+
+   
+*** Helm: incremental completions framework: [[https://github.com/emacs-helm/helm][github]]
+    
+    #+begin_src elisp
+      (use-package helm
+        :ensure t
+        :config
+        (helm-mode 1))
+    #+end_src
+
+
+*** Projectile: project interaction library: [[https://github.com/bbatsov/projectile][github]]
+
+    #+begin_src elisp
+      (use-package projectile
+        :ensure t
+        :init
+        (projectile-mode +1)
+        (setq projectile-completion-system 'helm)
+        :bind (:map projectile-mode-map
+                    ("s-p" . projectile-command-map)
+                    ("C-c j" . projectile-command-map))
+        )
+    #+end_src
+
+
+*** imenu: create menus: [[https://www.emacswiki.org/emacs/ImenuMode][wiki]]
+
+    #+begin_quote
+    Imenu produces menus for accessing locations in documents,
+    typically in the current buffer.  
+    #+end_quote
+    
+     #+begin_src elisp
+       (use-package imenu-anywhere
+         :ensure t
+         :bind (("C-." . 'helm-imenu-anywhere)))
+     #+end_src
+
+
+** helm-projectile: Helm UI for Projectile: [[https://github.com/bbatsov/helm-projectile][github]]
+
+   #+begin_src elisp
+     (use-package helm-projectile
+       :ensure t
+       :bind (("C-c g a" . 'helm-projectile-ack))
+       :config
+       (helm-projectile-on))
+   #+end_src
+
+
+** Provide package
+   
+   #+begin_src elisp
+     (provide 'pgpb-nav)
+   #+end_src
