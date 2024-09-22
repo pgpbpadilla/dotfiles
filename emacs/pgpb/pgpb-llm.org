@@ -12,10 +12,12 @@
 *** OpenAI billing: [[https://platform.openai.com/settings/organization/billing/overview][open]]
 
    
-** Install and configure pacakge
+** Install and configure pacakge: [[https://github.com/karthink/gptel?tab=readme-ov-file#setup][gptel]]
    #+begin_src elisp
      (use-package gptel
-       :ensure t)
+       :ensure t
+       :init
+       (setq gpt-default-mode 'org-mode))
    #+end_src
 
 
