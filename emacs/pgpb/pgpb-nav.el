@@ -23,4 +23,26 @@
   :config
   (helm-projectile-on))
 
+(use-package ivy
+  :ensure t
+  :init
+  (ivy-mode 1)
+  :bind ("C-c f" . ivy-switch-frame)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "%d/%d ")
+  (enable-recursive-minibuffers t))
+
+(defun ivy-switch-frame ()
+  "Use Ivy to switch between visible Emacs frames."
+  (interactive)
+  (let ((frames (mapcar (lambda (frame)
+                          (cons (frame-parameter frame 'name) frame))
+                        (frame-list))))
+    (ivy-read "Switch to frame: "
+              (mapcar 'car frames)
+              :action (lambda (name)
+                        (select-frame-set-input-focus
+                         (cdr (assoc name frames)))))))
+
 (provide 'pgpb-nav)
