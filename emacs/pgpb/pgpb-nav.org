@@ -73,23 +73,32 @@
         :ensure t
         :init
         (ivy-mode 1)
-        :bind ("C-c f" . ivy-switch-frame)
+        :bind ("C-c f" . pgpb-switch-frame)
         :custom
         (ivy-use-virtual-buffers t)
         (ivy-count-format "%d/%d ")
         (enable-recursive-minibuffers t))
 
-      (defun ivy-switch-frame ()
-        "Use Ivy to switch between visible Emacs frames."
+      (defun pgpb-vc-root (buffer-name)
+        "Return the name of the parent git repo for the given BUFFER-NAME."
+        (with-current-buffer buffer-name
+          (let ((git-root (vc-root-dir)))
+            (if git-root
+                (file-name-nondirectory (directory-file-name git-root))
+              "Not in a git repo"))))
+
+      (defun pgpb-switch-frame ()
         (interactive)
-        (let ((frames (mapcar (lambda (frame)
-                                (cons (frame-parameter frame 'name) frame))
-                              (frame-list))))
-          (ivy-read "Switch to frame: "
-                    (mapcar 'car frames)
-                    :action (lambda (name)
-                              (select-frame-set-input-focus
-                               (cdr (assoc name frames)))))))
+        (ivy-read "Switch to frame: "
+                  (mapcar (lambda (frame)
+                            (let* ((buffer (window-buffer (frame-selected-window frame)))
+                                   (repo (or (pgpb-vc-root buffer) "No Git Repo")))
+                              (cons (format "%s - [git: %s]"
+                                            (frame-parameter frame 'name)
+                                            (file-name-nondirectory (directory-file-name repo))) frame)))
+                          (frame-list))
+                  :action (lambda (frame)
+                            (select-frame-set-input-focus frame))))
     #+end_src
 
 
