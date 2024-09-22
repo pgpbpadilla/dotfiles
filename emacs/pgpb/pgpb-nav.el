@@ -41,17 +41,24 @@
           (file-name-nondirectory (directory-file-name git-root))
         "Not in a git repo"))))
 
+(defun pgpb-make-candidate (frame repo)
+  (let ((display-name (format "%s: [git: %s]"
+          (frame-parameter frame 'name)
+          (file-name-nondirectory (directory-file-name repo)))))
+    (cons display-name frame)))
+
+(defun pgpb-active-buffer-in-frame (frame)
+  (window-buffer (frame-selected-window frame)))
+
 (defun pgpb-switch-frame ()
   (interactive)
   (ivy-read "Switch to frame: "
             (mapcar (lambda (frame)
-                      (let* ((buffer (window-buffer (frame-selected-window frame)))
+                      (let* ((buffer (pgpb-active-buffer-in-frame frame))
                              (repo (or (pgpb-vc-root buffer) "No Git Repo")))
-                        (cons (format "%s - [git: %s]"
-                                      (frame-parameter frame 'name)
-                                      (file-name-nondirectory (directory-file-name repo))) frame)))
+                        (pgpb-make-candidate frame repo)))
                     (frame-list))
-            :action (lambda (frame)
-                      (select-frame-set-input-focus frame))))
+            :action (lambda (candidate)
+                      (select-frame-set-input-focus (cdr candidate)))))
 
 (provide 'pgpb-nav)
