@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Blog: HTML link for reference
+# key: .blog.ref
+# --
+@@html:<a name="$1"
+          target="_blank"
+          href="$2">$3</a>:
+          $4@@
