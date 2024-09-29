@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Amazon affiliate link
+# key: .amzn.link
+# --
+@@html:<a href="$1"
+          target="_blank">
+         $2
+       </a>@@

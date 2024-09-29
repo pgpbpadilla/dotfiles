@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Amazon affiliate link disclaimer
-# key: .warn.amzn.
+# key: .warn.amzn
 # --
 #+begin_export html
 {% include amzn_affiliate_disclaimer.html %}
