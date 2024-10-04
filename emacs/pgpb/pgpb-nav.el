@@ -42,15 +42,18 @@
         "Not in a git repo"))))
 
 (defun pgpb-make-candidate (frame repo)
+  "Generate frame candidates for interactive selection with Ivy."
   (let ((display-name (format "%s: [git: %s]"
           (frame-parameter frame 'name)
           (file-name-nondirectory (directory-file-name repo)))))
     (cons display-name frame)))
 
 (defun pgpb-active-buffer-in-frame (frame)
+  "Return the name of the active buffer in the given frame."
   (window-buffer (frame-selected-window frame)))
 
 (defun pgpb-switch-frame ()
+  "Switch to another frame interactively."
   (interactive)
   (ivy-read "Switch to frame: "
             (mapcar (lambda (frame)
