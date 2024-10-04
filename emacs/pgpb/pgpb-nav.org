@@ -67,6 +67,9 @@
 
    
 *** Quickly switch to frame by name
+    :PROPERTIES:
+    :ID:       357DD6F2-808B-449F-AA9F-3659B537B9C4
+    :END:
 
     #+begin_src elisp
       (use-package ivy
