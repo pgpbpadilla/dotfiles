@@ -1,0 +1,98 @@
+#+PROPERTY: header-args:elisp :results verbatim :tangle pgpb-debian.el :session pgpb-debian :cache no
+#+auto_tangle: t
+
+* pgpb-debian.el
+
+  Debian-specific configuration.
+
+  #+begin_src bash :tangle no
+    uname -a
+    cat /etc/os-release
+  #+end_src
+
+  #+RESULTS:
+
+
+** TODO Dropbox is broken
+   :PROPERTIES:
+   :ID:       68967b43-e311-4bd5-8df6-25d6ed25a6fa
+   :END:
+
+   1. [ ] untrusted gpg key blocks =apt-get update=
+
+
+
+
+** TODO Keyboard layer for linux
+
+   1. [ ] Alt is back in the pinky finger but it should not be
+      
+
+
+   
+* Gotchas: issues and debugging
+  :PROPERTIES:
+  :header-args:elisp: :tangle no
+  :END:
+
+** DONE Installing Emacs 29
+   CLOSED: [2024-10-05 Sa 22:39]
+   :LOGBOOK:
+   - CLOSING NOTE [2024-10-05 Sa 22:39]
+   :END:
+
+   1. [X] blocked by [[id:68967b43-e311-4bd5-8df6-25d6ed25a6fa][Dropbox is broken]]
+      Fix: delete apt sources.list
+   2. [X] install from backports
+
+         
+** WONTDO Magit stuff
+   CLOSED: [2024-10-05 Sa 22:39]
+ :LOGBOOK:
+ - Note taken on [2024-10-05 Sa 22:39] \\
+   installed Emacs 29 which does not have this issue
+ - CLOSING NOTE [2024-10-05 Sa 22:39]
+ :END:
+
+    #+begin_quote
+    Emergency (transient): Transient requires ‘seq’ >= 2.24,
+    but due to bad defaults, Emacs’s package manager, refuses to
+    upgrade this and other built-in packages to higher releases
+    from GNU Elpa, when a package specifies that this is needed.
+
+    To fix this, you have to add this to your init file:
+
+    (setq package-install-upgrade-built-in t)
+
+    Then evaluate that expression by placing the cursor after it
+    and typing C-x C-e.
+
+    Once you have done that, you have to explicitly upgrade ‘seq’:
+
+    M-x package-upgrade seq \‘RET’
+
+    Then you also must make sure the updated version is loaded,
+    by evaluating this form:
+
+    (progn (unload-feature ’seq t) (require ’seq))
+
+    Until you do this, you will get random errors about ‘seq-keep’
+    being undefined while using Transient.
+
+    If you don’t use the ‘package’ package manager but still get
+    this warning, then your chosen package manager likely has a
+ similar defect. Disable showing Disable logging
+    #+end_quote
+
+    #+begin_src elisp
+      (when (< emacs-major-version 29)
+      ;; Emacs 28 specific config
+         (setq package-install-upgrade-built-in t)
+         (use-package seq
+           :ensure t)
+      )
+
+    #+end_src
+
+
+
