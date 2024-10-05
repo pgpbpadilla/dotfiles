@@ -13,9 +13,11 @@
   #+RESULTS:
 
 
-** TODO GPG keys are expired or missing
+** TODO Org files are accessible
 
-   1. [ ] install most recent gpg keys from 1Password
+*** TODO GPG keys are expired or missing
+
+    1. [ ] install most recent gpg keys from 1Password
 
 ** TODO Dropbox is broken
    :PROPERTIES:
