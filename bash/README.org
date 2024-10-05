@@ -38,7 +38,7 @@
 
 
 *** MacOS installation via symlink
-
+    
     1. Review existing bash configuration:
       
        #+begin_src bash
@@ -52,6 +52,31 @@
      	 #+end_src
      	
 
+*** Debian install via symlink
+
+    1. Review existing bash configuration:
+      
+       #+begin_src bash
+         ls -l ~/.bash_profile
+       #+end_src
+
+       #+RESULTS:
+       : lrwxrwxrwx 1 pgpb pgpb 52  5. Okt 23:03 /home/pgpb/.bash_profile -> /home/pgpb/dotfiles/bash/example/debian.bash_profile
+   
+    2. Install symlink:
+       
+       #+begin_src bash
+         ln -svf $(pwd)/example/debian.bash_profile "${HOME}"/.bash_profile
+       #+end_src
+
+       #+RESULTS:
+       : '/home/pgpb/.bash_profile' -> '/home/pgpb/dotfiles/bash/example/debian.bash_profile'
+
+    3. Ensure terminal emulator starts bash as a login shell,
+       e.g. =bash --login=, otherwise [[file:debian.bash_profile.sh]] will
+       not be used and [[file:debian.bashrc.sh]] will be used instead
+   
+    
 ** General description
 
    Customizations are configured via OS-specifict Bash scripts:
@@ -62,8 +87,7 @@
 
    #+RESULTS:
    : common.bashrc.sh
-   : linux.bashrc.sh
-   : macos.bashrc.sh
+   : debian.bashrc.sh
    : windows10.bashrc.sh
    
 *** Common customizations
