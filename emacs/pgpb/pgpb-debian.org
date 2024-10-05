@@ -13,6 +13,10 @@
   #+RESULTS:
 
 
+** TODO GPG keys are expired or missing
+
+   1. [ ] install most recent gpg keys from 1Password
+
 ** TODO Dropbox is broken
    :PROPERTIES:
    :ID:       68967b43-e311-4bd5-8df6-25d6ed25a6fa
