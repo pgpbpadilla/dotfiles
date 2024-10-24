@@ -2,8 +2,8 @@
 ;; This file is generated from the Org file via =org-tangle= 
 (message "early-init: pgpb")
 
-(defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
-  "GPG key to use for encrypting Org files.")
+(defvar pgpb-gpg-keyid "49D11CD0A2D09F63"
+  "GPG key ID to use for encrypting Org files.")
 
 (defvar pgpb-org-agenda-dir "~/org/31e520d4df"
   "Directory for files that are used to build the Org agenda.")

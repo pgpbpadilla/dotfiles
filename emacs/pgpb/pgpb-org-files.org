@@ -139,7 +139,7 @@
                (filename (format "%s/%s" out-dir (pgpb-random-name)))
                (new-file (concat filename pgpb-org-file-extension)))
 
-          (setq-local epa-file-encrypt-to pgpb-gpg-key)
+          (setq-local epa-file-encrypt-to pgpb-gpg-keyid)
                   (write-region pgpb-org-header nil new-file)
                   (find-file-other-window new-file)
                   (message new-file)))
@@ -232,7 +232,7 @@
     The file will be encrypted with the [[id:ABDF6552-C523-45A5-8127-5A64DB17DACD][GPG key]] defined by: 
 
     #+begin_src elisp :session none :tangle no
-      pgpb-gpg-key
+      pgpb-gpg-keyid
     #+end_src
 
     #+RESULTS:
@@ -283,7 +283,7 @@
 
     #+begin_src elisp
       (defvar pgpb-org-header
-        (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
+        (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-keyid)
         "Emacs header to configure GPG encryption.")
     #+end_src
 

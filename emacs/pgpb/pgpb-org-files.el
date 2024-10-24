@@ -29,7 +29,7 @@
          (filename (format "%s/%s" out-dir (pgpb-random-name)))
          (new-file (concat filename pgpb-org-file-extension)))
 
-    (setq-local epa-file-encrypt-to pgpb-gpg-key)
+    (setq-local epa-file-encrypt-to pgpb-gpg-keyid)
             (write-region pgpb-org-header nil new-file)
             (find-file-other-window new-file)
             (message new-file)))
@@ -77,7 +77,7 @@
           "echo $(openssl rand -hex 5)"))))
 
 (defvar pgpb-org-header
-  (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-key)
+  (format "# -*- mode:org; epa-file-encrypt-to: (\"%s\") -*-" pgpb-gpg-keyid)
   "Emacs header to configure GPG encryption.")
 
 (defun pgpb-org-refresh () 

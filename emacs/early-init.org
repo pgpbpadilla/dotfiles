@@ -26,8 +26,8 @@
    :END:
 
    #+begin_src elisp
-     (defvar pgpb-gpg-key "pgpb.padilla@gmail.com"
-       "GPG key to use for encrypting Org files.")
+     (defvar pgpb-gpg-keyid "49D11CD0A2D09F63"
+       "GPG key ID to use for encrypting Org files.")
    #+end_src
 
 **** TODO Allow multiple GPG keys by id
@@ -44,15 +44,15 @@
     List (public) keys (=-k=):
      
     #+begin_src bash :session none :tangle no
-      gpg -k pgpb.padilla
+      gpg -k --keyid-format LONG pgpb.padilla
     #+end_src
 
     #+RESULTS:
-    : pub   ed25519 2021-08-29 [SC] [verfällt: 2025-08-21]
+    : pub   ed25519/24C50C592A8618EC 2021-08-29 [SC] [verfällt: 2025-08-21]
     :       66BF0487843AB5B8F593F64124C50C592A8618EC
-    : uid        [ ultimativ ] Pablo Padilla <pgpb.padilla@gmail.com>
-    : sub   cv25519 2021-08-29 [E] [verfällt: 2025-08-21]
-    : sub   rsa4096 2022-02-16 [E] [verfällt: 2025-08-21]
+    : uid              [ ultimativ ] Pablo Padilla <pgpb.padilla@gmail.com>
+    : sub   cv25519/0E6DF137FF9F938F 2021-08-29 [E] [verfällt: 2025-08-21]
+    : sub   rsa4096/49D11CD0A2D09F63 2022-02-16 [E] [verfällt: 2025-08-21]
     : 
 
 
