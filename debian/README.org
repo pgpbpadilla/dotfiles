@@ -10,6 +10,8 @@
       [2022-10-08 Sa]
 
 
+** TODO Setup Nix: [[https://chatgpt.com/share/6701077c-b29c-800f-8c5b-ed9103f9d2a8][chat]]
+
 ** Install with =apt=
 
    Use the Brewfiles as a reference: [[file:~/dotfiles/homebrew/README.org][Homebrew]]

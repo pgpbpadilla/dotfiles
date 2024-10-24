@@ -41,9 +41,6 @@
       For debian there's nothing special, simply use the system's
       package manager.
 
-      I found something akin to Homebrew bundle for Debian: [[https://packages.debian.org/en/sid/apt-clone][apt-clone]],
-      check it out next time you're working on a Debian system.
-
 
 **** Configure GnuPG
      
